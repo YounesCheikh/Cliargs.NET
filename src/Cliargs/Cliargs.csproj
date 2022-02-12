@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Validation\Rules\" />
+    <None Remove="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validation\Rules\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
 </Project>

@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace Cliargs
 {
-    public class CliArgument
-    {
+    public class ArgumentInfo
+    { 
+        public ArgumentInfo(string name, bool mandatory)
+        {
+            this.Name = name;
+            this.IsMandatory = mandatory;
+        }
+
         /// <summary>
         /// The argument name
         /// </summary>
@@ -36,5 +42,10 @@ namespace Cliargs
         /// </summary>
         /// <value>true if argument is mandatory, otherwise false.</value>
         public bool IsMandatory { get; set; } = false;
+
+        public static ArgumentInfo New(string name, bool mandatory = true)
+        {
+            return new ArgumentInfo(name, mandatory);
+        }
     }
 }

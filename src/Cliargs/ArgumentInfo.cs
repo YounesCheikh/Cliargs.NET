@@ -7,10 +7,10 @@ namespace Cliargs
 {
     public class ArgumentInfo
     { 
-        public ArgumentInfo(string name, bool mandatory)
+        public ArgumentInfo(string name, bool optional)
         {
             this.Name = name;
-            this.IsMandatory = mandatory;
+            this.Optional = optional;
         }
 
         /// <summary>
@@ -38,14 +38,14 @@ namespace Cliargs
         public string Usage { get; set; } = string.Empty;
 
         /// <summary>
-        /// Argument manadatory or not
+        /// Define if argument is option
         /// </summary>
-        /// <value>true if argument is mandatory, otherwise false.</value>
-        public bool IsMandatory { get; set; } = false;
+        /// <value>true if argument is optional, otherwise false.</value>
+        public bool Optional { get; set; } = true;
 
-        public static ArgumentInfo New(string name, bool mandatory = true)
+        public static ArgumentInfo New(string name, bool optional = true)
         {
-            return new ArgumentInfo(name, mandatory);
+            return new ArgumentInfo(name, optional);
         }
     }
 }

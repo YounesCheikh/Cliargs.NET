@@ -5,7 +5,7 @@ namespace Cliargs
 	{
 		private readonly List<CliArgumentContext> argumentContexts = new List<CliArgumentContext>();
 
-		public CLIArguments()
+		private CLIArguments()
 		{
 		}
 
@@ -14,9 +14,18 @@ namespace Cliargs
 			argumentContexts.Add(argumentContext);
         }
 
-		public static CLIArguments New()
+		public static CLIArguments New<TConfiguration>() where TConfiguration : IArgsConfiguration, new()
+		{
+			IArgsConfiguration configuration = new TConfiguration();
+			var args = new CLIArguments();
+			configuration.Configure(args);
+			return args;
+		}
+
+		public void Validate()
         {
-			return new CLIArguments();
+			var args =  Environment.GetCommandLineArgs();
+			// TODO : Continue here ! 
 		}
 	}
 }

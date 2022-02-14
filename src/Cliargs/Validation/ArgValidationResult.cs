@@ -3,17 +3,20 @@ namespace Cliargs.Validation
 {
 	public class ArgValidationResult
 	{
-		public ArgValidationResult(ArgumentInfo info, string argInputValue, bool isValid)
+		public ArgValidationResult(ArgumentInfo info, IValidationRule validationRule, string argInputValue, bool isValid)
 		{
-			this.argumentInfo = info;
+			this.Info = info;
+			this.Rule = validationRule;
 			this.ArgumentInputValue = argInputValue;
 			this.IsValid = isValid;
 		}
 
+		public ArgumentInfo Info { get; private set; }
+
 		/// <summary>
         /// The argument 
         /// </summary>
-        public ArgumentInfo argumentInfo { get; private set; }
+        public IValidationRule Rule { get; private set; }
 
 
 		/// <summary>
@@ -26,7 +29,7 @@ namespace Cliargs.Validation
         /// The validation result, true if all the validation rules are succeeded
         /// Otherwise false. 
         /// </summary>
-		public bool IsValid { get; set; } 
+		public bool IsValid { get; set; }
     }
 }
 

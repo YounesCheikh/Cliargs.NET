@@ -9,8 +9,7 @@ public class ValidationContextTests
     [TestMethod]
     public void TypeValidationTest()
     {
-        ArgValidationContext<int> context = new ArgValidationContext<int>();
-        context.AddRule(new TypeValidationRule<int>());
+        ArgValidationContext<int> context = ArgValidationContext<int>.New(ArgumentInfo.New("key"));
         context.AddRule(new RangeValidationRule<int>(new [] {1,2,3}));
 
         Assert.IsTrue(context.IsValid(1));

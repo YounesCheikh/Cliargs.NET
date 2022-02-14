@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace Cliargs.Validation
 {
-    public abstract class ValidationRule<T>
+    public abstract class ValidationRule<T>: IValidationRule
     {
+        public abstract string GetValidationError();
+
         /// <summary>
         /// Checks the validation of an argument value
         /// </summary>

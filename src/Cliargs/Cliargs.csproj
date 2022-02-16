@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Validation\Rules\" />
     <None Remove="Extensions\" />
     <None Remove="Conversion\" />
+    <None Remove="Rules\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Validation\Rules\" />
     <Folder Include="Extensions\" />
     <Folder Include="Conversion\" />
+    <Folder Include="Rules\" />
   </ItemGroup>
 </Project>

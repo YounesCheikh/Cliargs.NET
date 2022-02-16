@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cliargs.Validation
+namespace Cliargs
 {
-    public class RangeValidationRule<T> : ValidationRule<T>
+    public class RangeValidationRule<T> : CliArgsValidationRule<T>
     {
         public T[] Range { get; private set; }
         public RangeValidationRule(T[] range)

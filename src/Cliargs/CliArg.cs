@@ -57,7 +57,10 @@ namespace Cliargs
             foreach(var rule in ValidationRules)
             {
                 var value = this.ValueTypeConverter.ConvertFromString<T>(InputValue);
-                if(!rule.IsValid(value))
+                if(value == null)
+                    throw new Exception($"Unable to cast value '{InputValue}' to type {typeof(T)}");
+
+                if (!rule.IsValid(value))
                 {
                     yield return new CliArgsValidationResult(rule, Info, false);
                 }

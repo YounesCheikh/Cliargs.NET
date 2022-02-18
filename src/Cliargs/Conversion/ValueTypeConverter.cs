@@ -21,8 +21,21 @@ namespace Cliargs
 		{
 		}
 
-		public virtual T ConvertFromString<T>(string inputValue)
+		public virtual T? ConvertFromString<T>(string inputValue)
         {
+			if (typeof(T).IsEnum)
+			{
+				try
+				{
+					T res = (T)Enum.Parse(typeof(T), inputValue);
+					if (!Enum.IsDefined(typeof(T), res)) return default;
+					return res;
+				}
+				catch
+				{
+					return default;
+				}
+			}
 			return (T)Convert.ChangeType(inputValue, typeof(T));
 		}
 

@@ -7,6 +7,8 @@ namespace Cliargs
 	{
         public CliArgsInfo Info  { get; }
 
+        public string Name { get; }
+
         public ValueTypeConverter ValueTypeConverter { get; }
 
         public CliArg(CliArgsInfo info): this(info, ValueTypeConverter.Default)
@@ -17,6 +19,7 @@ namespace Cliargs
         {
             Info = info;
             this.ValueTypeConverter = valueTypeConverter;
+            this.Name = Info.Name;
         }
     }
 
@@ -24,11 +27,19 @@ namespace Cliargs
     {
         public CliArg(CliArgsInfo info) : base(info)
         {
+            this.ValidationRules = new List<ICliArgsValidationRule<T>>();
         }
 
-        public string? InputValue { get; set; }
+        public List<ICliArgsValidationRule<T>> ValidationRules { get; }
 
-        public T? Value { get; set; }
+        public string? InputValue { get; set; } = null;
+
+        public T? Value { get; set; } = default;
+
+        public static CliArg<T> New(string name)
+        {
+            return new CliArg<T>(new CliArgsInfo(name));
+        }
     }
 }
 

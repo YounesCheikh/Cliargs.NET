@@ -5,7 +5,7 @@ namespace Cliargs
 	{
 		ICliArgsRepository CliArgsRepository { get; }
 
-		void Register(CliArgsInfo info, ICliArgsValidationContext context);
+		void Register(CliArg arg);
 
 		T? GetValue<T>(string argName);
 

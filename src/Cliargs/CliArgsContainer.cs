@@ -19,7 +19,7 @@ namespace Cliargs
 
         public T? GetValue<T>(string argName)
         {
-            if (!CliArgsRepository.CliArgsInfos.ContainsKey(argName))
+            if (!CliArgsRepository.CliArgs.ContainsKey(argName))
                 return default;
 
             CliArg<T>? arg = this.CliArgsRepository.CliArgs[argName] as CliArg<T>;
@@ -30,10 +30,9 @@ namespace Cliargs
             return default;
         }
 
-        public void Register(CliArgsInfo info, ICliArgsValidationContext context)
+        public void Register(CliArg arg)
         {
-            this.CliArgsRepository.AddCliArgsInfo(info);
-            this.CliArgsRepository.AddCliArgsValidationContext(info.Name, context);
+            this.CliArgsRepository.AddCliArg(arg);
         }
     }
 }

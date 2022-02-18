@@ -36,9 +36,9 @@ namespace Cliargs
         /// Define if argument is option
         /// </summary>
         /// <value>true if argument is optional, otherwise false.</value>
-        public bool Optional { get; set; } = true;
+        public bool Optional { get; set; }
 
-        public static CliArgsInfo New(string name, bool optional = true)
+        public static CliArgsInfo New(string name, bool optional = false)
         {
             return new CliArgsInfo(name)
             {

@@ -15,7 +15,7 @@ namespace Cliargs
 
             var argsCollection = Environment.GetCommandLineArgs().Skip(1);
 
-            var argInfos = container.CliArgsRepository.CliArgsInfos.Values;
+            var argInfos = container.CliArgsRepository.CliArgs.Values.Select(e=> e.Info).ToList();
             var mandatoryArgs = argInfos.Where(e => !e.Optional).ToList();
 
             var allMandatoryArgsAreHere = mandatoryArgs.All(a =>

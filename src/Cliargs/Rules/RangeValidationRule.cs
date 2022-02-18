@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cliargs
+namespace Cliargs.Rules
 {
     public class RangeValidationRule<T> : CliArgsValidationRule<T>
     {
@@ -21,6 +21,11 @@ namespace Cliargs
         public override string GetValidationError()
         {
             return string.Format("value must be in range [{0}]", string.Join(",", Range));
+        }
+
+        public static RangeValidationRule<T> FromRange(T[] range)
+        {
+            return new RangeValidationRule<T>(range);
         }
     }
 }

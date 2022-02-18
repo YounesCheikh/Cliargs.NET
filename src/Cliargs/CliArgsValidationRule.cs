@@ -7,7 +7,10 @@ namespace Cliargs
 		{
 		}
 
+        public bool? Result { get; internal set; }
+
         public abstract string GetValidationError();
+
         public abstract bool IsValid(T value);
     }
 }

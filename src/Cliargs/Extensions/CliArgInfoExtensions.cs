@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Cliargs
 {
-	public static class CliArgInfoExtensions
+	static class CliArgInfoExtensions
 	{
 		/// <summary>
         /// Set CLI Argument as required

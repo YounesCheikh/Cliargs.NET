@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Cliargs
 {
-	public static class TypeExtensions
+	static class TypeExtensions
 	{
 		internal static string GetNameWithoutGenericArity(this Type t)
 		{

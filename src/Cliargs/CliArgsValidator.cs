@@ -2,9 +2,9 @@
 
 namespace Cliargs
 {
-	public static class CliArgsValidator 
+	static class CliArgsValidator 
 	{
-        public static IList<ICliArgsValidationResult> Validate(ICliArgsContainer container)
+        internal static IList<ICliArgsValidationResult> Validate(ICliArgsContainer container)
         {
             var containerInstance = container;
             var args = containerInstance.GetArgs().ToList();

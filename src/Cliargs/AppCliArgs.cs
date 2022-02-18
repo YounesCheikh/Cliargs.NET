@@ -25,7 +25,7 @@ namespace Cliargs
 
 		public bool IsSet(string argName)
         {
-			return _cliArgsContainer.CliArgsRepository.CliArgs.ContainsKey(argName);
+			return _cliArgsContainer.CliArgs.ContainsKey(argName);
         }
 
 		public bool HasValidationErrors => _validationResults.Any();

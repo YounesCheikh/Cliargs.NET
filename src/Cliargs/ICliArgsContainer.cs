@@ -3,7 +3,7 @@ namespace Cliargs
 {
 	public interface ICliArgsContainer
 	{
-		ICliArgsRepository CliArgsRepository { get; }
+		public IReadOnlyDictionary<string, CliArg> CliArgs { get; }
 
 		void Register(CliArg arg);
 

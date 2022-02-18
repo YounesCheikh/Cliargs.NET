@@ -1,11 +1,11 @@
 ﻿using System;
 namespace Cliargs
 {
-	public static class CliArgsContainerExtensions
+	static class CliArgsContainerExtensions
 	{
 		public static CliArg GetCliArgByName(this ICliArgsContainer container, string name)
         {
-			var item= container.CliArgsRepository.CliArgs.Values.SingleOrDefault(e=> e.Name == name);
+			var item= container.CliArgs.Values.SingleOrDefault(e=> e.Name == name);
 			if (item == null)
 				throw new Exception($"Unable to find the argument having a name = {name}");
 			return item;
@@ -13,7 +13,7 @@ namespace Cliargs
 
 		public static CliArg GetCliArgByShortName(this ICliArgsContainer container, string shortName)
 		{
-			var item = container.CliArgsRepository.CliArgs.Values.SingleOrDefault(e => e.Info.ShortName == shortName);
+			var item = container.CliArgs.Values.SingleOrDefault(e => e.Info.ShortName == shortName);
 			if (item == null)
 				throw new Exception($"Unable to find the argument having a shortname = {shortName}");
 			return item;
@@ -21,7 +21,7 @@ namespace Cliargs
 
 		public static IEnumerable<CliArg> GetArgs(this ICliArgsContainer container)
         {
-			return container.CliArgsRepository.CliArgs.Values;
+			return container.CliArgs.Values;
         }
 	}
 }

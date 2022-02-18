@@ -2,27 +2,31 @@
 
 namespace Cliargs
 {
-	public class CliArgsContainer: ICliArgsContainer
+	class CliArgsContainer: ICliArgsContainer
 	{
-        public CliArgsContainer() : this(new CliArgsFormat())
+        private readonly Dictionary<string, CliArg> _cliArgs = new Dictionary<string, CliArg>();
+
+        public IReadOnlyDictionary<string, CliArg> CliArgs => _cliArgs;
+
+        
+
+        internal CliArgsContainer() : this(new CliArgsFormat())
         {
         }
 
-        public CliArgsContainer(CliArgsFormat format)
+        internal CliArgsContainer(CliArgsFormat format)
 		{
-			this.CliArgsRepository = new CliArgsRepository();
             this.Format = format;
 		}
 
-        public ICliArgsRepository CliArgsRepository { get; }
         public CliArgsFormat Format { get; }
 
         public T? GetValue<T>(string argName)
         {
-            if (!CliArgsRepository.CliArgs.ContainsKey(argName))
+            if (!CliArgs.ContainsKey(argName))
                 return default;
 
-            CliArg<T>? arg = this.CliArgsRepository.CliArgs[argName] as CliArg<T>;
+            CliArg<T>? arg = CliArgs[argName] as CliArg<T>;
 
             if (arg != null)
                 return arg.Value;
@@ -32,7 +36,12 @@ namespace Cliargs
 
         public void Register(CliArg arg)
         {
-            this.CliArgsRepository.AddCliArg(arg);
+            AddCliArg(arg);
+        }
+
+        private void AddCliArg(CliArg arg)
+        {
+            this._cliArgs.Add(arg.Name, arg);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 namespace Cliargs
 {
-	public static class CliArgsBuilder
+	static class CliArgsBuilder
 	{
-        public static void Build(ICliArgsContainer container)
+        internal static void Build(ICliArgsContainer container)
         {
             var format = container.Format ?? new CliArgsFormat();
             var argsCollection = Environment.GetCommandLineArgs().Skip(1);

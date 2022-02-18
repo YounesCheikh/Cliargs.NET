@@ -4,6 +4,7 @@ using Cliargs.Demo;
 
 Console.WriteLine("Hello, World!");
 
+
 var cliArgs = AppCliArgs.Use<CliArgsSetup>();
 if(cliArgs.HasValidationErrors)
 {

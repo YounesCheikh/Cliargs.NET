@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Cliargs.Rules;
 namespace Cliargs.Demo
 {
     public class CliArgsSetup : ICliArgsSetup

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cliargs
+namespace Cliargs.Rules
 {
 	public class GreaterThanRule<T>: CliArgsValidationRule<T> where T: IComparable
 

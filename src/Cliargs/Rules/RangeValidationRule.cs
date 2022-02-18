@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cliargs
+namespace Cliargs.Rules
 {
     public class RangeValidationRule<T> : CliArgsValidationRule<T>
     {

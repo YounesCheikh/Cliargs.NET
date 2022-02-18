@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Cliargs.Rules;
 namespace Cliargs
 {
 	public abstract class CliArg

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Cliargs
+namespace Cliargs.Rules
 {
     public class EqualsRule<T> : CliArgsValidationRule<T> where T : IComparable
     {

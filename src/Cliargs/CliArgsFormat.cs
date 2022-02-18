@@ -19,17 +19,17 @@ namespace Cliargs
             }
         }
 
-		public CliArgsFormat()
+		private CliArgsFormat()
         {
 
         }
 
-		public CliArgsFormat(string assignationChar)
+		public CliArgsFormat(char assignationChar)
 		{
 			this.AssignationChar = assignationChar;
 		}
 
-		public CliArgsFormat(string assignationChar, string namePrefix, string shortNamePrefix): this(assignationChar)
+		public CliArgsFormat(char assignationChar, string namePrefix, string shortNamePrefix): this(assignationChar)
 		{
 			NamePrefix = namePrefix;
 			ShortNamePrefix = shortNamePrefix;
@@ -41,7 +41,7 @@ namespace Cliargs
         /// Default character is space ' '
         /// <code>--key value</code>
         /// </summary>
-		public virtual string AssignationChar { get; protected set; } = " ";
+		public virtual char AssignationChar { get; protected set; } = ' ';
 
 		/// <summary>
         /// Argument name prefix

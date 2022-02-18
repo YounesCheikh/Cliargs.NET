@@ -10,7 +10,7 @@ namespace Cliargs
 
         
 
-        internal CliArgsContainer() : this(new CliArgsFormat())
+        internal CliArgsContainer() : this(CliArgsFormat.Default)
         {
         }
 
@@ -19,7 +19,7 @@ namespace Cliargs
             this.Format = format;
 		}
 
-        public CliArgsFormat Format { get; }
+        public CliArgsFormat Format { get; private set; }
 
         public T? GetValue<T>(string argName)
         {

@@ -3,7 +3,7 @@ using Cliargs.Demo;
 
 Console.WriteLine("Hello, World!");
 
-var cliArgs = AppCliArgs.Use<CliArgsSetup>();
+var cliArgs = AppCliArgs.Use<CliArgsSetup>(new CustomFormat());
 if(cliArgs.HasValidationErrors)
 {
     var validationResults = cliArgs.GetValidationResults();

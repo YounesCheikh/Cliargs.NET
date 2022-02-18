@@ -3,13 +3,15 @@ namespace Cliargs
 {
 	public interface ICliArgsContainer
 	{
-		public IReadOnlyDictionary<string, CliArg> CliArgs { get; }
+		IReadOnlyDictionary<string, CliArg> CliArgs { get; }
 
 		void Register(CliArg arg);
 
 		T? GetValue<T>(string argName);
 
 		CliArgsFormat Format { get; }
+
+		
 	}
 }
 

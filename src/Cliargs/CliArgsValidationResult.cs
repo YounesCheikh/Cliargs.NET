@@ -31,7 +31,7 @@ namespace Cliargs
 		public override string ToString()
         {
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.AppendLine($"Error: Failed to validate Arugment {ArgName} with rule {RuleName}");
+			stringBuilder.AppendLine($"Error: Failed to validate arugment '{ArgName}' with rule '{RuleName}'");
 			stringBuilder.AppendLine($"\"{ValidationError}\"");
 			stringBuilder.AppendLine($"Example usage: ");
 			stringBuilder.AppendLine(Usage);

@@ -1,9 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Cliargs;
+﻿using Cliargs;
 using Cliargs.Demo;
 
 Console.WriteLine("Hello, World!");
-
 
 var cliArgs = AppCliArgs.Use<CliArgsSetup>();
 if(cliArgs.HasValidationErrors)
@@ -16,10 +14,7 @@ if(cliArgs.HasValidationErrors)
 }
 else
 {
+    var month = cliArgs.GetArgValue<uint>("month");
     var year = cliArgs.GetArgValue<uint>("year");
-    Console.WriteLine(year);
+    Console.WriteLine($"Date: {month:D2}/{year:D4}");
 }
-
-
-
-

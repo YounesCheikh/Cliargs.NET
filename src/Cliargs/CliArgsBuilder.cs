@@ -1,32 +1,46 @@
 ﻿using System;
 namespace Cliargs
 {
-	public class CliArgsBuilder: ICliArgsBuilder
+	public static class CliArgsBuilder
 	{
-		public CliArgsBuilder()
-		{
-
-		}
-
-        public TCliArgsContainer Build<TCliArgsContainer>(ICliArgsSetup setup) where TCliArgsContainer: ICliArgsContainer, new()
+        public static void Build(ICliArgsContainer container)
         {
-            var container = new TCliArgsContainer();
-            setup.Configure(container);
-
+            var format = container.Format ?? new CliArgsFormat();
             var argsCollection = Environment.GetCommandLineArgs().Skip(1);
+            bool expectValue = false;
+            CliArg? cliArg = default;
+            foreach (var arg in argsCollection)
+            {
+                if (expectValue)
+                {
+                    if (cliArg == null)
+                        throw new Exception($"Trying to set a value [{arg}] on a null CliArg.");
+                    cliArg.InputValue = arg;
+                    expectValue = false;
+                    cliArg = null;
+                }
+                else
+                {
+                    if (arg.StartsWith(format.NamePrefix))
+                    {
+                        var argName = arg.Substring(format.NamePrefix.Length);
+                        cliArg = container.GetCliArgByName(argName);
+                    }
+                    else if (arg.StartsWith(format.ShortNamePrefix))
+                    {
+                        var argShortName = arg.Substring(format.ShortNamePrefix.Length);
+                        cliArg = container.GetCliArgByShortName(argShortName);
+                    }
+                    else
+                        throw new Exception($"Unexpected arg or missing prefix: {arg}");
 
-            var argInfos = container.CliArgsRepository.CliArgs.Values.Select(e=> e.Info).ToList();
-            var mandatoryArgs = argInfos.Where(e => !e.Optional).ToList();
+                    if (cliArg == null)
+                        throw new Exception($"Unable to find any argument matching the input : {arg}");
 
-            var allMandatoryArgsAreHere = mandatoryArgs.All(a =>
-                argsCollection.Contains($"{container.Format.NamePrefix}{a.Name}")
-                || argsCollection.Contains($"{container.Format.ShortNamePrefix}{a.ShortName}")
-            );
+                    expectValue = true;
+                }
+            }
 
-            if (!allMandatoryArgsAreHere)
-                throw new Exception("Missing mandatory arguments");
-
-            return container;
         }
     }
 }

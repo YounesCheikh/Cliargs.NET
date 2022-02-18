@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Cliargs.Conversion
+namespace Cliargs
 {
 	public class ValueTypeConverter
 	{

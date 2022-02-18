@@ -3,7 +3,13 @@ namespace Cliargs
 {
 	public interface ICliArgsValidationResult
 	{
-		ICliArgsValidationRule Rule { get; }
+		string RuleName { get; }
+				
+		string Usage { get; }
+
+		string ValidationError { get; }
+
+		string ArgName { get; }
 
 		bool IsValid { get; }
 	}

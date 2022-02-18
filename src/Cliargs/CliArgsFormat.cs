@@ -3,6 +3,22 @@ namespace Cliargs
 {
 	public class CliArgsFormat
 	{
+		private static CliArgsFormat _default;
+		private static readonly object syncObj = new object();
+		static CliArgsFormat()
+        {
+			if (_default != null)
+				return;
+
+            lock (syncObj)
+            {
+				if (_default != null)
+					return;
+
+				_default = new CliArgsFormat();
+            }
+        }
+
 		public CliArgsFormat()
         {
 
@@ -25,7 +41,7 @@ namespace Cliargs
         /// Default character is space ' '
         /// <code>--key value</code>
         /// </summary>
-		public string AssignationChar { get; protected set; } = " ";
+		public virtual string AssignationChar { get; protected set; } = " ";
 
 		/// <summary>
         /// Argument name prefix
@@ -33,7 +49,7 @@ namespace Cliargs
         /// Default : '--'
         /// <code>--key=value</code>
         /// </summary>
-		public string NamePrefix { get; protected set; } = "--";
+		public virtual string NamePrefix { get; protected set; } = "--";
 
 		/// <summary>
         /// The short name prefix
@@ -41,7 +57,12 @@ namespace Cliargs
         /// Defualt: '-'
         /// <code>-K=value</code>
         /// </summary>
-		public string ShortNamePrefix { get; protected set; } = "-";
+		public virtual string ShortNamePrefix { get; protected set; } = "-";
+
+		/// <summary>
+        /// Default Commande Line arguments format
+        /// </summary>
+		public static CliArgsFormat Default => _default;
 	}
 }
 

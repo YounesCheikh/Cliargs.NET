@@ -4,21 +4,20 @@ using Cliargs.Demo;
 
 Console.WriteLine("Hello, World!");
 
-//var cliArgs = CLIArguments.New<CliArgsConfiguration>();
-//cliArgs.Build();
-//var validationResults = cliArgs.Validate();
-
-//if(!validationResults.All(e=> e.IsValid))
-//{
-//    var firstOccurence = validationResults.First(e => !e.IsValid);
-//    Console.WriteLine($"Error in Value : {firstOccurence.ArgumentInputValue}");
-//    Console.WriteLine($"Message : {firstOccurence.Rule.GetValidationError()}");
-//    if(!string.IsNullOrWhiteSpace(firstOccurence.Info.Usage))
-//        Console.WriteLine($"Usage : {firstOccurence.Info.Usage}");
-//}
-
-//int year = cliArgs.GetArgValue<int>("year");
-//Console.WriteLine(year);
+var cliArgs = AppCliArgs.Use<CliArgsSetup>();
+if(cliArgs.HasValidationErrors)
+{
+    var validationResults = cliArgs.GetValidationResults();
+    foreach (var result in validationResults)
+    {
+        Console.WriteLine(result);
+    }
+}
+else
+{
+    var year = cliArgs.GetArgValue<uint>("year");
+    Console.WriteLine(year);
+}
 
 
 

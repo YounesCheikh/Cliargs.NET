@@ -44,6 +44,12 @@ namespace Cliargs
 			arg.ValidationRules.AddRange(rules);
 			return arg;
 		}
+
+		public static CliArg<T> ValidatedWithRules<T>(this CliArg<T> arg, params ICliArgsValidationRule<T>[] rules)
+		{
+			arg.ValidationRules.AddRange(rules);
+			return arg;
+		}
 	}
 }
 

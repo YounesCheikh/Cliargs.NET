@@ -24,6 +24,11 @@ namespace Cliargs
         }
 
         public abstract IEnumerable<ICliArgsValidationResult> Validate();
+
+        public static CliArg<T> New<T>(string name)
+        {
+            return CliArg<T>.New(name);
+        }
     }
 
     public class CliArg<T> : CliArg

@@ -14,10 +14,12 @@
     <None Remove="Extensions\" />
     <None Remove="Conversion\" />
     <None Remove="Rules\" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Conversion\" />
     <Folder Include="Rules\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>

@@ -15,11 +15,6 @@ namespace Cliargs
                     continue;
 
                 return results.ToList();
-                //foreach(var result in results)
-                //{
-                //    yield return result;
-                //}
-                //yield break;
             }
 
             return new List<ICliArgsValidationResult>();

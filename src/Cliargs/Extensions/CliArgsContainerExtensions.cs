@@ -7,7 +7,7 @@ namespace Cliargs
         {
 			var item= container.CliArgs.Values.SingleOrDefault(e=> e.Name == name);
 			if (item == null)
-				throw new Exception($"Unable to find the argument having a name = {name}");
+				throw new CLIArgumentNotFoundException(name);
 			return item;
 		}
 
@@ -15,7 +15,7 @@ namespace Cliargs
 		{
 			var item = container.CliArgs.Values.SingleOrDefault(e => e.Info.ShortName == shortName);
 			if (item == null)
-				throw new Exception($"Unable to find the argument having a shortname = {shortName}");
+				throw new CLIArgumentNotFoundException(shortName);
 			return item;
 		}
 

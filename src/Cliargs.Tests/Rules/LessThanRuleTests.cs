@@ -1,5 +1,4 @@
-﻿using System;
-using Cliargs.Rules;
+﻿using Cliargs.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cliargs.Tests.Rules
@@ -15,7 +14,7 @@ namespace Cliargs.Tests.Rules
 		}
 
 		[TestMethod]
-		public void IntegerGreaterThanOtherTest()
+		public void IntegerLessThanOtherTest()
 		{
 			var rule = new LessThanRule<int>(1);
 			Assert.IsTrue(rule.IsValid(0));
@@ -24,7 +23,16 @@ namespace Cliargs.Tests.Rules
 		}
 
 		[TestMethod]
-		public void StringGreaterThanOtherTest()
+		public void IntegerLessThanOrEqualsOtherTest()
+		{
+			var rule = new LessThanOrEqualsRule<int>(1);
+			Assert.IsTrue(rule.IsValid(0));
+			Assert.IsTrue(rule.IsValid(1));
+			Assert.IsFalse(rule.IsValid(2));
+		}
+
+		[TestMethod]
+		public void StringLessThanOtherTest()
 		{
 			var rule = new LessThanRule<string>("C");
 			Assert.IsTrue(rule.IsValid("B"));
@@ -33,7 +41,7 @@ namespace Cliargs.Tests.Rules
 		}
 
 		[TestMethod]
-		public void EnumGreaterThanOtherTest()
+		public void EnumLessThanOtherTest()
 		{
 			var rule = new LessThanRule<FakeEnum>(FakeEnum.NumberTwo);
 			Assert.IsTrue(rule.IsValid(FakeEnum.NumberOne));

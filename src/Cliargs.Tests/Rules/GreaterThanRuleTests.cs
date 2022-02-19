@@ -23,6 +23,15 @@ namespace Cliargs.Tests.Rules
 		}
 
 		[TestMethod]
+		public void IntegerGreaterThanOrEqualsOtherTest()
+		{
+			var rule = new GreaterThanOrEqualsRule<int>(1);
+			Assert.IsTrue(rule.IsValid(2));
+			Assert.IsTrue(rule.IsValid(1));
+			Assert.IsFalse(rule.IsValid(0));
+		}
+
+		[TestMethod]
 		public void StringGreaterThanOtherTest()
 		{
 			var rule = new GreaterThanRule<string>("C");

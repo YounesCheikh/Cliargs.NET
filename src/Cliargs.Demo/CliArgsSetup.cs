@@ -20,8 +20,8 @@ namespace Cliargs.Demo
                 .WithDescription("The month from 1 to 12")
                 .WithUsage("--month 10 | -m 10")
                 .ValidatedWithRules(new List<ICliArgsValidationRule<uint>>() {
-                      new GreaterThanRule<uint>(1),
-                        new LessThanRule<uint>(12)
+                      new GreaterThanRule<uint>(0),
+                        new LessThanRule<uint>(13)
                 });
 
             container.Register(monthArgument);

@@ -8,10 +8,15 @@ namespace Cliargs
 
         }
 
-        public CliArgsException(string message): base(message)
+        public CliArgsException(string? message): base(message)
         {
 
         }
-	}
+
+        public CliArgsException(string? message, Exception? innerException) : base(message, innerException)
+        {
+
+        }
+    }
 }
 

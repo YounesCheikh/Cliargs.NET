@@ -17,26 +17,33 @@ namespace Cliargs
             }
 		}
 
-		public ValueTypeConverter()
+		ValueTypeConverter()
 		{
 		}
 
-		public virtual T? ConvertFromString<T>(string inputValue)
+		public virtual T ConvertFromString<T>(string inputValue) 
         {
-			if (typeof(T).IsEnum)
+			try
 			{
-				try
+				if (typeof(T).IsEnum)
 				{
-					T res = (T)Enum.Parse(typeof(T), inputValue);
-					if (!Enum.IsDefined(typeof(T), res)) return default;
-					return res;
+					if (Enum.GetNames(typeof(T)).Select(e => e.ToLower()).Contains(inputValue.ToLower()))
+					{
+						var obj = Enum.Parse(typeof(T), inputValue, true);
+						if (obj is T)
+							return (T)obj;
+					}
+					throw new CliArgsException($"Unable to covert value to enum type ({typeof(T)})");
 				}
-				catch
-				{
-					return default;
-				}
+				var typedObj = Convert.ChangeType(inputValue, typeof(T));
+				if (typedObj is T)
+					return (T)typedObj;
+				throw new CliArgsException($"Failed to change type from string to ({typeof(T)}) of value {inputValue}");
 			}
-			return (T)Convert.ChangeType(inputValue, typeof(T));
+			catch(Exception exception)
+            {
+				throw new CliArgsException($"Unable to covert value ({inputValue}) to type ({typeof(T)})", exception);
+            }
 		}
 
 		public static ValueTypeConverter Default => _default;

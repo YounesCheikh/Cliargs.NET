@@ -27,7 +27,7 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod, TestCategory("Conversion"), Description("Test the conversion from string to int")]
-		[ExpectedException(typeof(FormatException))]
+		[ExpectedException(typeof(CliArgsException))]
 		public void ConvertToIntFailTest()
 		{
 			var converter = ValueTypeConverter.Default;
@@ -53,13 +53,21 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod, TestCategory("Conversion"), Description("Test the conversion from string to enum")]
+		[ExpectedException(typeof(CliArgsException))]
 		public void ConvertToEnumFailTest()
 		{ 
 			var converter = ValueTypeConverter.Default;
 			string inputValue = "NoElement";
-			var value = converter.ConvertFromString<FakeEnum>(inputValue);
-			Console.WriteLine(value);
-			Assert.AreEqual(default, value);
+			try
+			{
+				var value = converter.ConvertFromString<FakeEnum>(inputValue);
+			}
+			catch(Exception ex)
+            {
+				Assert.IsNotNull(ex.InnerException);
+				Assert.AreEqual(typeof(CliArgsException), ex.InnerException.GetType());
+				throw;
+            }
 		}
 	}
 }

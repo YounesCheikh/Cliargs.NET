@@ -27,6 +27,19 @@ public class RangeValidationRuleTests {
     }
 
     [TestMethod]
+    public void SampleIntRangeCollectionSuccessTest()
+    {
+        RangeValidationRule<int?> rule = RangeValidationRule<int?>.FromRangeCollection(new int?[] { 1, 2, 3 });
+        Assert.IsTrue(rule.IsValid(1));
+        Assert.IsTrue(rule.IsValid(2));
+        Assert.IsTrue(rule.IsValid(3));
+        Assert.IsFalse(rule.IsValid(0));
+        Assert.IsFalse(rule.IsValid(4));
+        Assert.IsFalse(rule.IsValid(-1));
+        Assert.IsFalse(rule.IsValid(null));
+    }
+
+    [TestMethod]
     public void SampleStringRangeSuccessTest()
     {
         RangeValidationRule<string?> rule = new RangeValidationRule<string?>(new string?[] { true.ToString().ToLower(), false.ToString().ToLower() });
@@ -55,5 +68,13 @@ public class RangeValidationRuleTests {
         Assert.IsTrue(rule.GetValidationError().Contains(FakeEnum.ElementOne.ToString("G")));
         Assert.IsTrue(rule.GetValidationError().Contains(FakeEnum.ElementThree.ToString("G")));
         Assert.IsFalse(rule.GetValidationError().Contains(FakeEnum.ElementTwo.ToString("G")));
+    }
+
+    [TestMethod]
+    public void ExculeNullsFromRange()
+    {
+        RangeValidationRule<string?> rule = RangeValidationRule<string?>.FromRange(new string?[] { null });
+        Assert.IsFalse(rule.IsValid("test"));
+        Assert.IsFalse(rule.IsValid(null));
     }
 } 

@@ -3,11 +3,6 @@ namespace Cliargs
 {
 	public class AppCliArgs
 	{
-		private AppCliArgs()
-        {
-			_cliArgsContainer = new CliArgsContainer(CliArgsFormat.Default);
-			_validationResults = new List<ICliArgsValidationResult>();
-		}
 		private static AppCliArgs? _instance;
 
 		ICliArgsContainer _cliArgsContainer;
@@ -23,21 +18,21 @@ namespace Cliargs
 		public static IEnumerable<ICliArgsValidationResult> GetValidationResults()
 		{
 			if (_instance == null)
-				throw new Exception($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
+				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
 			return _instance._validationResults;
 		}
 
 		public static T? GetArgValue<T>(string argName)
 		{
 			if (_instance == null)
-				throw new Exception($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
-			return _instance._cliArgsContainer.GetValue<T>(argName);
+				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
+            return _instance._cliArgsContainer.GetValue<T>(argName);
 		}
 
 		public static bool IsSet(string argName)
 		{
 			if (_instance == null)
-				throw new Exception($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
+				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
 			return _instance._cliArgsContainer.CliArgs.ContainsKey(argName);
 		}
 
@@ -46,7 +41,7 @@ namespace Cliargs
 			get
 			{
 				if (_instance == null)
-					throw new Exception($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
+					throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
 				return _instance._validationResults.Any();
 			}
 		}

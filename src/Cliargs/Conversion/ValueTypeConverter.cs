@@ -6,18 +6,17 @@ namespace Cliargs
 		private static readonly ValueTypeConverter _default;
 		private static readonly object syncObj = new();
 
-		static ValueTypeConverter() {
-			if (_default != null)
-				return;
-			lock(syncObj)
-            {
-				if (_default != null)
-					return;
-				_default = new ValueTypeConverter();
-            }
-		}
+		static ValueTypeConverter()
+        {
+            if (_default == null)
+                lock (syncObj)
+                {
+                    if (_default == null)
+                        _default = new ValueTypeConverter();
+                }
+        }
 
-		ValueTypeConverter()
+        ValueTypeConverter()
 		{
 		}
 

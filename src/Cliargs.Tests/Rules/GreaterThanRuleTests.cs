@@ -48,6 +48,16 @@ namespace Cliargs.Tests.Rules
 			Assert.IsFalse(rule.IsValid(FakeEnum.NumberTwo));
 			Assert.IsFalse(rule.IsValid(FakeEnum.NumberOne));
 		}
+
+		[TestMethod]
+		public void VerifyErrorMessageContainsTheValue()
+		{
+			var rule = new GreaterThanRule<FakeEnum>(FakeEnum.NumberTwo);
+			Assert.IsTrue(rule.GetValidationError().Contains(FakeEnum.NumberTwo.ToString("G")));
+
+			var ruleOrEquals = new GreaterThanOrEqualsRule<FakeEnum>(FakeEnum.NumberTwo);
+			Assert.IsTrue(ruleOrEquals.GetValidationError().Contains(FakeEnum.NumberTwo.ToString("G")));
+		}
 	}
 }
 

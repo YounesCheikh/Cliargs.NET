@@ -37,6 +37,13 @@ namespace Cliargs.Tests.Rules
 			Assert.IsTrue(rule.IsValid(FakeEnum.Element1));
 			Assert.IsFalse(rule.IsValid(FakeEnum.Element2));
 		}
+
+		[TestMethod]
+		public void VerifyErrorMessageContainsTheValue()
+		{
+			var rule = new EqualsRule<FakeEnum>(FakeEnum.Element1);
+			Assert.IsTrue(rule.GetValidationError().Contains(FakeEnum.Element1.ToString("G")));
+		}
 	}
 }
 

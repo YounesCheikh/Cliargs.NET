@@ -23,5 +23,9 @@
 
   <ItemGroup>
     <None Remove="ReportGenerator" />
+    <None Remove="_scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_scripts\" />
   </ItemGroup>
 </Project>

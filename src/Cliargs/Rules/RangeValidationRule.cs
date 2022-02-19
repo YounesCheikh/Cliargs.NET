@@ -23,9 +23,14 @@ namespace Cliargs.Rules
             return string.Format("value must be in range [{0}]", string.Join(",", Range));
         }
 
-        public static RangeValidationRule<T> FromRange(T[] range)
+        public static RangeValidationRule<T> FromRangeCollection(T[] range)
         {
             return new RangeValidationRule<T>(range);
+        }
+
+        public static RangeValidationRule<T> FromRange(params T[] rangeItems)
+        {
+            return new RangeValidationRule<T>(rangeItems);
         }
     }
 }

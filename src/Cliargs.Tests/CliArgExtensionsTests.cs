@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -106,6 +107,17 @@ namespace Cliargs.Tests
 			const string argName = "test";
 			ZeroValidationRule rule = new ZeroValidationRule();
 			var arg = CliArg.New<int>(argName).ValidatedWithRules(new [] { rule });
+			Assert.IsNotNull(arg);
+			Assert.IsTrue(arg.ValidationRules.Any());
+			Assert.AreEqual(1, arg.ValidationRules.Count);
+		}
+
+		[TestMethod]
+		public void CreateSampleInstanceWithValidationRulesCollection()
+		{
+			const string argName = "test";
+			ZeroValidationRule rule = new ZeroValidationRule();
+			var arg = CliArg.New<int>(argName).ValidatedWithRules(new List<ICliArgsValidationRule<int>>(){ rule });
 			Assert.IsNotNull(arg);
 			Assert.IsTrue(arg.ValidationRules.Any());
 			Assert.AreEqual(1, arg.ValidationRules.Count);

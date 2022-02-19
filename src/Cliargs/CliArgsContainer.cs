@@ -8,18 +8,20 @@ namespace Cliargs
 
         public IReadOnlyDictionary<string, CliArg> CliArgs => _cliArgs;
 
-        
-
         internal CliArgsContainer() : this(CliArgsFormat.Default)
         {
+            ArgumentsProvider = new ArgumentsProvider();
         }
 
         internal CliArgsContainer(CliArgsFormat format)
 		{
+            ArgumentNullException.ThrowIfNull(format);
             this.Format = format;
+            ArgumentsProvider = new ArgumentsProvider();
 		}
 
         public CliArgsFormat Format { get; private set; }
+        public IArgumentsProvider ArgumentsProvider { get; set; }
 
         public T? GetValue<T>(string argName)
         {

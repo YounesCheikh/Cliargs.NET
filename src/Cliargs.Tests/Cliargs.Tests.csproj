@@ -15,6 +15,7 @@
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
     <PackageReference Include="ReportGenerator" Version="5.0.4" />
+    <PackageReference Include="Moq" Version="4.16.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,64 @@
     <None Remove="ReportGenerator" />
     <None Remove="_scripts\" />
     <None Remove="TestResults\a31cd180-b0a0-4632-877d-845279e966f4\coverage.cobertura.xml" />
+    <None Remove="TestResults\2c46c11e-0481-4fb7-860f-64f28147dd1a\coverage.cobertura.xml" />
+    <None Remove="coveragereport\Cliargs_AppCliArgs.html" />
+    <None Remove="coveragereport\Cliargs_CliArg.html" />
+    <None Remove="coveragereport\Cliargs_CliArg_1.html" />
+    <None Remove="coveragereport\class.js" />
+    <None Remove="coveragereport\Cliargs_CliArgExtensions.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsBuilder.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsContainer.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsContainerExtensions.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsFormat.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsInfo.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsValidationResult.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsValidationRule_1.html" />
+    <None Remove="coveragereport\Cliargs_CliArgsValidator.html" />
+    <None Remove="coveragereport\Cliargs_EqualsRule_1.html" />
+    <None Remove="coveragereport\Cliargs_GreaterThanOrEqualsRule_1.html" />
+    <None Remove="coveragereport\Cliargs_GreaterThanRule_1.html" />
+    <None Remove="coveragereport\Cliargs_LessThanOrEqualsRule_1.html" />
+    <None Remove="coveragereport\Cliargs_LessThanRule_1.html" />
+    <None Remove="coveragereport\Cliargs_NonNullArgumentRule.html" />
+    <None Remove="coveragereport\Cliargs_RangeValidationRule_1.html" />
+    <None Remove="coveragereport\Cliargs_TypeExtensions.html" />
+    <None Remove="coveragereport\Cliargs_ValueTypeConverter.html" />
+    <None Remove="coveragereport\index.html" />
+    <None Remove="coveragereport\report.css" />
+    <None Remove="coveragereport\icon_up-dir.svg" />
+    <None Remove="coveragereport\icon_up-dir_active.svg" />
+    <None Remove="coveragereport\icon_down-dir_active.svg" />
+    <None Remove="coveragereport\icon_info-circled.svg" />
+    <None Remove="coveragereport\icon_plus.svg" />
+    <None Remove="coveragereport\icon_minus.svg" />
+    <None Remove="coveragereport\icon_wrench.svg" />
+    <None Remove="coveragereport\icon_fork.svg" />
+    <None Remove="coveragereport\icon_cube.svg" />
+    <None Remove="coveragereport\icon_search-plus.svg" />
+    <None Remove="coveragereport\icon_search-minus.svg" />
+    <None Remove="coveragereport\icon_star.svg" />
+    <None Remove="coveragereport\icon_sponsor.svg" />
+    <None Remove="coveragereport\icon_down-dir_active_dark.svg" />
+    <None Remove="coveragereport\icon_info-circled_dark.svg" />
+    <None Remove="coveragereport\icon_plus_dark.svg" />
+    <None Remove="coveragereport\icon_minus_dark.svg" />
+    <None Remove="coveragereport\icon_wrench_dark.svg" />
+    <None Remove="coveragereport\icon_fork_dark.svg" />
+    <None Remove="coveragereport\icon_cube_dark.svg" />
+    <None Remove="coveragereport\icon_search-plus_dark.svg" />
+    <None Remove="coveragereport\icon_search-minus_dark.svg" />
+    <None Remove="coveragereport\icon_star_dark.svg" />
+    <None Remove="coveragereport\main.js" />
+    <None Remove="coveragereport\index.htm" />
+    <None Remove="coveragereport\Cliargs_CliArgsException.html" />
+    <None Remove="coveragereport\Cliargs_CLIArgumentNotFoundException.html" />
+    <None Remove="Moq" />
+    <None Remove=".DS_Store" />
+    <None Remove="coveragereport\Cliargs_CommandLineInterface.html" />
+    <None Remove="coveragereport\Cliargs_CommandLineInterfaceProvider.html" />
+    <None Remove="TestResults\.DS_Store" />
+    <None Remove="TestResults\0472d2a3-3c5c-445b-a037-4465abfa8ee5\coverage.cobertura.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_scripts\" />

@@ -11,7 +11,7 @@ namespace Cliargs
 
 		CliArgsFormat Format { get; }
 
-		
-	}
+		IArgumentsProvider ArgumentsProvider { get; set; } 
+	} 
 }
 

@@ -54,8 +54,16 @@ namespace Cliargs.Tests
 		[ExpectedException(typeof(CLIArgumentNotFoundException))]
 		public void GetValueFromNonExistingArgTypeTest()
 		{
-			CliArgsContainer container = new CliArgsContainer();
-			var _ = container.GetValue<int>("test");
+            try
+            {
+				CliArgsContainer container = new CliArgsContainer();
+				var _ = container.GetValue<int>("test");
+			}
+            catch (CLIArgumentNotFoundException ex)
+            {
+				Assert.AreEqual("test", ex.ArgumentName);
+				throw;
+            }
 		}
 	}
 }

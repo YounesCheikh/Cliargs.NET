@@ -62,7 +62,7 @@ namespace Cliargs
 
             var value = this.ValueTypeConverter.ConvertFromString<T>(InputValue);
             if (value == null)
-                throw new Exception($"Unable to cast value '{InputValue}' to type {typeof(T)}");
+                throw new CliArgsException($"Unable to cast value '{InputValue}' to type {typeof(T)}");
 
             this.Value = value;
 

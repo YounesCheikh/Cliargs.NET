@@ -10,7 +10,7 @@ if(AppCliArgs.HasValidationErrors)
     var validationResults = AppCliArgs.GetValidationResults();
     foreach (var result in validationResults)
     {
-        Console.WriteLine(result);
+        Console.WriteLine(result.GetReport());
     }
 }
 else

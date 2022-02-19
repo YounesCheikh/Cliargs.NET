@@ -4,7 +4,7 @@ namespace Cliargs.Demo
     public class CustomFormat : CliArgsFormat
     {
 
-        public CustomFormat() : base('=')
+        public CustomFormat() : base(' ')
         {
 
         }

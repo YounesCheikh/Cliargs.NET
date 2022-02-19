@@ -30,6 +30,8 @@ namespace Cliargs
         /// The validation result
         /// </summary>
 		bool IsValid { get; }
+
+		string GetReport();
 	}
 }
 

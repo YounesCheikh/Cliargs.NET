@@ -37,10 +37,10 @@ namespace Cliargs.Tests
 			Assert.AreEqual(rule.GetValidationError(), result.ValidationError);
 			Assert.AreEqual(ruleName, result.RuleName);
 
-			Assert.IsTrue(result.ToString().Contains(info.Usage));
-			Assert.IsTrue(result.ToString().Contains(info.Name));
-			Assert.IsTrue(result.ToString().Contains(ruleName));
-			Assert.IsTrue(result.ToString().Contains(rule.GetValidationError()));
+			Assert.IsTrue(result.GetReport().Contains(info.Usage));
+			Assert.IsTrue(result.GetReport().Contains(info.Name));
+			Assert.IsTrue(result.GetReport().Contains(ruleName));
+			Assert.IsTrue(result.GetReport().Contains(rule.GetValidationError()));
 		}
 	}
 

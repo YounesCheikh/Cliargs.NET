@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Cliargs
 {
+	/// <summary>
+    /// This class is responsible of coverting the given string value to a typed object.
+    /// </summary>
 	public class ValueTypeConverter
 	{
 		private static readonly ValueTypeConverter _default;
@@ -20,6 +23,14 @@ namespace Cliargs
 		{
 		}
 
+		/// <summary>
+		/// Convert a given string to a typed object
+		/// </summary>
+		/// <typeparam name="T">The target object type</typeparam>
+		/// <param name="inputValue">The string value</param>
+		/// <returns>The created instance</returns>
+		/// <exception cref="CliArgsException">If failed to parse the string into an enum</exception>
+		/// <exception cref="CliArgsException">If failed to change the type using Covert.ChangeType method</exception>
 		public virtual T ConvertFromString<T>(string inputValue) 
         {
 			try
@@ -45,6 +56,9 @@ namespace Cliargs
             }
 		}
 
+		/// <summary>
+        /// Default Converter native instance 
+        /// </summary>
 		public static ValueTypeConverter Default => _default;
 	}
 }

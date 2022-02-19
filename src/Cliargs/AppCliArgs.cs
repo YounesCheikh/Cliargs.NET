@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Cliargs
 {
+	/// <summary>
+    /// The main singleton class for Command Line Interface arguments 
+    /// </summary>
 	public class AppCliArgs
 	{
 		private static AppCliArgs? _instance;
@@ -15,6 +18,11 @@ namespace Cliargs
 			_validationResults = new List<ICliArgsValidationResult>();
 		}
 
+		/// <summary>
+        /// Get all the validation results for the registered arguments
+        /// </summary>
+        /// <returns>The list of the validation results</returns>
+        /// <exception cref="CliArgsException">If the Instance is not initialized</exception>
 		public static IEnumerable<ICliArgsValidationResult> GetValidationResults()
 		{
 			if (_instance == null)
@@ -22,6 +30,15 @@ namespace Cliargs
 			return _instance._validationResults;
 		}
 
+		/// <summary>
+		/// Get a value of a registered argument 
+		/// </summary>
+		/// <typeparam name="T">The argument type</typeparam>
+		/// <param name="argName">The argument name</param>
+		/// <returns></returns>
+		/// <exception cref="CliArgsException">If the instance is not initialized</exception>
+		/// <exception cref="CliArgsException">If the argument doesn't exist</exception>
+		/// /// <exception cref="CliArgsException">If the given type doesn't match the registered argument type</exception>
 		public static T? GetArgValue<T>(string argName)
 		{
 			if (_instance == null)
@@ -29,6 +46,12 @@ namespace Cliargs
             return _instance._cliArgsContainer.GetValue<T>(argName);
 		}
 
+		/// <summary>
+		/// Check if an argument is set 
+		/// </summary>
+		/// <param name="argName">The argument name</param>
+		/// <returns>True if the user entered the argument and its value, otherwise false</returns>
+		/// <exception cref="CliArgsException">If the instance is not initialized</exception>
 		public static bool IsSet(string argName)
 		{
 			if (_instance == null)
@@ -36,6 +59,9 @@ namespace Cliargs
 			return _instance._cliArgsContainer.CliArgs.ContainsKey(argName);
 		}
 
+		/// <summary>
+        /// Check if the validation failed and returns true if any argument validation failed
+        /// </summary>
 		public static bool HasValidationErrors
 		{
 			get
@@ -45,13 +71,27 @@ namespace Cliargs
 				return _instance._validationResults.Any();
 			}
 		}
-        
 
+		/// <summary>
+		/// Initialize the instance with a given setup type
+		/// </summary>
+		/// <typeparam name="TSetup">The Setup type that contains the configuration of all the arguments</typeparam>
+		/// <exception cref="CliArgsException">If the instance is not initialized</exception>
+		/// <exception cref="CliArgsException">If reading the command line arguments fails</exception>
+		/// <exception cref="CliArgsException">If the validation of an argument fails (Conversion, casting, or no expected values in case of validation rules...)</exception>
 		public static void Initialize<TSetup>() where TSetup : ICliArgsSetup, new()
 		{
 			Initialize<TSetup>(CliArgsFormat.Default);
 		}
 
+		/// <summary>
+		/// Initialize the instance with a given setup type
+		/// </summary>
+		/// <typeparam name="TSetup">The Setup type that contains the configuration of all the arguments</typeparam>
+		/// <param name="format">The custom format</param>
+		/// <exception cref="CliArgsException">If the instance is not initialized</exception>
+		/// <exception cref="CliArgsException">If reading the command line arguments fails</exception>
+		/// <exception cref="CliArgsException">If the validation of an argument fails (Conversion, casting, or no expected values in case of validation rules...)</exception>
 		public static void Initialize<TSetup>(CliArgsFormat format) where TSetup : ICliArgsSetup, new() 
         {
 			var container = new CliArgsContainer(format);

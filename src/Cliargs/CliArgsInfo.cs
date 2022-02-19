@@ -1,8 +1,15 @@
 ﻿using System;
 namespace Cliargs
 {
+    /// <summary>
+    /// The command line interface argument information
+    /// </summary>
 	public class CliArgsInfo
 	{
+        /// <summary>
+        /// Create a new instance
+        /// </summary>
+        /// <param name="name">The argument name</param>
         public CliArgsInfo(string name)
         {
             this.Name = name;
@@ -33,11 +40,17 @@ namespace Cliargs
         public string Usage { get; set; } = string.Empty;
 
         /// <summary>
-        /// Define if argument is option
+        /// Define if argument is optional or required
         /// </summary>
         /// <value>true if argument is optional, otherwise false.</value>
         public bool Optional { get; set; }
 
+        /// <summary>
+        /// Create a new instance 
+        /// </summary>
+        /// <param name="name">The argument name</param>
+        /// <param name="optional">indicates if the argument is required or optional.</param>
+        /// <returns>The argument information</returns>
         public static CliArgsInfo New(string name, bool optional = false)
         {
             return new CliArgsInfo(name)

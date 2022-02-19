@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Cliargs
 {
+    /// <summary>
+    /// The command line argument format
+    /// </summary>
 	public class CliArgsFormat
 	{
 		private static CliArgsFormat _default;
@@ -20,11 +23,21 @@ namespace Cliargs
 
         }
 
+        /// <summary>
+        /// Create new instance
+        /// </summary>
+        /// <param name="assignationChar">The value assignation character</param>
 		public CliArgsFormat(char assignationChar)
 		{
 			this.AssignationChar = assignationChar;
 		}
 
+        /// <summary>
+        /// Create a new instance
+        /// </summary>
+        /// <param name="assignationChar">The value assignation character</param>
+        /// <param name="namePrefix">The argument long name prefix</param>
+        /// <param name="shortNamePrefix">The argument short name prefix</param>
 		public CliArgsFormat(char assignationChar, string namePrefix, string shortNamePrefix): this(assignationChar)
 		{
 			NamePrefix = namePrefix;

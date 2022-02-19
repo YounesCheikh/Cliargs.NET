@@ -24,6 +24,7 @@
   <ItemGroup>
     <None Remove="ReportGenerator" />
     <None Remove="_scripts\" />
+    <None Remove="TestResults\a31cd180-b0a0-4632-877d-845279e966f4\coverage.cobertura.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_scripts\" />

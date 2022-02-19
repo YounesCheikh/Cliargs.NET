@@ -25,6 +25,38 @@ namespace Cliargs.Tests
             container.Register(arg);
 			Assert.IsTrue(container.CliArgs.ContainsKey("test"));
         }
+
+		[TestMethod]
+		public void GetValueFromExistingArgTest()
+		{
+			CliArgsContainer container = new CliArgsContainer();
+			CliArg arg = CliArg<int>.New("test");
+			arg.InputValue = "1";
+			arg.Validate();
+			container.Register(arg);
+			var value = container.GetValue<int>("test");
+			Assert.AreEqual(1, value);
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(CliArgsException))]
+		public void GetValueFromExistingArgWithWrongTypeTest()
+		{
+			CliArgsContainer container = new CliArgsContainer();
+			CliArg arg = CliArg<int>.New("test");
+			arg.InputValue = "1";
+			arg.Validate();
+			container.Register(arg);
+			var _ = container.GetValue<string>("test");
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(CLIArgumentNotFoundException))]
+		public void GetValueFromNonExistingArgTypeTest()
+		{
+			CliArgsContainer container = new CliArgsContainer();
+			var _ = container.GetValue<int>("test");
+		}
 	}
 }
 

@@ -24,14 +24,14 @@ namespace Cliargs
         public T? GetValue<T>(string argName)
         {
             if (!CliArgs.ContainsKey(argName))
-                return default;
+                throw new CLIArgumentNotFoundException(argName);
 
             CliArg<T>? arg = CliArgs[argName] as CliArg<T>;
 
             if (arg != null)
                 return arg.Value;
 
-            return default;
+            throw new CliArgsException($"Invalid argument type for argument ({argName}, expected ({CliArgs[argName].GetType()}), but casting to {typeof(T)}");
         }
 
         public void Register(CliArg arg)

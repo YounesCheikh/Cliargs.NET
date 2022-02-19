@@ -23,7 +23,7 @@ namespace Cliargs
             this.Name = Info.Name;
         }
 
-        public abstract IEnumerable<ICliArgsValidationResult> Validate();
+        public abstract IList<ICliArgsValidationResult> Validate();
 
         public static CliArg<T> New<T>(string name)
         {
@@ -47,33 +47,34 @@ namespace Cliargs
             return new CliArg<T>(new CliArgsInfo(name));
         }
 
-        public override IEnumerable<ICliArgsValidationResult> Validate()
+        public override IList<ICliArgsValidationResult> Validate()
         {
+            var results = new List<ICliArgsValidationResult>();
             if (InputValue == null)
             {
+                
                 if (!this.Info.Optional)
                 {
-                    yield return new CliArgsValidationResult(new NonNullArgumentRule(), Info, false);
+                    results.Add(new CliArgsValidationResult(new NonNullArgumentRule(), Info, false));
                 }
-
-                yield break;
+                return results;
             }
-            
-            foreach(var rule in ValidationRules)
-            {
-                var value = this.ValueTypeConverter.ConvertFromString<T>(InputValue);
-                if(value == null)
-                    throw new Exception($"Unable to cast value '{InputValue}' to type {typeof(T)}");
 
+            var value = this.ValueTypeConverter.ConvertFromString<T>(InputValue);
+            if (value == null)
+                throw new Exception($"Unable to cast value '{InputValue}' to type {typeof(T)}");
+
+            this.Value = value;
+
+            foreach (var rule in ValidationRules)
+            {
                 if (!rule.IsValid(value))
                 {
-                    yield return new CliArgsValidationResult(rule, Info, false);
-                }
-                else
-                {
-                    this.Value = value;
+                    results.Add(new CliArgsValidationResult(rule, Info, false));
                 }
             }
+
+            return results;
         }
     }
 }

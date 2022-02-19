@@ -7,19 +7,15 @@ namespace Cliargs
 		private static readonly object syncObj = new object();
 		static CliArgsFormat()
         {
-			if (_default != null)
-				return;
-
-            lock (syncObj)
-            {
-				if (_default != null)
-					return;
-
-				_default = new CliArgsFormat();
-            }
+            if (_default == null)
+                lock (syncObj)
+                {
+                    if (_default == null)
+                        _default = new CliArgsFormat();
+                }
         }
 
-		private CliArgsFormat()
+        private CliArgsFormat()
         {
 
         }

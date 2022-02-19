@@ -85,6 +85,15 @@ namespace Cliargs.Tests
 			// and 13 is not in range 8, 9, 10
 			Assert.AreEqual(2, results.Count);
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void ValidatorThrowsArgumentNullExceptionWhenContainerIsNull()
+		{
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            _ = CliArgsValidator.Validate(null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
 	}
 }
 

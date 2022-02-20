@@ -15,7 +15,9 @@ namespace Cliargs
 
         internal CliArgsContainer(CliArgsFormat format)
 		{
-            ArgumentNullException.ThrowIfNull(format);
+            if (format == null)
+                throw new ArgumentNullException(nameof(format));
+
             this.Format = format;
             ArgumentsProvider = new ArgumentsProvider();
 		}

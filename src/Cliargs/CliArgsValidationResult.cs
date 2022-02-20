@@ -16,8 +16,11 @@ namespace Cliargs
         /// <param name="isValid">If the value is valid after applied the rule</param>
 		public CliArgsValidationResult(ICliArgsValidationRule rule, CliArgsInfo info, bool isValid)
 		{
-			ArgumentNullException.ThrowIfNull(rule);
-			ArgumentNullException.ThrowIfNull(info);
+			if (rule == null)
+				throw new ArgumentNullException(nameof(rule));
+
+			if (info == null)
+				throw new ArgumentNullException(nameof(info));
 
 			_rule = rule;
 			_info = info;

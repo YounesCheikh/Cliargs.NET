@@ -13,6 +13,8 @@ namespace Cliargs
             var args = containerInstance.GetArgs().ToList();
             foreach (var arg in args)
             {
+                if (!arg.Info.RequiresValue)
+                    continue;
                 var results = arg.Validate();
                 if (!results.Any())
                     continue;

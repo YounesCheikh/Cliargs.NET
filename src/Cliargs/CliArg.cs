@@ -5,8 +5,12 @@ namespace Cliargs
     /// <summary>
     /// The command line interface argument
     /// </summary>
-	public abstract class CliArg
+	public class CliArg
 	{
+        public CliArg(string name): this(new CliArgsInfo(name) { RequiresValue = false })
+        {
+        }
+
         /// <summary>
         /// The argument info (metadata)
         /// </summary>
@@ -58,7 +62,10 @@ namespace Cliargs
         /// convert it to the typed object
         /// </summary>
         /// <returns>Validation Results of the failed rules</returns>
-        public abstract IList<ICliArgsValidationResult> Validate();
+        public virtual IList<ICliArgsValidationResult> Validate()
+        {
+            return new List<ICliArgsValidationResult>();
+        }
 
         /// <summary>
         /// Create new Argument instance with the given name
@@ -68,7 +75,12 @@ namespace Cliargs
         /// <returns>The created instance</returns>
         public static CliArg<T> New<T>(string name)
         {
-            return CliArg<T>.New(name);
+            return new CliArg<T>(new CliArgsInfo(name));
+        }
+
+        public static CliArg New(string name)
+        {
+            return new CliArg(name);
         }
     }
 
@@ -94,16 +106,6 @@ namespace Cliargs
         public T? Value { get; internal set; } = default;
 
         /// <summary>
-        /// Create new instance of the argument
-        /// </summary>
-        /// <param name="name">The argument name</param>
-        /// <returns>The created instnace</returns>
-        public static CliArg<T> New(string name)
-        {
-            return new CliArg<T>(new CliArgsInfo(name));
-        }
-
-        /// <summary>
         /// Execute the validation rules on the argument value
         /// </summary>
         /// <returns>The results of execution of validation rules if any fails</returns>
@@ -111,6 +113,7 @@ namespace Cliargs
         public override IList<ICliArgsValidationResult> Validate()
         {
             var results = new List<ICliArgsValidationResult>();
+
             if (InputValue == null)
             {
                 

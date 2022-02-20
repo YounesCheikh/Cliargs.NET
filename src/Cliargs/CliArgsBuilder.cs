@@ -28,13 +28,17 @@ namespace Cliargs
                     if (cliArg == null)
                         throw new CliArgsException($"Trying to set a value [{arg}] on a null CliArg.");
                     cliArg.InputValue = arg;
+                    cliArg.IsSet = true;
                     expectValue = false;
                     cliArg = null;
                 }
                 else
                 {
                     cliArg = ParseArgKey(container, arg);
-                    expectValue = true;
+                    if (cliArg.Info.RequiresValue)
+                        expectValue = true;
+                    else
+                        cliArg.IsSet= true;
                 }
             }
         }
@@ -58,7 +62,11 @@ namespace Cliargs
                 }
                 else
                 {
-                    throw new CliArgsException($"Argument without assignation character '{arg}'.");
+                    var cliArg = ParseArgKey(container, arg);
+                    if(cliArg == null)
+                        throw new CliArgsException($"Unkown argument '{arg}'.");
+
+                    cliArg.IsSet = true;
                 }
             }
         }

@@ -14,9 +14,9 @@ namespace Cliargs
 
 		public string Build()
         {
-			headerPadding = _container.CliArgs.Values.Select(e => e.Info.Name).Max(e => e.Length) * 2;
+			headerPadding = _container.CliArgs.Values.Select(e => e.Info.Name).Max(e => e.Length);
 			headerPadding += _container.CliArgs.Values.Select(e => e.Info.ShortName).Max(e => e.Length);
-			headerPadding += 10;
+			headerPadding += headerPadding < 15? 15 - headerPadding : 6;
 			StringBuilder stringBuilder = new StringBuilder();
 
 			stringBuilder.AppendLine();

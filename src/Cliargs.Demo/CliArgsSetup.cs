@@ -6,7 +6,7 @@ namespace Cliargs.Demo
     {
         public void Configure(ICliArgsContainer container)
         {
-            var yearArgument = CliArg<uint>.New("year")
+            var yearArgument = CliArg.New<uint>("year")
                 .AsRequired()
                 .WithShortName("y")
                 .WithDescription("The year")
@@ -14,7 +14,7 @@ namespace Cliargs.Demo
                 .ValidatedWithRule(RangeValidationRule<uint>.FromRange(new uint[] {2019, 2020, 2021, 2022}))
                 ;
 
-            var monthArgument = CliArg<uint>.New("month")
+            var monthArgument = CliArg.New<uint>("month")
                 .AsRequired()
                 .WithShortName("m")
                 .WithDescription("The month from 1 to 12")
@@ -26,6 +26,12 @@ namespace Cliargs.Demo
 
             container.Register(monthArgument);
             container.Register(yearArgument);
+            container.Register(
+                CliArg.New("display-format")
+                .AsOptional()
+                .WithShortName("df")
+                .WithDescription("Display the date in name format")
+                );
         }
     }
 }

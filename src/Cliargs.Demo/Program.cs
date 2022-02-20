@@ -5,6 +5,11 @@ Console.WriteLine("Hello, World!");
 
 AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
 
+if(AppCliArgs.IsSet("help"))
+{
+    Console.WriteLine(AppCliArgs.GetHelpString());
+    return;
+}
 if(AppCliArgs.HasValidationErrors)
 {
     var validationResults = AppCliArgs.GetValidationResults();

@@ -23,6 +23,11 @@ namespace Cliargs
         public string? InputValue { get; internal set; } = null;
 
         /// <summary>
+        /// Check if the argument is set by the user
+        /// </summary>
+        public bool IsSet { get; internal set; } = false;
+
+        /// <summary>
         /// The value type converter
         /// <remark>This is set to the default type converter. <see cref="ValueTypeConverter.Default"/></remark>
         /// </summary>

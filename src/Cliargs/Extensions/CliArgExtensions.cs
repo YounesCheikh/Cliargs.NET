@@ -27,6 +27,13 @@ namespace Cliargs
 			return arg;
 		}
 
+
+		public static CliArg<T> NoRequiredValue<T>(this CliArg<T> arg)
+		{
+			arg.Info.RequiresValue = false;
+			return arg;
+		}
+
 		/// <summary>
 		/// Set a short name for the Command Line Interface argument.
 		/// </summary>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+
 namespace Cliargs
 {
 	/// <summary>
@@ -10,12 +12,19 @@ namespace Cliargs
 
 		ICliArgsContainer _cliArgsContainer;
 
+		ICliArgsHelpBuilder _helpBuilder;
+
 		IList<ICliArgsValidationResult> _validationResults;
+
+		readonly static ICliArgsSetup _defaultSetup = new DefaultContainerSetup();
+        private string _helpString = String.Empty;
 
 		private AppCliArgs(ICliArgsContainer cliArgsContainer)
 		{
 			_cliArgsContainer = cliArgsContainer;
 			_validationResults = new List<ICliArgsValidationResult>();
+			_helpBuilder = new CliArgsHelpBuilder(_cliArgsContainer);
+			
 		}
 
 		/// <summary>
@@ -56,7 +65,11 @@ namespace Cliargs
 		{
 			if (_instance == null)
 				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
-			return _instance._cliArgsContainer.CliArgs.ContainsKey(argName);
+			if(_instance._cliArgsContainer.CliArgs.TryGetValue(argName, out CliArg? arg))
+            {
+				return arg.IsSet;
+            }
+			return false;
 		}
 
 		/// <summary>
@@ -72,14 +85,16 @@ namespace Cliargs
 			}
 		}
 
-		/// <summary>
-		/// Initialize the instance with a given setup type
-		/// </summary>
-		/// <typeparam name="TSetup">The Setup type that contains the configuration of all the arguments</typeparam>
-		/// <exception cref="CliArgsException">If the instance is not initialized</exception>
-		/// <exception cref="CliArgsException">If reading the command line arguments fails</exception>
-		/// <exception cref="CliArgsException">If the validation of an argument fails (Conversion, casting, or no expected values in case of validation rules...)</exception>
-		public static void Initialize<TSetup>() where TSetup : ICliArgsSetup, new()
+        public string HelpString { get => _helpString; set => _helpString = value; }
+
+        /// <summary>
+        /// Initialize the instance with a given setup type
+        /// </summary>
+        /// <typeparam name="TSetup">The Setup type that contains the configuration of all the arguments</typeparam>
+        /// <exception cref="CliArgsException">If the instance is not initialized</exception>
+        /// <exception cref="CliArgsException">If reading the command line arguments fails</exception>
+        /// <exception cref="CliArgsException">If the validation of an argument fails (Conversion, casting, or no expected values in case of validation rules...)</exception>
+        public static void Initialize<TSetup>() where TSetup : ICliArgsSetup, new()
 		{
 			Initialize<TSetup>(CliArgsFormat.Default);
 		}
@@ -95,14 +110,23 @@ namespace Cliargs
 		public static void Initialize<TSetup>(CliArgsFormat format) where TSetup : ICliArgsSetup, new() 
         {
 			var container = new CliArgsContainer(format);
+			_defaultSetup.Configure(container);
 			TSetup setup = new TSetup();
 			setup.Configure(container);
 			CliArgsBuilder.Build(container);
 			var instnace = new AppCliArgs(container);
+			instnace.HelpString = instnace._helpBuilder.Build();
 			var validationResult = CliArgsValidator.Validate(container);
 			instnace._validationResults = validationResult;
 			_instance = instnace;
         }
+
+		public static string GetHelpString() {
+
+			if (_instance == null)
+				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
+			return _instance.HelpString;
+		}
 	}
 }
 

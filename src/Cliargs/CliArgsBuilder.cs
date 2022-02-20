@@ -6,7 +6,11 @@ namespace Cliargs
         internal static void Build(ICliArgsContainer container)
         {
             var format = container.Format;
-            if (format.AssignationChar == ' ')
+
+            if (IsHelpRequested(container))
+                return;
+
+            if (format.AssignationChar == CliArgsFormat.Default.AssignationChar)
                 BuildWithDefaultFormat(container);
             else
                 BuildWithCustomFormat(container);
@@ -80,6 +84,35 @@ namespace Cliargs
                 throw new CliArgsException($"Unable to find any argument matching the input : {argInput}");
 
             return cliArg;
+        }
+
+        static bool IsHelpRequested(ICliArgsContainer container)
+        {
+            var format = container.Format;
+
+            var argsCollection = container.ArgumentsProvider.GetCommandLineArgs();
+            var firstArg = argsCollection.FirstOrDefault();
+            if (firstArg != null)
+            {
+                CliArg? cliArg = null;
+                if (firstArg == $"{format.NamePrefix}help")
+                {
+                    var argName = firstArg.Substring(format.NamePrefix.Length);
+                    cliArg = container.GetCliArgByName(argName);
+                }
+                else if (firstArg == $"{format.ShortNamePrefix}h")
+                {
+                    var argShortName = firstArg.Substring(format.ShortNamePrefix.Length);
+                    cliArg = container.GetCliArgByShortName(argShortName);
+                }
+                if (cliArg != null)
+                {
+                    cliArg.IsSet = true;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

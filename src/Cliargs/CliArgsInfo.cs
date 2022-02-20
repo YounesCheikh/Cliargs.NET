@@ -43,7 +43,12 @@ namespace Cliargs
         /// Define if argument is optional or required
         /// </summary>
         /// <value>true if argument is optional, otherwise false.</value>
-        public bool Optional { get; set; }
+        public bool Optional { get; set; } = false;
+
+        /// <summary>
+        /// Indicates if the argument requires a value or not
+        /// </summary>
+        public bool RequiresValue { get; internal set; } = true;
 
         /// <summary>
         /// Create a new instance 

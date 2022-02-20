@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliargs.Demo", "Cliargs.Dem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliargs.Tests", "Cliargs.Tests\Cliargs.Tests.csproj", "{4BA44723-932F-47CD-B84D-FB1F1182680A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliargs", "Cliargs\Cliargs.csproj", "{0E87C77A-B8B9-47A7-81E1-99841A7079F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliargs.NET", "Cliargs\Cliargs.NET.csproj", "{0E87C77A-B8B9-47A7-81E1-99841A7079F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

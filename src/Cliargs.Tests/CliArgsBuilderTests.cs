@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -33,39 +34,57 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CliArgsException))]
 		public void ParseKeyTestWithWrongNamePrefix()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
 			container.Register(CliArg.New<int>("test"));
-			var _ = CliArgsBuilder.ParseArgKey(container, $":test");
+			Assert.IsNull(CliArgsBuilder.ParseArgKey(container, $":test"));
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CliArgsException))]
 		public void ParseKeyTestWithWrongShortNamePrefix()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
 			container.Register(CliArg.New<int>("test").WithShortName("t"));
-			var _ = CliArgsBuilder.ParseArgKey(container, $":t");
+			Assert.IsNull(CliArgsBuilder.ParseArgKey(container, $":t"));
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CLIArgumentNotFoundException))]
 		public void ParseKeyTestNoExistKeyFailure()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
-			var _ = CliArgsBuilder.ParseArgKey(container, $"{container.Format.NamePrefix}noexistkey");
+			Assert.IsNull(CliArgsBuilder.ParseArgKey(container, $"{container.Format.NamePrefix}noexistkey"));
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CLIArgumentNotFoundException))]
 		public void ParseKeyTestNoExistShortNameFailure()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
-			var _ = CliArgsBuilder.ParseArgKey(container, $"{container.Format.ShortNamePrefix}n");
+			Assert.IsNull(CliArgsBuilder.ParseArgKey(container, $"{container.Format.ShortNamePrefix}n"));
 		}
 		#endregion
+
+		[TestMethod]
+		[ExpectedException(typeof(CliArgsException))]
+		public void BuildFromDefaultFormatFailureOnUnkownKeys()
+		{
+			string[] expectedArgs = new[] { "--te", "3", "--oth", "1" };
+			var mockedCLI = new Mock<IArgumentsProvider>();
+			mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+
+			ICliArgsContainer container = new CliArgsContainer()
+			{
+				ArgumentsProvider = mockedCLI.Object
+			};
+
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+
+			container.Register(CliArg.New<int>("test"));
+			container.Register(CliArg.New<int>("other"));
+			
+			CliArgsBuilder.Build(container);
+		}
 
 		[TestMethod]
 		public void BuildFromDefaultFormatSuccess()
@@ -79,6 +98,9 @@ namespace Cliargs.Tests
 				ArgumentsProvider = mockedCLI.Object
 			};
 
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+
 			container.Register(CliArg.New<int>("test"));
 			container.Register(CliArg.New<int>("other"));
 
@@ -87,6 +109,7 @@ namespace Cliargs.Tests
 			Assert.IsNotNull(test);
 			Assert.AreEqual("3", test.InputValue);
 			var other = container.GetCliArgByName("other");
+			Assert.IsNotNull(other);
 			Assert.AreEqual("1", other.InputValue);
 		}
 
@@ -110,6 +133,7 @@ namespace Cliargs.Tests
 			Assert.IsNotNull(test);
 			Assert.AreEqual("3", test.InputValue);
 			var other = container.GetCliArgByName("other");
+			Assert.IsNotNull(other);
 			Assert.AreEqual("1", other.InputValue);
 		}
 
@@ -162,9 +186,110 @@ namespace Cliargs.Tests
 				ArgumentsProvider = mockedCLI.Object
 			};
 
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+
 			container.Register(CliArg.New<int>("test"));
 
 			CliArgsBuilder.Build(container);
+		}
+
+		[TestMethod]
+		public void BuildFromDefaultFormatWithRequestedHelp()
+		{
+			string[] expectedArgs = new[] { "--help"};
+			var mockedCLI = new Mock<IArgumentsProvider>();
+			mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+
+			ICliArgsContainer container = new CliArgsContainer()
+			{
+				ArgumentsProvider = mockedCLI.Object
+			};
+
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+			container.Register(CliArg.New<int>("test"));
+			container.Register(CliArg.New<int>("other"));
+
+			CliArgsBuilder.Build(container);
+
+			var singleSetArg = container.GetArgs().ToList().SingleOrDefault(e=> e.IsSet);
+			Assert.IsNotNull(singleSetArg);
+			Assert.AreEqual("help", singleSetArg.Name);
+		}
+
+		[TestMethod]
+		public void BuildFromDefaultFormatWithRequestedHelpShortName()
+		{
+			string[] expectedArgs = new[] { "-h" };
+			var mockedCLI = new Mock<IArgumentsProvider>();
+			mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+
+			ICliArgsContainer container = new CliArgsContainer()
+			{
+				ArgumentsProvider = mockedCLI.Object
+			};
+
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+			container.Register(CliArg.New<int>("test"));
+			container.Register(CliArg.New<int>("other"));
+
+			CliArgsBuilder.Build(container);
+
+			var singleSetArg = container.GetArgs().ToList().SingleOrDefault(e => e.IsSet);
+			Assert.IsNotNull(singleSetArg);
+			Assert.AreEqual("help", singleSetArg.Name);
+		}
+
+		[TestMethod]
+		public void BuildFromDefaultFormatWithNoRequiredValueSuccess()
+		{
+			string[] expectedArgs = new[] { "--no-value" }; 
+			var mockedCLI = new Mock<IArgumentsProvider>();
+			mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+
+			ICliArgsContainer container = new CliArgsContainer()
+			{
+				ArgumentsProvider = mockedCLI.Object
+			};
+
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+
+			container.Register(CliArg.New<int>("test"));
+			container.Register(CliArg.New<int>("other"));
+			container.Register(CliArg.New("no-value"));
+
+			CliArgsBuilder.Build(container);
+			var test = container.GetCliArgByName("no-value");
+			Assert.IsNotNull(test);
+			Assert.IsTrue(test.IsSet);
+		}
+
+		[TestMethod]
+		public void BuildFromCustomFormatWithNoRequiredValueSuccess()
+		{
+			string[] expectedArgs = new[] { "--no-value" };
+			var mockedCLI = new Mock<IArgumentsProvider>();
+			mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+
+			ICliArgsContainer container = new CliArgsContainer(new CliArgsFormat('='))
+			{
+				ArgumentsProvider = mockedCLI.Object
+			};
+
+			ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+			defaultSetup.Configure(container);
+
+			container.Register(CliArg.New<int>("test"));
+			container.Register(CliArg.New<int>("other"));
+			container.Register(CliArg.New("no-value"));
+
+			CliArgsBuilder.Build(container);
+			var test = container.GetCliArgByName("no-value");
+			Assert.IsNotNull(test);
+			Assert.IsTrue(test.IsSet);
 		}
 	}
 }

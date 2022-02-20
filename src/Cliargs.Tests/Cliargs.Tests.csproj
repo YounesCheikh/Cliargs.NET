@@ -84,6 +84,7 @@
     <None Remove="coveragereport\Cliargs_CommandLineInterfaceProvider.html" />
     <None Remove="TestResults\.DS_Store" />
     <None Remove="TestResults\0472d2a3-3c5c-445b-a037-4465abfa8ee5\coverage.cobertura.xml" />
+    <None Remove="Microsoft.VisualStudio.TestPlatform" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_scripts\" />

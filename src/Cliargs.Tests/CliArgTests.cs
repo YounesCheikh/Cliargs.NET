@@ -35,6 +35,8 @@ namespace Cliargs.Tests
 			var results = arg.Validate();
 			Assert.IsFalse(results.Any());
 			Assert.AreEqual(1, arg.Value);
+
+			Assert.IsFalse(CliArg.New("no-value").Validate().Any());
 		}
 
 		[TestMethod]
@@ -45,6 +47,7 @@ namespace Cliargs.Tests
 			// Here is expected an integer instead of a boolean
 			arg.InputValue = "true";
 			var results = arg.Validate();
+			Assert.IsTrue(results.Any());
 		}
 	}
 }

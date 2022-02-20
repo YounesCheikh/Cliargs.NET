@@ -19,19 +19,6 @@
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\Cliargs.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\license.txt">
-      <Pack>True</Pack>
-      <PackagePath>license.txt</PackagePath>
-    </None>
-  </ItemGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
     <LangVersion>10.0</LangVersion>
@@ -44,6 +31,8 @@
     <None Remove="Conversion\" />
     <None Remove="Rules\" />
     <None Remove="Exceptions\" />
+    <None Remove="..\..\Cliargs.png" />
+    <None Remove="..\..\license.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />

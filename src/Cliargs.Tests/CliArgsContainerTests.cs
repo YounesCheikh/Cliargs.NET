@@ -21,7 +21,7 @@ namespace Cliargs.Tests
 		public void RegisterArgTest()
         {
 			CliArgsContainer container = new CliArgsContainer();
-            CliArg arg = CliArg<int>.New("test");
+            CliArg arg = CliArg.New<int>("test");
             container.Register(arg);
 			Assert.IsTrue(container.CliArgs.ContainsKey("test"));
         }
@@ -30,7 +30,7 @@ namespace Cliargs.Tests
 		public void GetValueFromExistingArgTest()
 		{
 			CliArgsContainer container = new CliArgsContainer();
-			CliArg arg = CliArg<int>.New("test");
+			CliArg arg = CliArg.New<int>("test");
 			arg.InputValue = "1";
 			arg.Validate();
 			container.Register(arg);
@@ -43,7 +43,7 @@ namespace Cliargs.Tests
 		public void GetValueFromExistingArgWithWrongTypeTest()
 		{
 			CliArgsContainer container = new CliArgsContainer();
-			CliArg arg = CliArg<int>.New("test");
+			CliArg arg = CliArg.New<int>("test");
 			arg.InputValue = "1";
 			arg.Validate();
 			container.Register(arg);
@@ -65,6 +65,14 @@ namespace Cliargs.Tests
 				throw;
             }
 		}
+
+		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		public void ArgumentNullExceptionThrownIfNoFormat()
+        {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            _ = new CliArgsContainer(null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
 	}
 }
 

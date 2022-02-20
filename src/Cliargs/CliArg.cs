@@ -19,7 +19,7 @@ namespace Cliargs
         /// <summary>
         /// The argument name
         /// </summary>
-        public string Name { get; }
+        public virtual string Name { get; }
 
         /// <summary>
         /// The argument input value
@@ -32,29 +32,13 @@ namespace Cliargs
         public bool IsSet { get; internal set; } = false;
 
         /// <summary>
-        /// The value type converter
-        /// <remark>This is set to the default type converter. <see cref="ValueTypeConverter.Default"/></remark>
-        /// </summary>
-        public ValueTypeConverter ValueTypeConverter { get; }
-
-        /// <summary>
         /// Create new instance with a given info
         /// </summary>
         /// <param name="info">The argument info</param>
-        public CliArg(CliArgsInfo info): this(info, ValueTypeConverter.Default)
+        public CliArg(CliArgsInfo info)
         {
-        }
-
-        /// <summary>
-        /// Create a new instance with a given info and custom value type converter
-        /// </summary>
-        /// <param name="info">The argument info</param>
-        /// <param name="valueTypeConverter">The custom value type converter</param>
-        public CliArg(CliArgsInfo info, ValueTypeConverter valueTypeConverter)
-        {
-            Info = info;
-            this.ValueTypeConverter = valueTypeConverter;
-            this.Name = Info.Name;
+            this.Info = info;
+            this.Name = info.Name;
         }
 
         /// <summary>
@@ -90,10 +74,28 @@ namespace Cliargs
         /// The argument info (metadata)
         /// </summary>
         /// <param name="info">The argument info</param>
-        public CliArg(CliArgsInfo info) : base(info)
+        public CliArg(CliArgsInfo info) : this(info, ValueTypeConverter.Default)
         {
             this.ValidationRules = new List<ICliArgsValidationRule<T>>();
         }
+
+        /// <summary>
+        /// Create a new instance with a given info and custom value type converter
+        /// </summary>
+        /// <param name="info">The argument info</param>
+        /// <param name="valueTypeConverter">The custom value type converter</param>
+        public CliArg(CliArgsInfo info, ValueTypeConverter valueTypeConverter): base(info)
+        {
+            this.Converter = valueTypeConverter;
+            ValidationRules = new List<ICliArgsValidationRule<T>>();
+        }
+
+        public override string Name => base.Name;
+        /// <summary>
+        /// The value type converter
+        /// <remark>This is set to the default type converter. <see cref="ValueTypeConverter.Default"/></remark>
+        /// </summary>
+        public IValueTypeConverter Converter { get; internal set; }
 
         /// <summary>
         /// The argument validation rules
@@ -124,15 +126,15 @@ namespace Cliargs
                 return results;
             }
 
-            var value = this.ValueTypeConverter.ConvertFromString<T>(InputValue);
+            var value = this.Converter.GetConverted(typeof(T),InputValue);
             if (value == null)
                 throw new CliArgsException($"Unable to cast value '{InputValue}' to type {typeof(T)}");
 
-            this.Value = value;
+            this.Value = (T)value;
 
             foreach (var rule in ValidationRules)
             {
-                if (!rule.IsValid(value))
+                if (!rule.IsValid(this.Value))
                 {
                     results.Add(new CliArgsValidationResult(rule, Info, false));
                 }

@@ -27,11 +27,10 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CLIArgumentNotFoundException))]
 		public void GetNonExistingArgByNameTest()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
-			container.GetCliArgByName("test");
+			Assert.IsNull(container.GetCliArgByName("test"));
 		}
 
 		[TestMethod]
@@ -44,20 +43,18 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CLIArgumentNotFoundException))]
 		public void GetNonExistingArgByShortNameTest()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
 			container.Register(CliArg.New<int>("test"));
-			container.GetCliArgByShortName("t");
+			Assert.IsNull(container.GetCliArgByShortName("t"));
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(CLIArgumentNotFoundException))]
 		public void GetNonExistingArgByShortNameFromEmptyContainerTest()
 		{ 
 			ICliArgsContainer container = new CliArgsContainer();
-			container.GetCliArgByShortName("t");
+			Assert.IsNull(container.GetCliArgByShortName("t"));
 		}
 	}
 }

@@ -145,6 +145,12 @@ namespace Cliargs
 			arg.ValidationRules.AddRange(rules);
 			return arg;
 		}
+
+		public static CliArg<T> ValueConvertedWith<T>(this CliArg<T> arg, IValueTypeConverter converter)
+		{
+			arg.Converter = converter;
+			return arg;
+		}
 	}
 }
 

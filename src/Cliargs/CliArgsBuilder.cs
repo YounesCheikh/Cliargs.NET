@@ -25,20 +25,29 @@ namespace Cliargs
             {
                 if (expectValue)
                 {
-                    if (cliArg == null)
-                        throw new CliArgsException($"Trying to set a value [{arg}] on a null CliArg.");
-                    cliArg.InputValue = arg;
-                    cliArg.IsSet = true;
-                    expectValue = false;
-                    cliArg = null;
+                    if (cliArg != null)
+                    {
+                        cliArg.InputValue = arg;
+                        cliArg.IsSet = true;
+                        expectValue = false;
+                        cliArg = null;
+                    }
+                    // TODO: Otherwise? 
                 }
                 else
                 {
                     cliArg = ParseArgKey(container, arg);
-                    if (cliArg.Info.RequiresValue)
-                        expectValue = true;
+                    if (cliArg != null)
+                    {
+                        if (cliArg.Info.RequiresValue)
+                            expectValue = true;
+                        else
+                            cliArg.IsSet = true;
+                    }
                     else
-                        cliArg.IsSet= true;
+                    {
+                        throw new CliArgsException($"Unkown argument '{arg}'.");
+                    }
                 }
             }
         }
@@ -58,6 +67,8 @@ namespace Cliargs
 
                     var key = keyValueArray[0];
                     var cliArg = ParseArgKey(container, key);
+                    if(cliArg == null)
+                        throw new CliArgsException($"Unkown argument '{key}'.");
                     cliArg.InputValue = keyValueArray[1];
                 }
                 else
@@ -71,9 +82,9 @@ namespace Cliargs
             }
         }
 
-        internal static CliArg ParseArgKey(ICliArgsContainer container, string argInput)
+        internal static CliArg? ParseArgKey(ICliArgsContainer container, string argInput)
         { 
-            CliArg cliArg;
+            CliArg? cliArg = null;
             var format = container.Format;
             if (argInput.StartsWith(format.NamePrefix))
             {
@@ -85,11 +96,6 @@ namespace Cliargs
                 var argShortName = argInput.Substring(format.ShortNamePrefix.Length);
                 cliArg = container.GetCliArgByShortName(argShortName);
             }
-            else
-                throw new CliArgsException($"Unexpected arg or missing prefix: {argInput}");
-
-            if (cliArg == null)
-                throw new CliArgsException($"Unable to find any argument matching the input : {argInput}");
 
             return cliArg;
         }

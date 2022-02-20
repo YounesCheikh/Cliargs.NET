@@ -14,16 +14,6 @@ namespace Cliargs
         {
 
         }
-
-        /// <summary>
-        /// Create a new instance
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="innerException">The inner exception</param>
-        public CliArgsException(string? message, Exception? innerException) : base(message, innerException)
-        {
-
-        }
     }
 }
 

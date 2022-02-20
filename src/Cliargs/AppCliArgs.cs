@@ -8,7 +8,7 @@ namespace Cliargs
     /// </summary>
 	public class AppCliArgs
 	{
-		private static AppCliArgs? _instance;
+		static AppCliArgs? _instance;
 
 		ICliArgsContainer _cliArgsContainer;
 

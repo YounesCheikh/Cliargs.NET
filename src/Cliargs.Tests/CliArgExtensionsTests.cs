@@ -36,11 +36,44 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
+		public void CreateSampleInstanceWithCustomConverter()
+		{
+			const string argName = "test";
+			var arg = CliArg.New<int>(argName).ValueConvertedWith(new StringToEnumConverter());
+			Assert.IsNotNull(arg.Converter);
+			Assert.AreEqual(typeof(StringToEnumConverter), arg.Converter.GetType());
+		}
+
+		[TestMethod]
+		public void CreateSampleInstanceWithDefaultInfoAsNoValueRequired()
+		{
+			const string argName = "test";
+			var arg = CliArg.New(argName);
+			Assert.IsNotNull(arg);
+			Assert.IsNotNull(arg.Info);
+			Assert.AreEqual(argName, arg.Name);
+			Assert.IsFalse(arg.Info.RequiresValue);
+		}
+
+
+
+		[TestMethod]
 		public void CreateSampleInstanceWithShortname()
 		{
 			const string argName = "test";
 			const string shortName = "t";
 			var arg = CliArg.New<int>(argName).WithShortName(shortName);
+			Assert.IsNotNull(arg);
+			Assert.IsNotNull(arg.Info);
+			Assert.AreEqual(shortName, arg.Info.ShortName);
+		}
+
+		[TestMethod]
+		public void CreateSampleInstanceWithShortnameAndNoValueRequired()
+		{
+			const string argName = "test";
+			const string shortName = "t";
+			var arg = CliArg.New(argName).WithShortName(shortName);
 			Assert.IsNotNull(arg);
 			Assert.IsNotNull(arg.Info);
 			Assert.AreEqual(shortName, arg.Info.ShortName);
@@ -58,11 +91,33 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
+		public void CreateSampleInstanceWithDescriptionAsNoValueRequired()
+		{
+			const string argName = "test";
+			const string description = "sample description";
+			var arg = CliArg.New(argName).WithDescription(description);
+			Assert.IsNotNull(arg);
+			Assert.IsNotNull(arg.Info);
+			Assert.AreEqual(description, arg.Info.Description);
+		}
+
+		[TestMethod]
 		public void CreateSampleInstanceWithUsage()
 		{
 			const string argName = "test";
 			const string usage = "sample usage";
 			var arg = CliArg.New<int>(argName).WithUsage(usage);
+			Assert.IsNotNull(arg);
+			Assert.IsNotNull(arg.Info);
+			Assert.AreEqual(usage, arg.Info.Usage);
+		}
+
+		[TestMethod]
+		public void CreateSampleInstanceWithUsageAsNoValueRequired()
+		{
+			const string argName = "test";
+			const string usage = "sample usage";
+			var arg = CliArg.New(argName).WithUsage(usage);
 			Assert.IsNotNull(arg);
 			Assert.IsNotNull(arg.Info);
 			Assert.AreEqual(usage, arg.Info.Usage);
@@ -85,6 +140,17 @@ namespace Cliargs.Tests
 			const string argName = "test";
 			const bool optional = true;
 			var arg = CliArg.New<int>(argName).AsOptional();
+			Assert.IsNotNull(arg);
+			Assert.IsNotNull(arg.Info);
+			Assert.AreEqual(optional, arg.Info.Optional);
+		}
+
+		[TestMethod]
+		public void CreateSampleInstanceAsOptionalNoValueRequired()
+		{
+			const string argName = "test";
+			const bool optional = true;
+			var arg = CliArg.New(argName).AsOptional();
 			Assert.IsNotNull(arg);
 			Assert.IsNotNull(arg.Info);
 			Assert.AreEqual(optional, arg.Info.Optional);

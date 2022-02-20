@@ -2,7 +2,7 @@
 
 [![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml)
 
-![image](Cliargs.png)
+![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png)
 
 Cliargs.NET is a .NET library helps you to parse and use the Command Line Interface arguments in easy way. 
 

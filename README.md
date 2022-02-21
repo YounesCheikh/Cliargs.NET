@@ -26,7 +26,7 @@ The objective is to display the following message in a console app:
 
 ### Example of old school way: 😔
 
-[Example on gist](https://gist.github.com/YounesCheikh/c000e4a03ba7b545df1838b03e41474c)
+> 👉 [Example on gist](https://gist.github.com/YounesCheikh/c000e4a03ba7b545df1838b03e41474c) 👈
 
 ### New way with Cliargs.NET 🤩
 

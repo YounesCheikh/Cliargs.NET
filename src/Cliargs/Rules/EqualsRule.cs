@@ -19,6 +19,10 @@ namespace Cliargs.Rules
         {
             return value.CompareTo(_value) == 0;
         }
+
+        public static EqualsRule<T> Value(T value) {
+            return new EqualsRule<T>(value);
+        }
     }
 }
 

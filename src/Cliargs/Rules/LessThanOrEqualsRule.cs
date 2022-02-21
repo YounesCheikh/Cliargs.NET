@@ -17,6 +17,10 @@ namespace Cliargs.Rules
         {
             return value.CompareTo(_value) <= 0;
         }
+
+        public static LessThanOrEqualsRule<T> Value(T value) {
+            return new LessThanOrEqualsRule<T>(value);
+        }
     }
 }
 

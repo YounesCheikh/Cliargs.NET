@@ -26,6 +26,10 @@ if(AppCliArgs.HasValidationErrors)
 }
 else
 {
+    if(AppCliArgs.IsSet("username")) {
+        var username = AppCliArgs.GetArgValue<string>("username");
+        Console.WriteLine($"Hello {username}, ");
+    }
     var month = AppCliArgs.GetArgValue<uint>("month");
     var year = AppCliArgs.GetArgValue<uint>("year");
     if (AppCliArgs.IsSet("english-display"))

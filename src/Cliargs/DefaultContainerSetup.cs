@@ -10,13 +10,13 @@ namespace Cliargs
         public void Configure(ICliArgsContainer container)
         {
             container.Register(
-                CliArg.New<string>("Help")
-                .WithLongName("help")
-                .WithShortName("h")
+                CliArg.New<string>(CliArgsOptions.HelpArg.Name)
+                .WithLongName(CliArgsOptions.HelpArg.LongName)
+                .WithShortName(CliArgsOptions.HelpArg.ShortName)
                 .NoRequiredValue()
                 .AsOptional()
                 .WithDescription("Show command line interface arguments help")
-                .WithUsage($"{container.Format.ShortNamePrefix}h|{container.Format.NamePrefix}help")
+                .WithUsage($"{container.Format.ShortNamePrefix}{CliArgsOptions.HelpArg.ShortName}|{container.Format.NamePrefix}{CliArgsOptions.HelpArg.LongName}")
                 );
         }
     }

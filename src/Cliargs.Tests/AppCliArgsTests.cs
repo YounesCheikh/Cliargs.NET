@@ -28,7 +28,7 @@ namespace Cliargs.Tests
 				container.ArgumentsProvider = mockedCLI.Object;
 				ICliArgsSetup defaultSetup = new DefaultContainerSetup();
 				container.Register(CliArg.New<int>("test"));
-				container.Register(CliArg.New("too-long-command-line-interface-argument"));
+				container.Register(CliArg.New("longArg").WithLongName("too-long-command-line-interface-argument"));
             }
         }
 
@@ -103,7 +103,7 @@ namespace Cliargs.Tests
 			AppCliArgs.Initialize<SampleSetup>();
 			Assert.IsFalse(AppCliArgs.HasValidationErrors);
 			Assert.IsTrue(AppCliArgs.IsSet("test"));
-			Assert.IsFalse(AppCliArgs.IsSet("help"));
+			Assert.IsFalse(AppCliArgs.IsSet(CliArgsOptions.HelpArg.Name));
 			Assert.IsFalse(AppCliArgs.IsSet("fake"));
 			var testArgValue = AppCliArgs.GetArgValue<int>("test");
 			Assert.AreEqual(3, testArgValue);
@@ -115,7 +115,7 @@ namespace Cliargs.Tests
 		{
 			AppCliArgs.Initialize<SampleSetup>();
 			Assert.IsFalse(AppCliArgs.HasValidationErrors);
-			Assert.IsTrue(AppCliArgs.IsSet("too-long-command-line-interface-argument"));
+			Assert.IsTrue(AppCliArgs.IsSet("longArg"));
 		}
 
 		[TestMethod]

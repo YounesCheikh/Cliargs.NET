@@ -215,7 +215,7 @@ namespace Cliargs.Tests
 
 			var singleSetArg = container.GetArgs().ToList().SingleOrDefault(e=> e.IsSet);
 			Assert.IsNotNull(singleSetArg);
-			Assert.AreEqual("Help", singleSetArg.Name);
+			Assert.AreEqual(CliArgsOptions.HelpArg.Name, singleSetArg.Name);
 		}
 
 		[TestMethod]
@@ -239,7 +239,7 @@ namespace Cliargs.Tests
 
 			var singleSetArg = container.GetArgs().ToList().SingleOrDefault(e => e.IsSet);
 			Assert.IsNotNull(singleSetArg);
-			Assert.AreEqual("Help", singleSetArg.Name);
+			Assert.AreEqual(CliArgsOptions.HelpArg.Name, singleSetArg.Name);
 		}
 
 		[TestMethod]

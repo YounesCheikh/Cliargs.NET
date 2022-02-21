@@ -26,64 +26,7 @@ The objective is to display the following message in a console app:
 
 ### Example of old school way: 😔
 
-```csharp
-var userInputArgs = Environment.GetCommandLineArgs().Skip(1).ToArray();
-if(userInputArgs.Length == 0)
-{
-    Console.WriteLine("Missing mandatory arguments: --name");
-    return;
-}
-
-string name = string.Empty;
-uint? age = null;
-var currentKey = string.Empty;
-foreach(var arg in userInputArgs)
-{
-    if(currentKey == "--name" || currentKey == "-n")
-    {
-        name = arg;
-        currentKey = string.Empty;
-        continue;
-    }
-
-    if (currentKey == "--age" || currentKey == "-a")
-    {
-        age = Convert.ToUInt32(arg);
-        currentKey = string.Empty;
-        continue;
-    }
-
-    if (arg == "--name" || arg == "-n")
-    {
-        currentKey = arg;
-        continue;
-    }
-
-    if (arg == "--age" || arg == "-a")
-    {
-        currentKey = arg;
-        continue;
-    }
-
-    Console.WriteLine("Error: Unkown argument {0}", arg);
-    return;
-}
-
-if(string.IsNullOrWhiteSpace(name))
-{
-    Console.WriteLine("Wrong value for name");
-    return;
-}
-
-if(age.HasValue)
-{
-    Console.WriteLine($"Dear {name}, you're {age.Value} years old.");
-}
-else
-{
-    Console.WriteLine($"Dear {name}, we don't know your age!");
-}
-```
+[Example on gist](https://gist.github.com/YounesCheikh/c000e4a03ba7b545df1838b03e41474c)
 
 ### New way with Cliargs.NET 🤩
 

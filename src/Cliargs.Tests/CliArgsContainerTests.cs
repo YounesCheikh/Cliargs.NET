@@ -73,6 +73,30 @@ namespace Cliargs.Tests
             _ = new CliArgsContainer(null);
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         }
+
+		[TestMethod]
+		[ExpectedException(typeof(CliArgsException))]
+		public void ArgRegistrationFailsOnShortnameAlreadyExist() {
+			ICliArgsContainer container = new CliArgsContainer();
+			container.Register(CliArg.New("First").WithShortName("f"));
+			container.Register(CliArg.New("Second").WithShortName("f"));
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(CliArgsException))]
+		public void ArgRegistrationFailsOnLongnameAlreadyExist() {
+			ICliArgsContainer container = new CliArgsContainer();
+			container.Register(CliArg.New("First").WithLongName("first"));
+			container.Register(CliArg.New("Second").WithLongName("first"));
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(CliArgsException))]
+		public void ArgRegistrationFailsOnNameAlreadyExist() {
+			ICliArgsContainer container = new CliArgsContainer();
+			container.Register(CliArg.New("First").WithLongName("first").WithShortName("f"));
+			container.Register(CliArg.New("First").WithLongName("second").WithShortName("s"));
+		}
 	}
 }
 

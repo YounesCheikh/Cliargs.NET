@@ -10,7 +10,7 @@ catch(CliArgsException exception){
     return;
 } 
 
-if(AppCliArgs.IsSet("Help"))
+if(AppCliArgs.IsSet(CliArgsOptions.HelpArg.Name))
 {
     Console.WriteLine(AppCliArgs.GetHelpString());
     return;

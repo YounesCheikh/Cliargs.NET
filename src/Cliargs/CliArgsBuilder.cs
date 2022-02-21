@@ -113,14 +113,12 @@ namespace Cliargs
             if (firstArg != null)
             {
                 CliArg? cliArg = null;
-                if (firstArg == $"{format.NamePrefix}help")
+                if (firstArg == $"{format.NamePrefix}{CliArgsOptions.HelpArg.LongName}")
                 {
                     var argName = firstArg.Substring(format.NamePrefix.Length);
                     cliArg = container.GetCliArgByLongName(argName);
-                    if(cliArg == null)
-                        cliArg = container.GetCliArgByName(argName);
                 }
-                else if (firstArg == $"{format.ShortNamePrefix}h")
+                else if (firstArg == $"{format.ShortNamePrefix}{CliArgsOptions.HelpArg.ShortName}")
                 {
                     var argShortName = firstArg.Substring(format.ShortNamePrefix.Length);
                     cliArg = container.GetCliArgByShortName(argShortName);

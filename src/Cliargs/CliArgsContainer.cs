@@ -56,6 +56,9 @@ namespace Cliargs
         /// <param name="arg">The argument to add</param>
         private void AddCliArg(CliArg arg)
         {
+            if(this._cliArgs.Any(e=> e.Value.Info.Name == arg.Info.Name))
+                throw new CliArgsException($"Another argument has the same name '{arg.Info.Name}'");
+
             if(!string.IsNullOrWhiteSpace(arg.Info.ShortName) 
             && this._cliArgs.Any(e=> e.Value.Info.ShortName == arg.Info.ShortName))
                 throw new CliArgsException($"Another argument has the same short name '{arg.Info.ShortName}'");
@@ -63,10 +66,6 @@ namespace Cliargs
             if(!string.IsNullOrWhiteSpace(arg.Info.LongName) 
             && this._cliArgs.Any(e=> e.Value.Info.LongName == arg.Info.LongName))
                 throw new CliArgsException($"Another argument has the same long name '{arg.Info.LongName}'");
-
-            if(!string.IsNullOrWhiteSpace(arg.Info.Name) 
-            && this._cliArgs.Any(e=> e.Value.Info.Name == arg.Info.Name))
-                throw new CliArgsException($"Another argument has the same name '{arg.Info.Name}'");
             
             this._cliArgs.Add(arg.Name, arg);
         }

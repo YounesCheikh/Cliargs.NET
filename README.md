@@ -1,12 +1,9 @@
 ## Command Line Interface Arguments parser for C#
 
-[![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml)
-[![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/)
 
-[![Build history](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)
 
-![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png)
-
+| ![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png) | [![Build history](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)](https://buildstats.info/github/chart/younescheikh/Cliargs.NET) | [![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml) [![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/) |
+| :---: | :---: | :--: |
 
 Cliargs.NET is a .NET library helps you to parse and use the Command Line Interface arguments in easy way. 
 

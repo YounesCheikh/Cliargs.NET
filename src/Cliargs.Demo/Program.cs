@@ -2,11 +2,15 @@
 using Cliargs;
 using Cliargs.Demo;
 
-Console.WriteLine("Hello, World!");
+try {
+    AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
+}
+catch(CliArgsException exception){
+    Console.WriteLine($"Error: {exception.Message}");
+    return;
+} 
 
-AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
-
-if(AppCliArgs.IsSet("help"))
+if(AppCliArgs.IsSet("Help"))
 {
     Console.WriteLine(AppCliArgs.GetHelpString());
     return;
@@ -24,7 +28,7 @@ else
 {
     var month = AppCliArgs.GetArgValue<uint>("month");
     var year = AppCliArgs.GetArgValue<uint>("year");
-    if (AppCliArgs.IsSet("display-format"))
+    if (AppCliArgs.IsSet("english-display"))
     {
         string fullMonthName = new DateTime((int)year, (int)month, 1).ToString("MMMM", CultureInfo.CreateSpecificCulture("en"));
         Console.WriteLine($"Date: {fullMonthName} {year:D4}");

@@ -39,9 +39,17 @@ namespace Cliargs
 			{
 				var info = arg.Info;
 				var helpHeader = string.Empty;
-				if (!string.IsNullOrWhiteSpace(info.ShortName))
+				if (!string.IsNullOrWhiteSpace(info.ShortName) && !string.IsNullOrWhiteSpace(info.LongName))
+				{
+					helpHeader = $"{format.ShortNamePrefix}{info.ShortName}|{format.NamePrefix}{info.LongName}";
+				}
+				else if (!string.IsNullOrWhiteSpace(info.ShortName))
 				{
 					helpHeader = $"{format.ShortNamePrefix}{info.ShortName}|{format.NamePrefix}{info.Name}";
+				}
+				else if (!string.IsNullOrWhiteSpace(info.LongName))
+				{
+					helpHeader = $"{format.NamePrefix}{info.LongName}";
 				}
 				else
 				{
@@ -49,7 +57,7 @@ namespace Cliargs
 				}
 				if(info.RequiresValue)
                 {
-					helpHeader = $"{helpHeader} <{info.Name}>";
+					helpHeader = $"{helpHeader}{format.AssignationChar}<{info.Name}>";
                 }
 
 				stringBuilder.AppendLine(

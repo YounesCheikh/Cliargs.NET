@@ -10,7 +10,8 @@ namespace Cliargs
         public void Configure(ICliArgsContainer container)
         {
             container.Register(
-                CliArg.New<string>("help")
+                CliArg.New<string>("Help")
+                .WithLongName("help")
                 .WithShortName("h")
                 .NoRequiredValue()
                 .AsOptional()

@@ -9,6 +9,12 @@ namespace Cliargs
 			return item;
 		}
 
+		public static CliArg? GetCliArgByLongName(this ICliArgsContainer container, string longName)
+		{
+			var item = container.CliArgs.Values.SingleOrDefault(e => e.Info.LongName == longName);
+			return item;
+		}
+
 		public static CliArg? GetCliArgByShortName(this ICliArgsContainer container, string shortName)
 		{
 			var item = container.CliArgs.Values.SingleOrDefault(e => e.Info.ShortName == shortName);

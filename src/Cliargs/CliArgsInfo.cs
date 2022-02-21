@@ -28,6 +28,12 @@ namespace Cliargs
         public string ShortName { get; set; } = string.Empty;
 
         /// <summary>
+        /// Short argument name
+        /// </summary>
+        /// <value>The short name for the argument, default is empty string</value>
+        public string LongName { get; set; } = string.Empty;
+
+        /// <summary>
         /// The argument description
         /// </summary>
         /// <value>The argument description</value>

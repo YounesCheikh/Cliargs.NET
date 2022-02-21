@@ -38,13 +38,36 @@ namespace Cliargs
             throw new CliArgsException($"Invalid argument type for argument ({argName}, expected ({CliArgs[argName].GetType()}), but casting to {typeof(T)}");
         }
 
+        /// <summary>
+        /// Register a new argument to the container
+        /// </summary>
+        /// <param name="arg">The argument</param>
+        /// <exception cref="CliArgsExecption">
+        /// If another argument already registered with the same name, or long name or short name.
+        /// </exception>
         public void Register(CliArg arg)
         {
             AddCliArg(arg);
         }
 
+        /// <summary>
+        /// Add a new argument
+        /// </summary>
+        /// <param name="arg">The argument to add</param>
         private void AddCliArg(CliArg arg)
         {
+            if(!string.IsNullOrWhiteSpace(arg.Info.ShortName) 
+            && this._cliArgs.Any(e=> e.Value.Info.ShortName == arg.Info.ShortName))
+                throw new CliArgsException($"Another argument has the same short name '{arg.Info.ShortName}'");
+
+            if(!string.IsNullOrWhiteSpace(arg.Info.LongName) 
+            && this._cliArgs.Any(e=> e.Value.Info.LongName == arg.Info.LongName))
+                throw new CliArgsException($"Another argument has the same long name '{arg.Info.LongName}'");
+
+            if(!string.IsNullOrWhiteSpace(arg.Info.Name) 
+            && this._cliArgs.Any(e=> e.Value.Info.Name == arg.Info.Name))
+                throw new CliArgsException($"Another argument has the same name '{arg.Info.Name}'");
+            
             this._cliArgs.Add(arg.Name, arg);
         }
     }

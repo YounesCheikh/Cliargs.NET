@@ -27,10 +27,10 @@ namespace Cliargs.Demo
             container.Register(monthArgument);
             container.Register(yearArgument);
             container.Register(
-                CliArg.New("display-format")
+                CliArg.New("english-display")
                 .AsOptional()
-                .WithShortName("df")
-                .WithDescription("Display the date in name format")
+                .WithShortName("ed")
+                .WithDescription("Display the month in English")
                 );
         }
     }

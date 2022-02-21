@@ -89,7 +89,11 @@ namespace Cliargs
             if (argInput.StartsWith(format.NamePrefix))
             {
                 var argName = argInput.Substring(format.NamePrefix.Length);
-                cliArg = container.GetCliArgByName(argName);
+                cliArg = container.GetCliArgByLongName(argName);
+                
+                // Give a second chance in case a long name is not set.
+                if(cliArg == null)
+                    cliArg = container.GetCliArgByName(argName);
             }
             else if (argInput.StartsWith(format.ShortNamePrefix))
             {
@@ -112,7 +116,9 @@ namespace Cliargs
                 if (firstArg == $"{format.NamePrefix}help")
                 {
                     var argName = firstArg.Substring(format.NamePrefix.Length);
-                    cliArg = container.GetCliArgByName(argName);
+                    cliArg = container.GetCliArgByLongName(argName);
+                    if(cliArg == null)
+                        cliArg = container.GetCliArgByName(argName);
                 }
                 else if (firstArg == $"{format.ShortNamePrefix}h")
                 {

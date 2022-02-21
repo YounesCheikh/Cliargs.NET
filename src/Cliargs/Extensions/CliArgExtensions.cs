@@ -58,6 +58,18 @@ namespace Cliargs
 		}
 
 		/// <summary>
+		/// Sets a long name for the CLI Argument
+		/// </summary>
+		/// <param name="longName">The long name</param>
+		/// <typeparam name="T">The argument type</typeparam>
+		/// <returns>The argument updated</returns>
+		public static CliArg<T> WithLongName<T>(this CliArg<T> arg, string longName)
+		{
+			arg.Info.LongName = longName;
+			return arg;
+		}
+
+		/// <summary>
 		/// Set a short name for the Command Line Interface argument.
 		/// </summary>
 		/// <param name="shortName">The argument shortname</param>
@@ -65,6 +77,17 @@ namespace Cliargs
 		public static CliArg WithShortName(this CliArg arg, string shortName)
 		{
 			arg.Info.ShortName = shortName;
+			return arg;
+		}
+
+		/// <summary>
+		/// Sets a long name for the command line interface argument
+		/// </summary>
+		/// <param name="longName">The argument long name</param>
+		/// <returns>The argument updated</returns>
+		public static CliArg WithLongName(this CliArg arg, string longName)
+		{
+			arg.Info.LongName = longName;
 			return arg;
 		}
 
@@ -146,6 +169,12 @@ namespace Cliargs
 			return arg;
 		}
 
+		/// <summary>
+		/// Sets the argument vale converter
+		/// </summary>
+		/// <param name="converter">The converter</param>
+		/// <typeparam name="T">The type to convert</typeparam>
+		/// <returns>The argument updated</returns>
 		public static CliArg<T> ValueConvertedWith<T>(this CliArg<T> arg, IValueTypeConverter converter)
 		{
 			arg.Converter = converter;

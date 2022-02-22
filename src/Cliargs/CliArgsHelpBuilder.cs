@@ -14,9 +14,15 @@ namespace Cliargs
 
 		public string Build()
         {
-			headerPadding = _container.CliArgs.Values.Select(e => e.Info.LongName).Max(e => e.Length);
-			headerPadding += _container.CliArgs.Values.Select(e => e.Info.ShortName).Max(e => e.Length);
-			headerPadding += headerPadding < 15? 15 - headerPadding : 6;
+			headerPadding = _container.CliArgs.Values
+				.Select(e =>
+				 string.Format("{0}{1}{2}", e.Info.RequiresValue ? e.Info.Name : "", e.Info.LongName, e.Info.ShortName).Length
+				     )
+				.Max();
+
+			headerPadding += $"{_container.Format.AssignationChar}{_container.Format.NamePrefix}{_container.Format.ShortNamePrefix}< >|".Length;
+			// headerPadding += headerPadding < 15? 15 - headerPadding : 6;
+			headerPadding = Math.Max(headerPadding, 20);
 			StringBuilder stringBuilder = new StringBuilder();
 
 			stringBuilder.AppendLine();

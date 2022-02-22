@@ -121,6 +121,18 @@ namespace Cliargs
 			_instance = instnace;
         }
 
+		/// <summary>
+		/// Check whether the help is requested or not
+		/// </summary>
+		/// <returns>True if the help is requested otherwise false</returns>
+		public static bool IsHelpRequested() {
+			return IsSet(CliArgsOptions.HelpArg.Name);
+		}
+
+		/// <summary>
+		/// The default help string 
+		/// </summary>
+		/// <returns>The help string with 2 columns</returns>
 		public static string GetHelpString() {
 
 			if (_instance == null)

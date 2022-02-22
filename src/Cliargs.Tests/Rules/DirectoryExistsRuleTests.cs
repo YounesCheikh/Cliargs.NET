@@ -57,8 +57,5 @@ namespace Cliargs.Tests.Rules
             Assert.IsFalse(rule.IsValid(null));
 #pragma warning restore CS8625
         }
-
-
-
     }
 }

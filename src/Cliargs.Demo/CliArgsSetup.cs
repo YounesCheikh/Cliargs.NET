@@ -6,43 +6,35 @@ namespace Cliargs.Demo
     {
         public void Configure(ICliArgsContainer container)
         {
-            var yearArgument = CliArg.New<uint>("year")
-                .AsRequired()
-                .WithShortName("y")
-                .WithDescription("The year")
-                .WithUsage("--year 2020")
-                .ValidatedWithRule(RangeValidationRule<uint>.FromRange(new uint[] {2019, 2020, 2021, 2022}))
-                ;
-
-            var monthArgument = CliArg.New<uint>("month")
-                .AsRequired()
-                .WithShortName("m")
-                .WithDescription("The month from 1 to 12")
-                .WithUsage("--month 10 | -m 10")
-                .ValidatedWithRules(
-                     GreaterThanOrEqualsRule<uint>.Value(1),
-                     LessThanOrEqualsRule<uint>.Value(12)
-                );
-
-             var username = CliArg.New<string>("username")
-                .AsOptional()
-                .WithLongName("user")
-                .WithShortName("u")
-                .WithDescription("The username starting with J and ending in N")
-                .WithUsage("--user JOHN")
-                .ValidatedWithRule(ConditionalRule<string>.WithCondition(
-                    s=> s.ToUpper().StartsWith("J") && s.ToUpper().EndsWith("N"))
-                );
-
-            container.Register(monthArgument);
-            container.Register(yearArgument);
-            container.Register(username);
+            // The user real name
             container.Register(
-                CliArg.New("english-display")
+                CliArg.New<string>("Name")
+                .AsRequired()
+                .WithLongName("name")
+                .WithShortName("n")
+                .WithDescription("The user real name")
+                .WithUsage($"-n|--name \"John Doe\"")
+            );
+
+            // The user real age
+            container.Register(
+                CliArg.New<uint>("Age")
                 .AsOptional()
-                .WithShortName("ed")
-                .WithDescription("Display the month in English")
-                );
+                .WithLongName("age")
+                .WithShortName("a")
+                .WithDescription("The user age in years")
+                .WithUsage("-a|--age 28")
+            );
+
+            // Option to highlight the output 
+            container.Register(
+                CliArg.New("Highlight")
+                .AsOptional()
+                .WithLongName("highlight")
+                .WithShortName("hl")
+                .WithDescription("Highlight the output in color")
+                .WithUsage("-hl|--highlight")
+            );
         }
     }
 }

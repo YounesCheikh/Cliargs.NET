@@ -75,5 +75,5 @@ else
 }
 ```
 
-## TODO 
-> More documentation is coming... 
+## Documentation
+> More examples and documentation is on [Wiki](https://github.com/YounesCheikh/Cliargs.NET/wiki)

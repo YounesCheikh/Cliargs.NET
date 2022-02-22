@@ -16,7 +16,7 @@ namespace Cliargs
                 .NoRequiredValue()
                 .AsOptional()
                 .WithDescription("Show command line interface arguments help")
-                .WithUsage($"{container.Format.ShortNamePrefix}{CliArgsOptions.HelpArg.ShortName}|{container.Format.NamePrefix}{CliArgsOptions.HelpArg.LongName}")
+                .WithUsage($"{container.Format.ShortNamePrefix}{CliArgsOptions.HelpArg.ShortName}|{container.Format.LongNamePrefix}{CliArgsOptions.HelpArg.LongName}")
                 );
         }
     }

@@ -12,7 +12,7 @@ namespace Cliargs.Tests
 			CliArgsContainer container = new CliArgsContainer();
 			Assert.IsNotNull(container.Format);
 			Assert.AreEqual(CliArgsFormat.Default.AssignationChar, container.Format.AssignationChar);
-			Assert.AreEqual(CliArgsFormat.Default.NamePrefix, container.Format.NamePrefix);
+			Assert.AreEqual(CliArgsFormat.Default.LongNamePrefix, container.Format.LongNamePrefix);
 			Assert.AreEqual(CliArgsFormat.Default.ShortNamePrefix, container.Format.ShortNamePrefix);
 			Assert.AreEqual(CliArgsFormat.Default.GetHashCode(), container.Format.GetHashCode());
 		}

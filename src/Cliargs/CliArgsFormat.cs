@@ -38,9 +38,9 @@ namespace Cliargs
         /// <param name="assignationChar">The value assignation character</param>
         /// <param name="namePrefix">The argument long name prefix</param>
         /// <param name="shortNamePrefix">The argument short name prefix</param>
-		public CliArgsFormat(char assignationChar, string namePrefix, string shortNamePrefix): this(assignationChar)
+		public CliArgsFormat(char assignationChar, string longNamePrefix, string shortNamePrefix): this(assignationChar)
 		{
-			NamePrefix = namePrefix;
+			LongNamePrefix = longNamePrefix;
 			ShortNamePrefix = shortNamePrefix;
 		}
 
@@ -58,7 +58,7 @@ namespace Cliargs
         /// Default : '--'
         /// <code>--key=value</code>
         /// </summary>
-		public virtual string NamePrefix { get; protected set; } = "--";
+		public virtual string LongNamePrefix { get; protected set; } = "--";
 
 		/// <summary>
         /// The short name prefix

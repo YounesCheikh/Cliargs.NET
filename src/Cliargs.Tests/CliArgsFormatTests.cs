@@ -10,7 +10,7 @@ namespace Cliargs.Tests
         {
             public CustomFormat(): base(CliArgsFormat.Default.AssignationChar) { }
             public CustomFormat(char assignationChar): base(assignationChar) { }
-            public CustomFormat(char assignationChar, string namePrefix, string shortNamePrefix): base(assignationChar, namePrefix, shortNamePrefix) { }
+            public CustomFormat(char assignationChar, string longNamePrefix, string shortNamePrefix): base(assignationChar, longNamePrefix, shortNamePrefix) { }
         }
 
 
@@ -19,7 +19,7 @@ namespace Cliargs.Tests
         {
             CustomFormat customFormat = new CustomFormat();
             Assert.AreEqual(CliArgsFormat.Default.AssignationChar, customFormat.AssignationChar);
-            Assert.AreEqual(CliArgsFormat.Default.NamePrefix, customFormat.NamePrefix);
+            Assert.AreEqual(CliArgsFormat.Default.LongNamePrefix, customFormat.LongNamePrefix);
             Assert.AreEqual(CliArgsFormat.Default.ShortNamePrefix, customFormat.ShortNamePrefix);
         }
 
@@ -28,7 +28,7 @@ namespace Cliargs.Tests
         {
             CustomFormat customFormat = new CustomFormat('='); 
             Assert.AreEqual('=', customFormat.AssignationChar);
-            Assert.AreEqual(CliArgsFormat.Default.NamePrefix, customFormat.NamePrefix);
+            Assert.AreEqual(CliArgsFormat.Default.LongNamePrefix, customFormat.LongNamePrefix);
             Assert.AreEqual(CliArgsFormat.Default.ShortNamePrefix, customFormat.ShortNamePrefix);
         }
 
@@ -37,7 +37,7 @@ namespace Cliargs.Tests
         {
             CustomFormat customFormat = new CustomFormat('=', ":", "/");
             Assert.AreEqual('=', customFormat.AssignationChar);
-            Assert.AreEqual(":", customFormat.NamePrefix);
+            Assert.AreEqual(":", customFormat.LongNamePrefix);
             Assert.AreEqual("/", customFormat.ShortNamePrefix);
         }
     }

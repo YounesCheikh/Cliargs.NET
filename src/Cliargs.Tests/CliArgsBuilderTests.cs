@@ -15,7 +15,7 @@ namespace Cliargs.Tests
 			ICliArgsContainer container = new CliArgsContainer();
 			container.Register(CliArg.New<int>("test"));
 			container.Register(CliArg.New<int>("other").WithShortName("o"));
-			var argFromName = CliArgsBuilder.ParseArgKey(container, $"{container.Format.NamePrefix}test");
+			var argFromName = CliArgsBuilder.ParseArgKey(container, $"{container.Format.LongNamePrefix}test");
 			var argFromShortName = CliArgsBuilder.ParseArgKey(container, $"{container.Format.ShortNamePrefix}o");
 			Assert.IsNotNull(argFromName);
 			Assert.IsNotNull(argFromShortName);
@@ -27,14 +27,14 @@ namespace Cliargs.Tests
 			ICliArgsContainer container = new CliArgsContainer(new CliArgsFormat('=', ":", "/"));
 			container.Register(CliArg.New<int>("test"));
 			container.Register(CliArg.New<int>("other").WithShortName("o"));
-			var argFromName = CliArgsBuilder.ParseArgKey(container, $"{container.Format.NamePrefix}test");
+			var argFromName = CliArgsBuilder.ParseArgKey(container, $"{container.Format.LongNamePrefix}test");
 			var argFromShortName = CliArgsBuilder.ParseArgKey(container, $"{container.Format.ShortNamePrefix}o");
 			Assert.IsNotNull(argFromName);
 			Assert.IsNotNull(argFromShortName);
 		}
 
 		[TestMethod]
-		public void ParseKeyTestWithWrongNamePrefix()
+		public void ParseKeyTestWithWrongLongNamePrefix()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
 			container.Register(CliArg.New<int>("test"));
@@ -53,7 +53,7 @@ namespace Cliargs.Tests
 		public void ParseKeyTestNoExistKeyFailure()
 		{
 			ICliArgsContainer container = new CliArgsContainer();
-			Assert.IsNull(CliArgsBuilder.ParseArgKey(container, $"{container.Format.NamePrefix}noexistkey"));
+			Assert.IsNull(CliArgsBuilder.ParseArgKey(container, $"{container.Format.LongNamePrefix}noexistkey"));
 		}
 
 		[TestMethod]

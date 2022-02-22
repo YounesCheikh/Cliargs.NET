@@ -10,7 +10,7 @@ catch(CliArgsException exception){
     return;
 } 
 
-if(AppCliArgs.IsSet(CliArgsOptions.HelpArg.Name))
+if(AppCliArgs.IsHelpRequested())
 {
     Console.WriteLine(AppCliArgs.GetHelpString());
     return;
@@ -23,20 +23,27 @@ if(AppCliArgs.HasValidationErrors)
     {
         Console.WriteLine(result.GetReport());
     }
+
+    return;
 }
-else
-{
-    if(AppCliArgs.IsSet("username")) {
-        var username = AppCliArgs.GetArgValue<string>("username");
-        Console.WriteLine($"Hello {username}, ");
-    }
-    var month = AppCliArgs.GetArgValue<uint>("month");
-    var year = AppCliArgs.GetArgValue<uint>("year");
-    if (AppCliArgs.IsSet("english-display"))
-    {
-        string fullMonthName = new DateTime((int)year, (int)month, 1).ToString("MMMM", CultureInfo.CreateSpecificCulture("en"));
-        Console.WriteLine($"Date: {fullMonthName} {year:D4}");
-    }
-    else
-    Console.WriteLine($"Date: {month:D2}/{year:D4}");
+
+// Reaching this position, means all required argumnets are set
+var name = AppCliArgs.GetArgValue<string>("Name");
+uint? age = null;
+bool highlight = AppCliArgs.IsSet("Highlight");
+
+string output = $"Hello {name}, we don't know your age!";
+
+if(AppCliArgs.IsSet("Age")) {
+    age = AppCliArgs.GetArgValue<uint>("Age");
+    output = $"Hello {name}, You are {age} years old!";
 }
+
+if(highlight) {
+    Console.BackgroundColor = ConsoleColor.Yellow;
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+}
+Console.WriteLine(output);
+if(highlight)
+    Console.ResetColor();
+

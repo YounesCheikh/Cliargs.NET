@@ -20,7 +20,7 @@ namespace Cliargs
 				     )
 				.Max();
 
-			headerPadding += $"{_container.Format.AssignationChar}{_container.Format.NamePrefix}{_container.Format.ShortNamePrefix}< >|".Length;
+			headerPadding += $"{_container.Format.AssignationChar}{_container.Format.LongNamePrefix}{_container.Format.ShortNamePrefix}< >|".Length;
 			// headerPadding += headerPadding < 15? 15 - headerPadding : 6;
 			headerPadding = Math.Max(headerPadding, 20);
 			StringBuilder stringBuilder = new StringBuilder();
@@ -47,19 +47,19 @@ namespace Cliargs
 				var helpHeader = string.Empty;
 				if (!string.IsNullOrWhiteSpace(info.ShortName) && !string.IsNullOrWhiteSpace(info.LongName))
 				{
-					helpHeader = $"{format.ShortNamePrefix}{info.ShortName}|{format.NamePrefix}{info.LongName}";
+					helpHeader = $"{format.ShortNamePrefix}{info.ShortName}|{format.LongNamePrefix}{info.LongName}";
 				}
 				else if (!string.IsNullOrWhiteSpace(info.ShortName))
 				{
-					helpHeader = $"{format.ShortNamePrefix}{info.ShortName}|{format.NamePrefix}{info.Name}";
+					helpHeader = $"{format.ShortNamePrefix}{info.ShortName}|{format.LongNamePrefix}{info.Name}";
 				}
 				else if (!string.IsNullOrWhiteSpace(info.LongName))
 				{
-					helpHeader = $"{format.NamePrefix}{info.LongName}";
+					helpHeader = $"{format.LongNamePrefix}{info.LongName}";
 				}
 				else
 				{
-					helpHeader = $"{format.NamePrefix}{info.Name}";
+					helpHeader = $"{format.LongNamePrefix}{info.Name}";
 				}
 				if(info.RequiresValue)
                 {

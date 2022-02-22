@@ -12,9 +12,12 @@ namespace Cliargs.Rules
         {
             _func = func;
         }
+
+        string _validationError {get;set;} = "Value doesn't meet with the defined custom condition.";
+
         public override string GetValidationError()
         {
-             return $"Value doesn't meet with the defined custom condition.";
+             return _validationError;
         }
 
         public override bool IsValid(T value)
@@ -22,6 +25,10 @@ namespace Cliargs.Rules
             return _func(value);
         }
 
+        public ConditionalRule<T> WithValidationError(string validationError) {
+            this._validationError = validationError;
+            return this;
+        }
         public static ConditionalRule<T> WithCondition(Func<T, bool> func) {
             return new ConditionalRule<T>(func);
         }

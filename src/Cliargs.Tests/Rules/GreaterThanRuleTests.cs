@@ -16,7 +16,7 @@ namespace Cliargs.Tests.Rules
 		[TestMethod]
 		public void IntegerGreaterThanOtherTest()
         {
-			var rule = new GreaterThanRule<int>(1);
+			var rule = GreaterThanRule<int>.Value(1);
 			Assert.IsTrue(rule.IsValid(2));
 			Assert.IsFalse(rule.IsValid(1));
 			Assert.IsFalse(rule.IsValid(0));
@@ -25,7 +25,7 @@ namespace Cliargs.Tests.Rules
 		[TestMethod]
 		public void IntegerGreaterThanOrEqualsOtherTest()
 		{
-			var rule = new GreaterThanOrEqualsRule<int>(1);
+			var rule = GreaterThanOrEqualsRule<int>.Value(1);
 			Assert.IsTrue(rule.IsValid(2));
 			Assert.IsTrue(rule.IsValid(1));
 			Assert.IsFalse(rule.IsValid(0));

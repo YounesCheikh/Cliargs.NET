@@ -16,7 +16,7 @@ namespace Cliargs.Tests.Rules
 		[TestMethod]
 		public void IntEqualsRuleTest()
         {
-			var rule = new EqualsRule<int>(3);
+			var rule = EqualsRule<int>.Value(3);
 			Assert.IsTrue(rule.IsValid(3));
 			Assert.IsFalse(rule.IsValid(-3));
 		}

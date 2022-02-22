@@ -16,7 +16,7 @@ namespace Cliargs.Tests.Rules
 		[TestMethod]
 		public void IntegerLessThanOtherTest()
 		{
-			var rule = new LessThanRule<int>(1);
+			var rule = LessThanRule<int>.Value(1);
 			Assert.IsTrue(rule.IsValid(0));
 			Assert.IsFalse(rule.IsValid(1));
 			Assert.IsFalse(rule.IsValid(2));
@@ -25,7 +25,7 @@ namespace Cliargs.Tests.Rules
 		[TestMethod]
 		public void IntegerLessThanOrEqualsOtherTest()
 		{
-			var rule = new LessThanOrEqualsRule<int>(1);
+			var rule = LessThanOrEqualsRule<int>.Value(1);
 			Assert.IsTrue(rule.IsValid(0));
 			Assert.IsTrue(rule.IsValid(1));
 			Assert.IsFalse(rule.IsValid(2));

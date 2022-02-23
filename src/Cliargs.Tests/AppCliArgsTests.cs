@@ -32,6 +32,18 @@ namespace Cliargs.Tests
             }
         }
 
+		class HelpRequestedSampleSetup : ICliArgsSetup
+        {
+            public void Configure(ICliArgsContainer container)
+            {
+				string[] expectedArgs = new[] { "--help"};
+				var mockedCLI = new Mock<IArgumentsProvider>();
+				mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+				container.ArgumentsProvider = mockedCLI.Object;
+				ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+            }
+        }
+
 		class OtherSetup : ICliArgsSetup
 		{
 			public void Configure(ICliArgsContainer container)
@@ -108,6 +120,20 @@ namespace Cliargs.Tests
 			var testArgValue = AppCliArgs.GetArgValue<int>("test");
 			Assert.AreEqual(3, testArgValue);
 			Assert.IsFalse(AppCliArgs.GetValidationResults().Any());
+		}
+
+		[TestMethod]
+		public void CheckIfHelpIsRequested()
+		{ 
+			AppCliArgs.Initialize<HelpRequestedSampleSetup>();
+			Assert.IsTrue(AppCliArgs.IsHelpRequested());
+		}
+
+		[TestMethod]
+		public void CheckIfHelpIsNotRequested()
+		{ 
+			AppCliArgs.Initialize<SampleSetup>();
+			Assert.IsFalse(AppCliArgs.IsHelpRequested());
 		}
 
 		[TestMethod]

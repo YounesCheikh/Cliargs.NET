@@ -56,7 +56,7 @@ jobs:
         git config user.name "younescheikh"
         git config user.email "dev@somecode.net"
         git remote set-url origin https://${{ secrets.COVERAGE }}@github.com/YounesCheikh/Cliargs.NET.wiki.git
-        cp ../../coveragereport/badge_combined.svg combined.svg
-        git add combined.svg
+        cp ../../coveragereport/badge_linecoverage.png badge_linecoverage.png
+        git add badge_linecoverage.png
         git commit -m "updated badge"
         git push

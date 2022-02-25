@@ -48,14 +48,14 @@ jobs:
         toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
     - name: Upload badge to gist 
       env:
-        GITHUB_TOKEN: ${{ secrets.cliargscoverage }}
+        GITHUB_TOKEN: ${{ secrets.COVERAGE }}
       run: |
-        git clone https://gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
-        cd ca605b75749777148ab9dcb5ccae1d40
+        git clone https://github.com/YounesCheikh/Cliargs.NET.wiki.git
+        cd Cliargs.NET.wiki
         git config credential.helper store
         git config user.name "younescheikh"
         git config user.email "dev@somecode.net"
-        git remote set-url origin https://${{ secrets.cliargscoverage }}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
+        git remote set-url origin https://${{ secrets.COVERAGE }}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
         cp ../../coveragereport/badge_combined.svg combined.svg
         git add combined.svg
         git commit -m "updated badge"

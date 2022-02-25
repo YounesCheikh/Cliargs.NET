@@ -54,9 +54,7 @@ jobs:
         cd ca605b75749777148ab9dcb5ccae1d40
         pwd
         cp ../../coveragereport/badge_combined.svg combined.svg
-        git config user.email "dev@somecode.net"
-        git config user.name "YounesCheikh"
-        git remote set-url origin https://YounesCheikh:${GITHUB_TOKEN}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
+        git remote set-url origin https://${GITHUB_TOKEN}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
         git add combined.svg
         git commit -m "updated badge"
         git push

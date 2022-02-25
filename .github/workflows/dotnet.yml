@@ -55,8 +55,8 @@ jobs:
         git config credential.helper store
         git config user.name "younescheikh"
         git config user.email "dev@somecode.net"
-        git remote set-url origin https://${{ secrets.COVERAGE }}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
+        git remote set-url origin https://${{ secrets.COVERAGE }}@github.com/YounesCheikh/Cliargs.NET.wiki.git
         cp ../../coveragereport/badge_combined.svg combined.svg
         git add combined.svg
         git commit -m "updated badge"
-        git push origin main
+        git push

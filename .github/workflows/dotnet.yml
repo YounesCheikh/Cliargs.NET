@@ -50,9 +50,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.cliargscoverage }}
       run: |
-        git clone https://younescheikh:${{ secrets.cliargscoverage }}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
-        git config --global user.name "younescheikh"
+        git clone https://gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
         cd ca605b75749777148ab9dcb5ccae1d40
+        git config credential.helper store
+        git config user.name "younescheikh"
+        git config user.email "dev@somecode.net"
+        git remote set-url origin https://${{ secrets.cliargscoverage }}:x-oauth-basic@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
         cp ../../coveragereport/badge_combined.svg combined.svg
         git add combined.svg
         git commit -m "updated badge"

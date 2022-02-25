@@ -46,9 +46,14 @@ jobs:
         tag: '${{ github.run_number }}_${{ github.run_id }}' # Optional tag or build version.
         customSettings: '' # Optional custom settings (separated by semicolon). See: https://github.com/danielpalme/ReportGenerator/wiki/Settings.
         toolpath: 'reportgeneratortool' # Default directory for installing the dotnet tool.
-
-    - name: Upload coverage report artifact
-      uses: actions/upload-artifact@v2.2.3
-      with:
-        name: coverage.svg # Artifact name        
-        path: coveragereport/badge_combined.svg # Directory containing files to upload
+    - name: Upload badge to gist 
+      env:
+        GITHUB_TOKEN: ${{ secrets.gist }}
+      run: |
+        git clone https://gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
+        cd ca605b75749777148ab9dcb5ccae1d40
+        cp ../coveragereport/badge_combined.svg combined.svg
+        git remote set-url origin https://YounesCheikh:${GITHUB_TOKEN}@gist.github.com/ca605b75749777148ab9dcb5ccae1d40.git
+        git add combined.svg
+        git commit -m "updated badge"
+        git push

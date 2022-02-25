@@ -1,1 +1,1 @@
-reportgenerator -reports:"$1" -targetdir:"coveragereport" -reporttypes:Html
+reportgenerator -reports:"./TestResults/*/*.xml" -targetdir:"coveragereport" -reporttypes:Badges

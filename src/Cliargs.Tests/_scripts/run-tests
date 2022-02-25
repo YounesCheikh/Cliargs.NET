@@ -1,2 +1,2 @@
 rm -rf TestResults/*
-dotnet test --collect:"XPlat Code Coverage"
+dotnet test --collect:"XPlat Code Coverage" --results-directory:"./TestResults/"

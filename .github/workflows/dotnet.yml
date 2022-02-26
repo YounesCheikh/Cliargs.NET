@@ -29,10 +29,6 @@ jobs:
       run: dotnet test --collect:"XPlat Code Coverage" --no-build --verbosity normal --results-directory:"./TestResults/"
     - name: Move Coverage
       run: cp ./TestResults/*/coverage.cobertura.xml ./TestResults/coverage.cobertura.xml
-    - name: Install fonts 
-      run: |
-        sudo apt install ttf-mscorefonts-installer fontconfig
-        sudo fc-cache -f
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.0.4
       with:
@@ -60,7 +56,10 @@ jobs:
         git config user.name "younescheikh"
         git config user.email "<>"
         git remote set-url origin https://${{ secrets.COVERAGE }}@github.com/YounesCheikh/Cliargs.NET.wiki.git
-        cp ../../coveragereport/badge_linecoverage.png ./linecoverage.png
-        git add badge_linecoverage.png
+        rm combined.svg
+        git add combined.svg
+        git commit -m "deleted old badge"
+        cp ../../coveragereport/badge_combined.svg ./combined.svg
+        git add combined.svg
         git commit -m "updated badge"
         git push

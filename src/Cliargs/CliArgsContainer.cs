@@ -69,6 +69,14 @@ namespace Cliargs
             
             this._cliArgs.Add(arg.Name, arg);
         }
+
+        public object? GetValue(string argName)
+        {
+            if(!_cliArgs.TryGetValue(argName, out CliArg? arg))
+                throw new CLIArgumentNotFoundException(argName);
+            
+            return arg.GetValue();
+        }
     }
 }
 

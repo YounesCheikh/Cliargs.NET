@@ -9,6 +9,8 @@ namespace Cliargs
 
 		T? GetValue<T>(string argName);
 
+		object? GetValue(string argName);
+
 		CliArgsFormat Format { get; }
 
 		IArgumentsProvider ArgumentsProvider { get; set; } 

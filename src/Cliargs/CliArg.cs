@@ -51,6 +51,10 @@ namespace Cliargs
             return new List<ICliArgsValidationResult>();
         }
 
+        public virtual object? GetValue() {
+            return default;
+        }
+
         /// <summary>
         /// Create new Argument instance with the given name
         /// </summary>
@@ -141,6 +145,11 @@ namespace Cliargs
             }
 
             return results;
+        }
+
+        public override object? GetValue()
+        {
+            return this.Value;
         }
     }
 }

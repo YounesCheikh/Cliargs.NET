@@ -66,6 +66,22 @@ namespace Cliargs.Tests
             }
 		}
 
+		[TestMethod]
+		[ExpectedException(typeof(CLIArgumentNotFoundException))]
+		public void GetValueFromNonExistingArgNonGenericTypeTest()
+		{
+			try
+			{
+				CliArgsContainer container = new CliArgsContainer();
+				_ = container.GetValue("test");
+			}
+			catch (CLIArgumentNotFoundException ex)
+			{
+				Assert.AreEqual("test", ex.ArgumentName);
+				throw;
+			}
+		}
+
 		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
 		public void ArgumentNullExceptionThrownIfNoFormat()
         {

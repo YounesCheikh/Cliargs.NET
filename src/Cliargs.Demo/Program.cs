@@ -2,8 +2,10 @@
 using Cliargs;
 using Cliargs.Demo;
 
+MyArgs myArgs;
 try {
     AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
+    myArgs = AppCliArgs.GetArgsParsed<MyArgs>();
 }
 catch(CliArgsException exception){
     Console.WriteLine($"Error: {exception.Message}");
@@ -28,9 +30,9 @@ if(AppCliArgs.HasValidationErrors)
 }
 
 // Reaching this position, means all required argumnets are set
-var name = AppCliArgs.GetArgValue<string>("Name");
+var name = myArgs.Name; // OR // AppCliArgs.GetArgValue<string>("Name");
 uint? age = null;
-bool highlight = AppCliArgs.IsSet("Highlight");
+bool highlight = myArgs.Highlight; // Or // AppCliArgs.IsSet("Highlight");
 
 string output = $"Hello {name}, we don't know your age!";
 

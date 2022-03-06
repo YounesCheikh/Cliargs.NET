@@ -52,7 +52,7 @@ namespace Cliargs
         }
 
         public virtual object? GetValue() {
-            return default;
+            return IsSet;
         }
 
         /// <summary>

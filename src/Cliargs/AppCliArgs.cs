@@ -14,6 +14,8 @@ namespace Cliargs
 
 		ICliArgsHelpBuilder _helpBuilder;
 
+		ICliargsNamesParser _namesParser; 
+
 		IList<ICliArgsValidationResult> _validationResults;
 
 		readonly static ICliArgsSetup _defaultSetup = new DefaultContainerSetup();
@@ -24,7 +26,7 @@ namespace Cliargs
 			_cliArgsContainer = cliArgsContainer;
 			_validationResults = new List<ICliArgsValidationResult>();
 			_helpBuilder = new CliArgsHelpBuilder(_cliArgsContainer);
-			
+			_namesParser = new CliargsNamesParser(_cliArgsContainer);
 		}
 
 		/// <summary>
@@ -138,6 +140,18 @@ namespace Cliargs
 			if (_instance == null)
 				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
 			return _instance.HelpString;
+		}
+
+		/// <summary>
+		/// Get the arguments parsend in a predefined object type
+		/// </summary>
+		/// <typeparam name="T">The pre defined object type</typeparam>
+		/// <returns>The object of T</returns>
+		public static T GetArgsParsed<T>() where T: new ()
+		{
+			if (_instance == null)
+				throw new CliArgsException($"Instance not initialized, use {nameof(AppCliArgs.Initialize)}");
+			return _instance._namesParser.Parse<T>();
 		}
 	}
 }

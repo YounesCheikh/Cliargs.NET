@@ -1,14 +1,15 @@
-# Command Line Interface Arguments parser for C#
+# Cliargs.NET 
+## Command Line Interface Arguments parser for dotnet
 
-[![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml) 
-[![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/)  
-[![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellowgreen)](https://creativecommons.org/licenses/by-nc-sa/4.0/) 
-![Test Coverage](https://raw.githubusercontent.com/wiki/YounesCheikh/Cliargs.NET/combined.svg)
+| [![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/) | [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellowgreen)](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
+| :---: | :---: |
+| [![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml) | ![Test Coverage](https://raw.githubusercontent.com/wiki/YounesCheikh/Cliargs.NET/combined.svg) |
 
 | ![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png) | [![Build history](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)](https://buildstats.info/github/chart/younescheikh/Cliargs.NET) | 
 | :---: | :---: | 
 
-Cliargs.NET is a .NET library helps you to parse and use the Command Line Interface arguments in easy way. 
+--- 
+Cliargs.NET is a dotnet library helps you to parse and use the Command Line Interface arguments in easy way. 
 
 The main goal of Cliargs.NET is to help C# developers reduce their programming time without dealing with all validations and casting of the user input. 
 
@@ -25,7 +26,6 @@ Install-Package Cliargs.NET
 ```shell
 dotnet add package Cliargs.NET
 ```
-
 
 # Quick comparison 
 

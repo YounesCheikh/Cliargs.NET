@@ -1,7 +1,12 @@
 namespace Cliargs
 {
-    public interface ICliargsNamesParser
+    internal interface ICliargsNamesParser
     {
-        public T Parse<T>() where T: new();
+        /// <summary>
+        /// Parse arguments into object properties
+        /// </summary>
+        /// <typeparam name="T">Object with args properties</typeparam>
+        /// <returns>the instance from type T</returns>
+        T Parse<T>() where T: new();
     }
 }

@@ -1,6 +1,4 @@
 using System.Reflection;
-using Cliargs.Extensions;
-
 namespace Cliargs
 {
     class CliargsNamesParser : ICliargsNamesParser

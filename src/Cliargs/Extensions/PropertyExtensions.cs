@@ -1,6 +1,6 @@
 using System.Reflection;
 using Cliargs;
-namespace Cliargs.Extensions
+namespace Cliargs
 {
     public static class PropertyExtensions
     {

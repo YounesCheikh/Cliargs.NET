@@ -1,1 +1,0 @@
-reportgenerator -reports:"./TestResults/*/*.xml" -targetdir:"coveragereport" -reporttypes:"Html;Badges" title:"Test Coverage" 

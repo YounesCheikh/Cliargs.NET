@@ -9,10 +9,10 @@
     <Nullable>enable</Nullable>
 
     <Description>Commande Line Arguments parser and C# API</Description>
-    <ReleaseVersion>1.0.1</ReleaseVersion>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <!-- <ReleaseVersion>1.2.0-alpha</ReleaseVersion> -->
+    <Version>1.2.0-alpha</Version>
+    <!-- <AssemblyVersion>1.2.0-alpha</AssemblyVersion> -->
+    <!-- <FileVersion>1.2.0-alpha</FileVersion> -->
     <RepositoryUrl>https://github.com/YounesCheikh/Cliargs.NET</RepositoryUrl> 
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <PackageIcon>Cliargs.png</PackageIcon>

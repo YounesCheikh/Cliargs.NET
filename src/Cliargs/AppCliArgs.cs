@@ -87,6 +87,10 @@ namespace Cliargs
 			}
 		}
 
+		/// <summary>
+		/// Get or set the help string 
+		/// </summary>
+		/// <value>The help string</value>
         public string HelpString { get => _helpString; set => _helpString = value; }
 
         /// <summary>

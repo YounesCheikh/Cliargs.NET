@@ -12,6 +12,10 @@ namespace Cliargs
 			this._container = container;
 		}
 
+		/// <summary>
+		/// Build the help string
+		/// </summary>
+		/// <returns>The help string</returns>
 		public string Build()
         {
 			headerPadding = _container.CliArgs.Values
@@ -36,6 +40,11 @@ namespace Cliargs
 			return stringBuilder.ToString();
 		}
 
+		/// <summary>
+		/// Build help string line for a specific argument
+		/// </summary>
+		/// <param name="func">The argument func</param>
+		/// <returns>The help string</returns>
 		private string BuildFor(Func<CliArg, bool> func)
         {
 			StringBuilder stringBuilder = new StringBuilder();

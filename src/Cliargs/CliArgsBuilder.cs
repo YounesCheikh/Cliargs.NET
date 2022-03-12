@@ -3,6 +3,10 @@ namespace Cliargs
 {
 	static class CliArgsBuilder
 	{
+        /// <summary>
+        /// Build the container
+        /// </summary>
+        /// <param name="container">The container</param>
         internal static void Build(ICliArgsContainer container)
         {
             var format = container.Format;
@@ -16,6 +20,10 @@ namespace Cliargs
                 BuildWithCustomFormat(container);
         }
 
+        /// <summary>
+        /// Build the container with the default format
+        /// </summary>
+        /// <param name="container">The container</param>
         static void BuildWithDefaultFormat(ICliArgsContainer container)
         {
             var argsCollection = container.ArgumentsProvider.GetCommandLineArgs();
@@ -52,6 +60,10 @@ namespace Cliargs
             }
         }
 
+        /// <summary>
+        /// Build the container with a custom format
+        /// </summary>
+        /// <param name="container">The format</param>
         static void BuildWithCustomFormat(ICliArgsContainer container)
         {
             var format = container.Format;
@@ -82,6 +94,12 @@ namespace Cliargs
             }
         }
 
+        /// <summary>
+        /// Parse the argument key
+        /// </summary>
+        /// <param name="container">The container</param>
+        /// <param name="argInput">The argument key input</param>
+        /// <returns>The argument with parsed key</returns>
         internal static CliArg? ParseArgKey(ICliArgsContainer container, string argInput)
         { 
             CliArg? cliArg = null;
@@ -104,11 +122,19 @@ namespace Cliargs
             return cliArg;
         }
 
+        /// <summary>
+        /// Check whether the help is requested by user 
+        /// </summary>
+        /// <param name="container">The container</param>
+        /// <returns>True if the user requested to display the help, otherwise false.</returns>
         static bool IsHelpRequested(ICliArgsContainer container)
         {
             var format = container.Format;
 
             var argsCollection = container.ArgumentsProvider.GetCommandLineArgs();
+
+            // Here we expect the help key is input as first argument.
+            // If the help tag is after other keys, return false.
             var firstArg = argsCollection.FirstOrDefault();
             if (firstArg != null)
             {

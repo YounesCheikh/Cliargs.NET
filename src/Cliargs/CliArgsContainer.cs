@@ -6,13 +6,24 @@ namespace Cliargs
 	{
         private readonly Dictionary<string, CliArg> _cliArgs = new Dictionary<string, CliArg>();
 
+        /// <summary>
+        /// The arguments dictionary
+        /// </summary>
         public IReadOnlyDictionary<string, CliArg> CliArgs => _cliArgs;
 
+        /// <summary>
+        /// Create new instance of arguments container
+        /// </summary>
+        /// <returns>The created instnace</returns>
         internal CliArgsContainer() : this(CliArgsFormat.Default)
         {
             ArgumentsProvider = new ArgumentsProvider();
         }
 
+        /// <summary>
+        /// Create new instance of arugments container
+        /// </summary>
+        /// <param name="format">the created instance</param>
         internal CliArgsContainer(CliArgsFormat format)
 		{
             if (format == null)
@@ -23,8 +34,19 @@ namespace Cliargs
 		}
 
         public CliArgsFormat Format { get; private set; }
+
+        /// <summary>
+        /// The arguments provider
+        /// </summary>
+        /// <value>The arguments provider</value>
         public IArgumentsProvider ArgumentsProvider { get; set; }
 
+        /// <summary>
+        /// Get a typed argument value 
+        /// </summary>
+        /// <param name="argName">The argument name</param>
+        /// <typeparam name="T">The argument value type</typeparam>
+        /// <returns>The value</returns>
         public T? GetValue<T>(string argName)
         {
             if (!CliArgs.ContainsKey(argName))
@@ -70,6 +92,11 @@ namespace Cliargs
             this._cliArgs.Add(arg.Name, arg);
         }
 
+        /// <summary>
+        /// Get the argument value as an object
+        /// </summary>
+        /// <param name="argName">The argument name</param>
+        /// <returns>The value object</returns>
         public object? GetValue(string argName)
         {
             if(!_cliArgs.TryGetValue(argName, out CliArg? arg))

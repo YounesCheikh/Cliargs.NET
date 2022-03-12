@@ -147,6 +147,10 @@ namespace Cliargs
             return results;
         }
 
+        /// <summary>
+        /// Get the argument value
+        /// </summary>
+        /// <returns>The value</returns>
         public override object? GetValue()
         {
             return this.Value;

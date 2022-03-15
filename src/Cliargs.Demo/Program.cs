@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Cliargs;
+﻿using Cliargs;
 using Cliargs.Demo;
 
 MyArgs myArgs;

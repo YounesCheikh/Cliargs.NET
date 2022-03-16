@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 namespace Cliargs
 {
@@ -29,14 +30,16 @@ namespace Cliargs
                         // Another property not supposed to represent an argument.
                         continue;
                     }
-
+#pragma warning disable CS8600
                     // If the name is not set on the property 
                     // Use the property name
                     string argName = string.IsNullOrWhiteSpace(argNameAttr.Name)
                         ? argProperty.Name
                         : argNameAttr.Name;
-
+#pragma warning restore CS8600
+#pragma warning disable CS8604
                     var registeredArg = _container.GetCliArgByName(argName);
+#pragma warning restore CS8604                    
 
                     // Throws an exception if the container doesn't contain 
                     // any argument having the name as set.

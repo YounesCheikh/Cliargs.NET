@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 namespace Cliargs
 {
 	internal class ArgumentsProvider : IArgumentsProvider

@@ -1,3 +1,5 @@
+using System;
+
 namespace Cliargs
 {
     public class CliArgNameAttribute: Attribute

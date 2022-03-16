@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net48;net5.0;net6.0</TargetFrameworks>
     <CheckEolTargetFramework>true</CheckEolTargetFramework>
     <Authors>Younes Cheikh</Authors>
 
@@ -10,7 +10,7 @@
 
     <Description>Commande Line Arguments parser and C# API</Description>
     <!-- <ReleaseVersion>1.2.0-alpha</ReleaseVersion> -->
-    <Version>1.2.0-alpha</Version>
+    <Version>1.2.1-beta</Version>
     <!-- <AssemblyVersion>1.2.0-alpha</AssemblyVersion> -->
     <!-- <FileVersion>1.2.0-alpha</FileVersion> -->
     <RepositoryUrl>https://github.com/YounesCheikh/Cliargs.NET</RepositoryUrl> 

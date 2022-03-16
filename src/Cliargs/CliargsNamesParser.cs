@@ -46,12 +46,29 @@ namespace Cliargs
                     if (registeredArg == null)
                         throw new CliArgsException($"No CLI argument registered with name {argName}");
 
-                    // If argument is not set, do nothing!
-                    if (!registeredArg.IsSet)
-                        continue;
+                    object? argValue;
+                    // If argument is not set
+                    if (!registeredArg.IsSet) {
+                        // It should be an optional argument
+                        if(registeredArg.Info.Optional) {
+                            // Get default value for optional argument
+                            argValue = registeredArg.GetDefaultValue();
 
-                    var argValue = _container.GetValue(argName);
-                    argProperty.SetValue(obj, argValue);
+                            // Assign default value only 
+                            // if the property has no default value
+                            if(argProperty.GetValue(obj) == default)
+                                argProperty.SetValue(obj, argValue);
+                        }
+                        // Mandatory argument missing! 
+                        else continue;
+                    }
+                    else {
+                        // The value as set by user
+                        argValue = _container.GetValue(argName);
+                        argProperty.SetValue(obj, argValue);
+                    }
+
+                    
 
                 }
                 return obj;

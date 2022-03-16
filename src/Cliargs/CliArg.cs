@@ -52,9 +52,15 @@ namespace Cliargs
             return new List<ICliArgsValidationResult>();
         }
 
-        public virtual object? GetValue() {
+        internal virtual object? GetValue() {
             return IsSet;
         }
+
+        internal virtual object? GetDefaultValue() {
+            return default;
+        }
+            
+        
 
         /// <summary>
         /// Create new Argument instance with the given name
@@ -113,6 +119,12 @@ namespace Cliargs
         public T? Value { get; internal set; } = default;
 
         /// <summary>
+        /// Default Value for optional arguments
+        /// </summary>
+        /// <value>The default value if set</value>
+        public T? DefaultValue { get; internal set; } = default;
+
+        /// <summary>
         /// Execute the validation rules on the argument value
         /// </summary>
         /// <returns>The results of execution of validation rules if any fails</returns>
@@ -152,9 +164,14 @@ namespace Cliargs
         /// Get the argument value
         /// </summary>
         /// <returns>The value</returns>
-        public override object? GetValue()
+        internal override object? GetValue()
         {
             return this.Value;
+        }
+
+        internal override object? GetDefaultValue()
+        {
+            return DefaultValue;
         }
     }
 }

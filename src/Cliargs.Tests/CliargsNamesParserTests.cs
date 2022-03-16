@@ -50,7 +50,7 @@ namespace Cliargs.Tests
 				ICliArgsSetup defaultSetup = new DefaultContainerSetup();
 				container.Register(CliArg.New<string>(nameof(SampleArgsObj.Name)).WithLongName("name"));
 				container.Register(CliArg.New<int>(nameof(SampleArgsObj.Age)).WithLongName("age"));
-                container.Register(CliArg.New<bool>(nameof(SampleArgsObj.City)).AsOptional().WithLongName("sex"));
+                container.Register(CliArg.New<string>(nameof(SampleArgsObj.City)).AsOptional().WithLongName("city"));
             }
         }
         

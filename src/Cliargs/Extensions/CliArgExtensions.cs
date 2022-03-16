@@ -23,9 +23,10 @@ namespace Cliargs
 		/// <typeparam name="T">The argument type</typeparam>
 		/// <param name="arg">The argument</param>
 		/// <returns>The argument marked as optional</returns>
-		public static CliArg<T> AsOptional<T>(this CliArg<T> arg)
+		public static CliArg<T> AsOptional<T>(this CliArg<T> arg, T? defaultValue = default)
 		{
 			arg.Info.Optional = true;
+			arg.DefaultValue = defaultValue;
 			return arg;
 		}
 

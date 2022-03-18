@@ -57,6 +57,12 @@ namespace Cliargs
         public bool RequiresValue { get; internal set; } = true;
 
         /// <summary>
+        /// Get or set if the argument has a default value
+        /// </summary>
+        /// <value>True if the argument has default value, otherwise false</value>
+        internal bool HasDefaultValue {get; set; } = false;
+
+        /// <summary>
         /// Create a new instance 
         /// </summary>
         /// <param name="name">The argument name</param>

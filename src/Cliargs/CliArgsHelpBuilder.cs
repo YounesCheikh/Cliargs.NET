@@ -79,6 +79,12 @@ namespace Cliargs
 				stringBuilder.AppendLine(
 					string.Format("  {0}   {1}", helpHeader.PadRight(headerPadding), info.Description)
 					);
+				if(arg.Info.Optional && arg.Info.HasDefaultValue)  {
+					stringBuilder.AppendLine(
+					string.Format("  {0}   {1}", string.Empty.PadRight(headerPadding), $"Default value: {arg.GetDefaultValue()}")
+					);
+					// stringBuilder.AppendLine();
+				}
 			}
 
 			return stringBuilder.ToString();

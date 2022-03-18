@@ -26,6 +26,15 @@ namespace Cliargs.Demo
                 .WithUsage("-a|--age 28")
             );
 
+            container.Register(
+                CliArg.New<uint>(nameof(MyArgs.PaddingLines))
+                .AsOptional((uint)1)
+                .WithLongName("padding")
+                .WithShortName("p")
+                .WithDescription("Padding Lines on top and bottom")
+                .WithUsage("-p|--padding 2")
+            );
+
             // Option to highlight the output 
             container.Register(
                 CliArg.New(nameof(MyArgs.Highlight))

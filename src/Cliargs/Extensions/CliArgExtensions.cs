@@ -23,11 +23,24 @@ namespace Cliargs
 		/// <typeparam name="T">The argument type</typeparam>
 		/// <param name="arg">The argument</param>
 		/// <returns>The argument marked as optional</returns>
-		public static CliArg<T> AsOptional<T>(this CliArg<T> arg, T? defaultValue = default)
+		public static CliArg<T> AsOptional<T>(this CliArg<T> arg)
 		{
 			arg.Info.Optional = true;
-			if(defaultValue != null)
-				arg.DefaultValue = defaultValue;
+			return arg;
+		}
+
+		/// <summary>
+		/// Mark a Command Line Interface argument is optional.
+		/// </summary>
+		/// <typeparam name="T">The argument type</typeparam>
+		/// <param name="arg">The argument</param>
+		/// <param name="defaultValue">default value</param>
+		/// <returns>The argument marked as optional</returns>
+		public static CliArg<T> AsOptional<T>(this CliArg<T> arg, T defaultValue)
+		{
+			arg.Info.Optional = true;
+			arg.DefaultValue = defaultValue;
+			arg.Info.HasDefaultValue = true;
 			return arg;
 		}
 

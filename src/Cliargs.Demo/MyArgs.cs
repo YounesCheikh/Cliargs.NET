@@ -8,6 +8,9 @@ namespace Cliargs.Demo
         [CliArgName("Age")]
         public uint? Age {get; set;}
 
+        [CliArgName]
+        public uint PaddingLines { get; set; }
+
         [CliArgName("Highlight")]
         public bool Highlight { get; set; }
     }

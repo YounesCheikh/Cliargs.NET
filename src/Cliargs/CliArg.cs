@@ -122,7 +122,7 @@ namespace Cliargs
         /// Default Value for optional arguments
         /// </summary>
         /// <value>The default value if set</value>
-        public T? DefaultValue { get; internal set; } = default;
+        internal T? DefaultValue { get; set; } = default;
 
         /// <summary>
         /// Execute the validation rules on the argument value

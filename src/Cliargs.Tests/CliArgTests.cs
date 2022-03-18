@@ -27,6 +27,16 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
+		public void GetOptionalArgDefaultValueTest()
+		{
+			var arg = CliArg.New<int>("test").AsOptional(6);
+			Assert.AreEqual(6, arg.GetDefaultValue());
+
+			var argNoRequiredValue = CliArg.New("test").AsOptional();
+			Assert.AreEqual(null, argNoRequiredValue.GetDefaultValue());
+		}
+
+		[TestMethod]
 		public void ValidateOptionalMissingArgumentTest()
         { 
 			var arg = CliArg.New<int>("test").AsOptional(); 

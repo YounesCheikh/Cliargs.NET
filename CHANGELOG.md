@@ -1,4 +1,4 @@
-# Next 
+# 1.2.3 
 ## Features
 - Added Support for .NET Framework : 
   - net45;net451;net452;net46;net461;net462;net47;net471;net472;net48 

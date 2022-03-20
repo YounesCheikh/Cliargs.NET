@@ -18,7 +18,27 @@ namespace Cliargs.Tests
 				throw new Exception("Unable to get the singleton instance field");
 			filed.SetValue(null, null);
 		}
-        class SampleSetup : ICliArgsSetup
+
+		class SampleArgsObj
+        {
+			[CliArgName]
+			public int Test { get; set; }
+        }
+
+		class SingleArgSetup : ICliArgsSetup
+		{
+			public void Configure(ICliArgsContainer container)
+			{
+				string[] expectedArgs = new[] { "--test", "3" };
+				var mockedCLI = new Mock<IArgumentsProvider>();
+				mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
+				container.ArgumentsProvider = mockedCLI.Object;
+				ICliArgsSetup defaultSetup = new DefaultContainerSetup();
+				container.Register(CliArg.New<int>(nameof(SampleArgsObj.Test)).WithLongName("test"));
+			}
+		}
+
+		class SampleSetup : ICliArgsSetup
         {
             public void Configure(ICliArgsContainer container)
             {
@@ -27,7 +47,7 @@ namespace Cliargs.Tests
 				mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
 				container.ArgumentsProvider = mockedCLI.Object;
 				ICliArgsSetup defaultSetup = new DefaultContainerSetup();
-				container.Register(CliArg.New<int>("test"));
+				container.Register(CliArg.New<int>("test").AsOptional(0));
 				container.Register(CliArg.New("longArg").WithLongName("too-long-command-line-interface-argument"));
             }
         }
@@ -54,6 +74,22 @@ namespace Cliargs.Tests
 				container.ArgumentsProvider = mockedCLI.Object;
 				container.Register(CliArg.New<int>("kk").WithShortName("k"));
 			}
+		}
+
+		[TestMethod]
+		public void ParseArgumentsToObj()
+		{ 
+			AppCliArgs.Initialize<SingleArgSetup>();
+			SampleArgsObj obj = AppCliArgs.GetArgsParsed<SampleArgsObj>();
+			Assert.IsNotNull(obj);
+			Assert.AreEqual(3, obj.Test);
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(CliArgsException))]
+		public void ParseArgumentsToObjWithouInitialize()
+		{
+			_ = AppCliArgs.GetArgsParsed<SampleArgsObj>();
 		}
 
 		[TestMethod]

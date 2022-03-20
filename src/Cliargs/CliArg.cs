@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cliargs.Rules;
 namespace Cliargs
 {
@@ -50,6 +51,16 @@ namespace Cliargs
         {
             return new List<ICliArgsValidationResult>();
         }
+
+        internal virtual object? GetValue() {
+            return IsSet;
+        }
+
+        internal virtual object? GetDefaultValue() {
+            return default;
+        }
+            
+        
 
         /// <summary>
         /// Create new Argument instance with the given name
@@ -108,6 +119,12 @@ namespace Cliargs
         public T? Value { get; internal set; } = default;
 
         /// <summary>
+        /// Default Value for optional arguments
+        /// </summary>
+        /// <value>The default value if set</value>
+        internal T? DefaultValue { get; set; } = default;
+
+        /// <summary>
         /// Execute the validation rules on the argument value
         /// </summary>
         /// <returns>The results of execution of validation rules if any fails</returns>
@@ -141,6 +158,20 @@ namespace Cliargs
             }
 
             return results;
+        }
+
+        /// <summary>
+        /// Get the argument value
+        /// </summary>
+        /// <returns>The value</returns>
+        internal override object? GetValue()
+        {
+            return this.Value;
+        }
+
+        internal override object? GetDefaultValue()
+        {
+            return DefaultValue;
         }
     }
 }

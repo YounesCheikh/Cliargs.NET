@@ -146,6 +146,18 @@ namespace Cliargs.Tests
 		}
 
 		[TestMethod]
+		public void CreateSampleInstanceAsOptionalWithDefaultValue()
+		{
+			const string argName = "test";
+			const bool optional = true;
+			var arg = CliArg.New<int>(argName).AsOptional(6);
+			Assert.IsNotNull(arg);
+			Assert.IsNotNull(arg.Info);
+			Assert.AreEqual(optional, arg.Info.Optional);
+			Assert.AreEqual(6, arg.DefaultValue);
+		}
+
+		[TestMethod]
 		public void CreateSampleInstanceAsOptionalNoValueRequired()
 		{
 			const string argName = "test";

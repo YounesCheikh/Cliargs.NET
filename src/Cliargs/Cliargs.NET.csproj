@@ -1,20 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;net5.0;net6.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <CheckEolTargetFramework>true</CheckEolTargetFramework>
     <Authors>Younes Cheikh</Authors>
 
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
     <Description>Commande Line Arguments parser and C# API</Description>
-    <ReleaseVersion>1.0.1</ReleaseVersion>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <!-- <ReleaseVersion>1.2.0-alpha</ReleaseVersion> -->
+    <Version>1.2.3</Version>
+    <!-- <AssemblyVersion>1.2.0-alpha</AssemblyVersion> -->
+    <!-- <FileVersion>1.2.0-alpha</FileVersion> -->
     <RepositoryUrl>https://github.com/YounesCheikh/Cliargs.NET</RepositoryUrl> 
     <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>Cliargs.png</PackageIcon>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <RootNamespace>Cliargs</RootNamespace>
@@ -27,6 +28,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\..\license.txt">
       <Pack>True</Pack>

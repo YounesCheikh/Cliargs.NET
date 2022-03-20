@@ -11,6 +11,9 @@ CHECKLIST.md
 *.sln.docstates
 .vscode/
 coveragereport
+.jekyll-cache/
+_site/
+Gemfile.lock
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

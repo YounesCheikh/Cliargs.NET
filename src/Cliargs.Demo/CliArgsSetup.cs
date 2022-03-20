@@ -8,7 +8,7 @@ namespace Cliargs.Demo
         {
             // The user real name
             container.Register(
-                CliArg.New<string>("Name")
+                CliArg.New<string>(nameof(MyArgs.Name))
                 .AsRequired()
                 .WithLongName("name")
                 .WithShortName("n")
@@ -18,7 +18,7 @@ namespace Cliargs.Demo
 
             // The user real age
             container.Register(
-                CliArg.New<uint>("Age")
+                CliArg.New<uint>(nameof(MyArgs.Age))
                 .AsOptional()
                 .WithLongName("age")
                 .WithShortName("a")
@@ -26,9 +26,18 @@ namespace Cliargs.Demo
                 .WithUsage("-a|--age 28")
             );
 
+            container.Register(
+                CliArg.New<uint>(nameof(MyArgs.PaddingLines))
+                .AsOptional((uint)1)
+                .WithLongName("padding")
+                .WithShortName("p")
+                .WithDescription("Padding Lines on top and bottom")
+                .WithUsage("-p|--padding 2")
+            );
+
             // Option to highlight the output 
             container.Register(
-                CliArg.New("Highlight")
+                CliArg.New(nameof(MyArgs.Highlight))
                 .AsOptional()
                 .WithLongName("highlight")
                 .WithShortName("hl")

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Cliargs
 {
 	public static class CliArgExtensions
@@ -12,6 +14,7 @@ namespace Cliargs
 		public static CliArg<T> AsRequired<T>(this CliArg<T> arg)
 		{
 			arg.Info.Optional = false;
+			arg.Info.HasDefaultValue = false;
 			return arg;
 		}
 
@@ -24,6 +27,22 @@ namespace Cliargs
 		public static CliArg<T> AsOptional<T>(this CliArg<T> arg)
 		{
 			arg.Info.Optional = true;
+			arg.Info.HasDefaultValue = false;
+			return arg;
+		}
+
+		/// <summary>
+		/// Mark a Command Line Interface argument is optional.
+		/// </summary>
+		/// <typeparam name="T">The argument type</typeparam>
+		/// <param name="arg">The argument</param>
+		/// <param name="defaultValue">default value</param>
+		/// <returns>The argument marked as optional</returns>
+		public static CliArg<T> AsOptional<T>(this CliArg<T> arg, T defaultValue)
+		{
+			arg.Info.Optional = true;
+			arg.DefaultValue = defaultValue;
+			arg.Info.HasDefaultValue = true;
 			return arg;
 		}
 
@@ -35,13 +54,6 @@ namespace Cliargs
 		public static CliArg AsOptional(this CliArg arg)
 		{
 			arg.Info.Optional = true;
-			return arg;
-		}
-
-
-		public static CliArg<T> NoRequiredValue<T>(this CliArg<T> arg)
-		{
-			arg.Info.RequiresValue = false;
 			return arg;
 		}
 

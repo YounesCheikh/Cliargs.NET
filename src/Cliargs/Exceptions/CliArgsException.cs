@@ -14,6 +14,11 @@ namespace Cliargs
         {
 
         }
+
+        public CliArgsException(string? message, Exception innerException) : base(message, innerException)
+        {
+
+        }
     }
 }
 

@@ -1,0 +1,2 @@
+rm -rf src/Cliargs.Tests/TestResults/*
+dotnet test src/Cliargs.Tests/Cliargs.Tests.csproj --collect:"XPlat Code Coverage" --results-directory:"./TestResults/"

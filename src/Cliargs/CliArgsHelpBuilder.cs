@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace Cliargs
@@ -12,6 +13,10 @@ namespace Cliargs
 			this._container = container;
 		}
 
+		/// <summary>
+		/// Build the help string
+		/// </summary>
+		/// <returns>The help string</returns>
 		public string Build()
         {
 			headerPadding = _container.CliArgs.Values
@@ -36,6 +41,11 @@ namespace Cliargs
 			return stringBuilder.ToString();
 		}
 
+		/// <summary>
+		/// Build help string line for a specific argument
+		/// </summary>
+		/// <param name="func">The argument func</param>
+		/// <returns>The help string</returns>
 		private string BuildFor(Func<CliArg, bool> func)
         {
 			StringBuilder stringBuilder = new StringBuilder();
@@ -69,6 +79,12 @@ namespace Cliargs
 				stringBuilder.AppendLine(
 					string.Format("  {0}   {1}", helpHeader.PadRight(headerPadding), info.Description)
 					);
+				if(arg.Info.Optional && arg.Info.HasDefaultValue)  {
+					stringBuilder.AppendLine(
+					string.Format("  {0}   {1}", string.Empty.PadRight(headerPadding), $"Default value: {arg.GetDefaultValue()}")
+					);
+					// stringBuilder.AppendLine();
+				}
 			}
 
 			return stringBuilder.ToString();

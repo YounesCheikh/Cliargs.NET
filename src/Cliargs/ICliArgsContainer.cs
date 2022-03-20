@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Cliargs
 {
 	public interface ICliArgsContainer
@@ -8,6 +10,8 @@ namespace Cliargs
 		void Register(CliArg arg);
 
 		T? GetValue<T>(string argName);
+
+		object? GetValue(string argName);
 
 		CliArgsFormat Format { get; }
 

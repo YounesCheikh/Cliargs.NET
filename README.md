@@ -1,20 +1,33 @@
-## Command Line Interface Arguments parser for C#
+# Cliargs.NET 
+## Command Line Interface Arguments parser for dotnet
 
-[![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml) 
-[![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/)  
-[![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellowgreen)](https://creativecommons.org/licenses/by-nc-sa/4.0/) 
-
+| [![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/) | [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellowgreen)](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
+| :---: | :---: |
+| [![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml) | ![Test Coverage](https://raw.githubusercontent.com/wiki/YounesCheikh/Cliargs.NET/combined.svg) |
 
 | ![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png) | [![Build history](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)](https://buildstats.info/github/chart/younescheikh/Cliargs.NET) | 
 | :---: | :---: | 
 
-Cliargs.NET is a .NET library helps you to parse and use the Command Line Interface arguments in easy way. 
+--- 
+Cliargs.NET is a dotnet library helps you to parse and use the Command Line Interface arguments in easy way. 
 
 The main goal of Cliargs.NET is to help C# developers reduce their programming time without dealing with all validations and casting of the user input. 
 
 Cliargs.NET makes all for you, all you have to do is write your Setup configuration in order to configure the Arguments container, then, from key and values parsing, to validation is automatically done on app startup. 
 
-## Quick comparison 
+# Install 
+
+## Package Manager
+```shell
+Install-Package Cliargs.NET
+```
+
+## Dotnet CLI
+```shell
+dotnet add package Cliargs.NET
+```
+
+# Quick comparison 
 
 In this example, you see the difference between managing the command line arguments by yourself, or by Cliargs.NET, for an application with two arguments:
 
@@ -27,11 +40,11 @@ The objective is to display the following message in a console app:
 > Dear {user name}, you're {user age} years old!
 
 
-### Example of old school way: 😔
+## Example of old school way: 😔
 
 > 👉 [Example on gist](https://gist.github.com/YounesCheikh/c000e4a03ba7b545df1838b03e41474c) 👈
 
-### New way with Cliargs.NET 🤩
+## New way with Cliargs.NET 🤩
 
 Create your Setup class and implement the `Configure` method to create your app arguments: 
 
@@ -75,5 +88,5 @@ else
 }
 ```
 
-## Documentation
-> More examples and documentation is on [Wiki](https://github.com/YounesCheikh/Cliargs.NET/wiki)
+# Documentation
+> More examples and documentation is on [Cliargs.NET Documentation](https://somecode.net/Cliargs.NET/)

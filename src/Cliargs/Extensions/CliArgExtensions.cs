@@ -14,6 +14,7 @@ namespace Cliargs
 		public static CliArg<T> AsRequired<T>(this CliArg<T> arg)
 		{
 			arg.Info.Optional = false;
+			arg.Info.HasDefaultValue = false;
 			return arg;
 		}
 
@@ -26,6 +27,7 @@ namespace Cliargs
 		public static CliArg<T> AsOptional<T>(this CliArg<T> arg)
 		{
 			arg.Info.Optional = true;
+			arg.Info.HasDefaultValue = false;
 			return arg;
 		}
 

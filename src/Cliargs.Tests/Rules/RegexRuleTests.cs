@@ -29,6 +29,16 @@ namespace Cliargs.Tests.Rules
         }
 
         [TestMethod]
+        [ExpectedException(typeof(CliArgsException))]
+        [Description("The constructor of the rule is throwing an exception when an invalid pattern is set")]
+        public void CreateRuleWithOptionsAndWrongPattern() 
+        {
+            const string pattern = "[]";
+            RegexRule regexRule = new RegexRule(pattern, RegexOptions.None);
+            Assert.IsNotNull(regexRule);  
+        }
+
+        [TestMethod]
         public void CreateRuleWithAnyMatch() {
             const string pattern = ".*";
             RegexRule regexRule = RegexRule

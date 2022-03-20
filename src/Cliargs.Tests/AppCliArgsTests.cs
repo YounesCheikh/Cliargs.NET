@@ -47,7 +47,7 @@ namespace Cliargs.Tests
 				mockedCLI.Setup(m => m.GetCommandLineArgs()).Returns(expectedArgs);
 				container.ArgumentsProvider = mockedCLI.Object;
 				ICliArgsSetup defaultSetup = new DefaultContainerSetup();
-				container.Register(CliArg.New<int>("test"));
+				container.Register(CliArg.New<int>("test").AsOptional(0));
 				container.Register(CliArg.New("longArg").WithLongName("too-long-command-line-interface-argument"));
             }
         }

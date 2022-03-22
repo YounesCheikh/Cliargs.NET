@@ -23,7 +23,7 @@ layout: welcome
         {% assign items = category.last | sort: 'order' %}
     {% for post in items %}
         <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-          <a href="{{ post.url }}">{{ post.title }}</a>
+          <a href="{{ site.baseurl }}/{{ post.url }}">{{ post.title }}</a>
           <span class="dash flex-grow-1"></span>
         </li>
       {% endfor %}

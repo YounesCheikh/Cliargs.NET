@@ -1,6 +1,6 @@
 ## Welcome to Cliargs.NET
 
-![Cliargs.NET Library](/images/cliargs.png)
+![Cliargs.NET Library](images/cliargs.png)
 
 Cliargs.NET is an open source dotnet library helps you to parse and use the Command Line Interface arguments in easy way.
 

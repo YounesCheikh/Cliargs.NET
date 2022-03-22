@@ -187,6 +187,7 @@ exclude:
   - gulpfile.js
   - node_modules
   - package*.json
+  - home.md
 
 jekyll-archives:
   enabled: [categories]

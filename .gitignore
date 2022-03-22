@@ -1,0 +1,8 @@
+.DS_Store
+.jekyll-cache/
+.vscode/
+Gemfile.lock
+_site/
+TestResults/
+coveragereport/
+src/

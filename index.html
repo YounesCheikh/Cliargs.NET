@@ -1,0 +1,33 @@
+---
+layout: welcome
+# Index page
+---
+
+{% include lang.html %}
+
+{% capture my_include %}{% include_relative home.md %}{% endcapture %}
+{{ my_include | markdownify }}
+
+<h2>Documentation</h2> 
+
+<ul class="post-content pl-0">
+  {% for sortedcategory in site.sorted-categories %} 
+    {% for category in site.categories %}
+    {% assign category_name = category | first %}
+    {% if sortedcategory != category_name %} 
+        {% continue %} 
+    {% endif %}
+    {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
+    <h3><a href="{{ _category_url | relative_url }}">{{ category_name }}</a></h3>
+      <ul class="post-content pl-0" >
+        {% assign items = category.last | sort: 'order' %}
+    {% for post in items %}
+        <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          <span class="dash flex-grow-1"></span>
+        </li>
+      {% endfor %}
+      </ul>
+  {% endfor %}
+  {% endfor %}
+  </ul>

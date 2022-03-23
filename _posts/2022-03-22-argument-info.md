@@ -6,9 +6,9 @@ categories:
   - Cliargs content
 fullview: true
 order: 1
-date: 2022-03-05 00:23:00 +0100
-last_modified_at: 2022-03-05 00:23:00 +0100
-published: true
+date: 2022-03-22 00:00:00 +0100
+last_modified_at: 2022-03-22 00:00:00 +0100
+published: false
 ---
 
 The Argument Info is the `metadata` of each command line argument registered to Cliargs.NET. It contains all the information about the argument, such as required or optional, the description, the usage example... 

@@ -1,4 +1,3 @@
-
 ## Welcome to Cliargs.NET
 
 ![Cliargs.NET Library](images/cliargs.png)

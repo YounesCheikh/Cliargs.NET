@@ -1,0 +1,28 @@
+
+<div class="access">
+  <h2>Knowledge base</h2> 
+<div id="access-lastmod" class="post">
+<ul class="post-content pl-0">
+  {% for sortedcategory in site.sorted-categories %} 
+    {% for category in site.categories %}
+    {% assign category_name = category | first %}
+    {% if sortedcategory != category_name %} 
+        {% continue %} 
+    {% endif %}
+    {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
+    <div class="panel-heading"><a href="{{ _category_url | relative_url }}">{{ category_name }}</a></div>
+      <ul class="post-content pl-0 pb-1 ml-1 mt-2" >
+        {% assign items = category.last | sort: 'order' %}
+    {% for post in items %}
+        <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+          <a href="{{ site.baseurl }}/{{ post.url }}">{{ post.title }}</a>
+          <span class="dash flex-grow-1"></span>
+        </li>
+      {% endfor %}
+      </ul>
+      <div>
+  {% endfor %}
+  {% endfor %}
+  </ul>
+</div>
+</div>

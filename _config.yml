@@ -44,7 +44,7 @@ social:
   name: Younes Cheikh
   email:             # change to your email address
   links:
-    # The first element serves as the copyright owner's link
+     - https://somecode.net # The first element serves as the copyright owner's link
     #- https://twitter.com/YounesCheikh      # change to your twitter homepage
     #- https://github.com/YounesCheikh       # change to your github homepage
     # Uncomment below to add more social links
@@ -202,5 +202,4 @@ sorted-categories:
   - Get Started
   - Basic usage
   - Advanced usage
-  - Cliargs content
   - Validation Rules

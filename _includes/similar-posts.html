@@ -1,0 +1,17 @@
+{% capture category %}{{ page.categories | first }}{% endcapture %}
+
+{% if site.categories[category].size > 0 %}
+
+{% assign items = site.categories[category] | sort: 'order' %}
+<div id="access-lastmod" class="post">
+    <div class="panel-heading">{{ category }}</div>
+    <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+        {% for post in items limit: 5 %}
+            {% if post.title == page.title %}
+                {% continue %}
+            {% endif %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+        {% endfor %}
+    </ul>
+  </div> <!-- #access-lastmod -->
+{% endif %}

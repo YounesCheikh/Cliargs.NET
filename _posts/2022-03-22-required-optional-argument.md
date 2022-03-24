@@ -13,7 +13,7 @@ published: true
 
 The difference between required and optional arguments, is that Cliargs.NET throws an exception during the initlization process when missing a required argument, while continues the initialization in a normal way if any optional argument is missing.
 
-> Each arguments is created by default as required unless you make it optional
+> Each argument is created by default as required unless you make it optional
 {:.prompt-info}
 
 ## Required argument

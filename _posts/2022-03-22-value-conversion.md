@@ -16,23 +16,25 @@ The input value is usually converted automatically from string to the argument p
 ### Native Converters
 
 #### Default Converter
+
 The default converter is `ValueTypeConverter`
 
-#### Enum Converter 
+#### Enum Converter
+
 The converter is `StringToEnumConverter`
 
-### Custom Converters  
+### Custom Converters
+
 To customize a conversion from the input value, you should create a new class implementing `ValueTypeConverter`;
 
 #### Definition
-In the following example, a sample custom converter to convert input values to a named script in the following : 
 
-```
-"1" => typeof(uint)
-"2" => typeof(int)
-"3" => typeof(long)
+In the following example, a sample custom converter to convert input values to a named script in the following :
+
+> "1" => typeof(uint)  
+"2" => typeof(int)  
+"3" => typeof(long)  
 by default, any other value returns typeof(short)
-```
 
 ```csharp
 public class CustomConverter: ValueTypeConverter
@@ -57,8 +59,9 @@ public class CustomConverter: ValueTypeConverter
 }
 ```
 
-#### Usage 
-Once the custom converter is created, it might be used during the creation of the argument in the Setup class using the `CliArg` extension method `ValueConvertedWith()`. 
+#### Usage
+
+Once the custom converter is created, it might be used during the creation of the argument in the Setup class using the `CliArg` extension method `ValueConvertedWith()`.
 
 ```csharp
 container.Register(

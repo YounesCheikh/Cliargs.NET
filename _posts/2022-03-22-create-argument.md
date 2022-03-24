@@ -25,7 +25,7 @@ The code above create a new instance of an argument having a name `Force`. if no
 
 ### Sample argument with a value
 
-The arguments with value are used if you expect the user to enter an argument following with a value, ex: `--Force true`. 
+The arguments with value are used if you expect the user to enter an argument following with a value, ex: `--Force true`.
 
 ```csharp
 var myOptionArg = CliArg.New<bool>("Force");

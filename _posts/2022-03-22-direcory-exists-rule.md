@@ -14,8 +14,10 @@ published: true
 
 This rule ensure that a directory exists from a given path.
 
-** Usage: ** 
+**Usage:**
+
 Just add a new instance of `DirectoryExistsRule` to argument validation rules when initializing the directory argument object.
+
 ```csharp
 myDirectoryArg = myDirectoryArg.WithValidationRule(new DirectoryExistsRule());
 ```

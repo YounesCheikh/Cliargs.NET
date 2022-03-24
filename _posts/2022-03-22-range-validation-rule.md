@@ -11,12 +11,13 @@ last_modified_at: 2022-03-22 00:00:00 +0100
 published: true
 ---
 
-This rule checks if a given value is present in a range. 
+This rule checks if a given value is present in a range.
 
 ### Example
+
 This example to ensure an input Integer value is in a range of [1, 2, 3]
 
-```csharp 
+```csharp
 // pass the items of the range
 RangeValidationRule<int?>.FromRange(1, 2, 3 ); 
 

@@ -11,7 +11,7 @@ last_modified_at: 2022-03-22 00:00:00 +0100
 published: true
 ---
 
-There are several ways to install Cliargs.NET library, depending on your environment and your preferences. 
+There are several ways to install Cliargs.NET library, depending on your environment and your preferences.
 
 ## Nuget Package Manager
 

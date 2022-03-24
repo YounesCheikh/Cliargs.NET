@@ -17,7 +17,8 @@ The difference between required and optional arguments, is that Cliargs.NET thro
 {:.prompt-info}
 
 ## Required argument
-Arguments are created as required by default, but if needed, to set an argument as required, you have two ways to follow, either by setting the `ArgumentInfo.Optional` property to `false`, or by calling the extension method `AsRequired` when creating your argument instance during the registration step. 
+
+Arguments are created as required by default, but if needed, to set an argument as required, you have two ways to follow, either by setting the `ArgumentInfo.Optional` property to `false`, or by calling the extension method `AsRequired` when creating your argument instance during the registration step.
 
 ```csharp
 // Setting the Argument Info property 
@@ -31,7 +32,8 @@ var usernameArg = CliArg.New<string>("Username")
 ```
 
 ## Optional argument
-To set an argument as optional, you have two ways to follow, either by setting the `ArgumentInfo.Optional` property to `true`, or by calling the extension method `AsOptional` when creating your argument instance during the registration step. 
+
+To set an argument as optional, you have two ways to follow, either by setting the `ArgumentInfo.Optional` property to `true`, or by calling the extension method `AsOptional` when creating your argument instance during the registration step.
 
 ```csharp
 // Setting the Argument Info property 
@@ -56,8 +58,5 @@ var usernameArg = CliArg.New<string>("Username")
                 .AsOptional("Guest"); // The default username is guest
 ```
 
-> Required arguments have no default value. The value must be entered by the user. 
+> Required arguments have no default value. The value must be entered by the user.
 {:.prompt-info}
-
-
-

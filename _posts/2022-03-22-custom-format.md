@@ -11,14 +11,15 @@ last_modified_at: 2022-03-22 00:00:00 +0100
 published: true
 ---
 
-The format is the definition of the prefix for long name and short name of arguments, and the assignation character for setting a value to an argument, this character or symbol is usually located between the argument key and the value, `--arg-key=value`. 
+The format is the definition of the prefix for long name and short name of arguments, and the assignation character for setting a value to an argument, this character or symbol is usually located between the argument key and the value, `--arg-key=value`.
 
-### Native Format 
-The default native format is `--long-argument-name argValue -short-name value --option` 
+### Native Format
+
+The default native format is `--long-argument-name argValue -short-name value --option`.
 
 ### Custom Format
 
-The customize the input format you can create your own format class by implementing the base class `CliArgsFormat`. 
+The customize the input format you can create your own format class by implementing the base class `CliArgsFormat`.
 
 ```csharp
 public class CustomFormat : CliArgsFormat
@@ -27,8 +28,9 @@ public class CustomFormat : CliArgsFormat
     }
 ```
 
-Then from main specify the Input format to use during the initialization : 
-```csharp 
+Then from main specify the Input format to use during the initialization:
+
+```csharp
 AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
 ```
 

@@ -13,59 +13,56 @@ published: true
 
 The argument long and short names are different than the argument name. The argument name is used as a key when managing the arguments, ex: create argument or get a value of an argument.
 
-## Argument long name 
-The argument long name is usually a single word or a set of words separated by a dash `-` all in lower case. 
+## Argument long name
 
-### Argument without value
-```csharp 
+The argument long name is usually a single word or a set of words separated by a dash `-` all in lower case.
+
+Argument without value:
+
+```csharp
 var myOptionArg = CliArg.New("ForceUpdate")
                     .WithLongName("force-update");
 ```
 
-**Usage**
+Argument with value:
+
+```csharp
+var myOtherArg = CliArg.New<bool>("ForceUpdate")
+                    .WithLongName("force-update");
+```
+
+Usage from shell:
 
 ```shell
 > myApp --force-update
+...
+> myOtherApp --force-update true
 ```
 
-### Argument with value
+---
+
+## Argument short name
+
+The argument short name is usually a single character or an abbreviation of multiple words in lower case.
+
+Argument without value:
 
 ```csharp
-var myOtherArg = CliArg.New<bool>("ForceUpdate")
-                    .WithLongName("force-update");
-```
-
-**Usage**
-
-```shell
-> myApp --force-update true
-```
-
---- 
-## Argument short name 
-The argument short name is usually a single character or an abbreviation of multiple words in lower case. 
-
-### Argument without value
-```csharp 
 var myOptionArg = CliArg.New("ForceUpdate")
                     .WithShortName("f");
 ```
 
-**Usage**
-
-```shell
-> myApp -f
-```
-
-### Argument with value
+Argument with value:
 
 ```csharp
 var myOtherArg = CliArg.New<bool>("ForceUpdate")
                     .WithShortName("f");
 ```
 
-**Usage**
+Usage from shell
 
 ```shell
-> myApp -f true
+> myApp -f
+...
+> myOtherApp -f true
 ```

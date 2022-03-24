@@ -3,7 +3,7 @@ title: Argument Info
 description: >-
   Cliargs.NET Documentation of the argument properties and info
 categories:
-  - Cliargs content
+  - Basic usage
 fullview: true
 order: 1
 date: 2022-03-22 00:00:00 +0100

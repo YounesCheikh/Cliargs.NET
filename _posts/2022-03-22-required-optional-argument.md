@@ -1,5 +1,5 @@
 ---
-title: Required and Optional Arguments
+title: Required and Optional arguments
 description: >-
   Cliargs.NET Documentation for required and/or optional arguments
 categories:

@@ -30,4 +30,3 @@ if(AppCliArgs.IsHelpRequested()) {
 ```
 
 ## Example output
-

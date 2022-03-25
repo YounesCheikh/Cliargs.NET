@@ -6,3 +6,5 @@ _site/
 TestResults/
 coveragereport/
 src/
+package-lock.json
+node_modules/

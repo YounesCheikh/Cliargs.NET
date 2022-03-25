@@ -44,7 +44,7 @@
     {% for sortedcategory in site.sorted-categories %} 
     {% for category in site.categories %}
     {% assign category_name = category | first %}
-    {% if sortedcategory != category_name %} 
+    {% if sortedcategory.name != category_name %} 
         {% continue %} 
     {% endif %}
     

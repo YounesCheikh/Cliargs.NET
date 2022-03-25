@@ -15,7 +15,6 @@
     {% else %}
 
       {% for item in paths %}
-
         {% if forloop.first %}
           <span>
             <a href="{{ '/' | relative_url }}">
@@ -27,6 +26,16 @@
 
           {% if page.collection == 'tabs' %}
             <span>{{ site.data.locales[lang].tabs[item] | default: page.title }}</span>
+          {% elsif page.layout == 'post' %}
+          {% if page.categories.size > 0 %}
+            {% assign first_category = page.categories | last %}
+            <span>
+              <a href='{{ site.baseurl }}/categories/{{ first_category | slugify | url_encode }}/'>{{ first_category }}</a>
+            </span>
+            <span>{{ page.title }}</span>
+          {% else %}
+            <span>{{ page.title }}</span>
+          {% endif %}
           {% else %}
             <span>{{ page.title }}</span>
           {% endif %}

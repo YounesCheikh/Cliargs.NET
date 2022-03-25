@@ -12,8 +12,12 @@ layout: page
 
 {% assign sort_categories = site.categories | sort %}
 
+{% for sortedcategory in site.sorted-categories %} 
 {% for category in sort_categories %}
-  {% assign category_name = category | first %}
+{% assign category_name = category | first %}
+{% if sortedcategory.name != category_name %} 
+    {% continue %} 
+{% endif %}
   {% assign posts_of_category = category | last %}
   {% assign first_post = posts_of_category | first %}
 
@@ -37,7 +41,11 @@ layout: page
     <div id="{{ HEAD_PREFIX }}{{ group_index }}"
       class="card-header d-flex justify-content-between hide-border-bottom">
       <span>
+        {% if sortedcategory.icon %}
+        <i class="{{ sortedcategory.icon }} fa-fw"></i>
+        {% else %}
         <i class="far fa-folder{% if sub_categories_size > 0 %}-open{% endif %} fa-fw"></i>
+        {% endif%}
 
         {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
         <a href="{{ _category_url | relative_url }}" class="ml-1 mr-2">{{ category_name }}</a>
@@ -96,4 +104,5 @@ layout: page
     {% assign group_index = group_index | plus: 1 %}
 
   {% endif %}
+{% endfor %}
 {% endfor %}

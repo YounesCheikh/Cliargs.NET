@@ -33,7 +33,8 @@
     <!-- home -->
     <li class="nav-item{% if page.layout == 'welcome' %}{{ " active" }}{% endif %}">
       <a href="{{ '/' | relative_url }}" class="nav-link">
-        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <!-- <i class="far fa-folder-open fa-fw ml-xl-3 mr-xl-3 unloaded"></i> -->
+        <i class="far fa-home fa-fw ml-xl-3 mr-xl-3"></i>
         <span>{{ site.data.locales[lang].tabs.home | upcase }}</span>
       </a>
     </li>
@@ -51,7 +52,7 @@
     {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
     <li class="nav-item{% if _category_url == page.url %}{{ " active" }}{% endif %}">
       <a href="{{ _category_url | relative_url }}" class="nav-link">
-        <i class="ml-xl-3 mr-xl-3 unloaded"></i>
+        <i class="far {{ sortedcategory.icon }} fa-fw ml-xl-3 mr-xl-3"></i>
         <span>{{ category_name | upcase }}</span>
       </a>
     </li> <!-- .nav-item -->

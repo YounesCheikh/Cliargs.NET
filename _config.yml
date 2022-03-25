@@ -201,13 +201,13 @@ jekyll-archives:
 sorted-categories: 
   - 
     name: Get Started
-    icon: 
+    icon: far fa-star
   - 
     name: Basic usage
-    icon: 
+    icon: fas fa-star-half-alt
   - 
     name: Advanced usage
-    icon: 
+    icon: fas fa-star
   - 
     name: Validation Rules
-    icon: 
+    icon: fas fa-check-circle

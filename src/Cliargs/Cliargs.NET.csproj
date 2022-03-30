@@ -51,11 +51,15 @@
     <None Remove="Conversion\" />
     <None Remove="Rules\" />
     <None Remove="Exceptions\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Core\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Conversion\" />
     <Folder Include="Rules\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Core\" />
   </ItemGroup>
 </Project>

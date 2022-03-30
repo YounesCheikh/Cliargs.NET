@@ -17,11 +17,12 @@ namespace Cliargs.Demo
             );
 
             // The user real age
+            // Long and short names are generated
             container.Register(
                 CliArg.New<uint>(nameof(MyArgs.Age))
                 .AsOptional()
-                .WithLongName("age")
-                .WithShortName("a")
+                //.WithLongName("age")
+                //.WithShortName("a")
                 .WithDescription("The user age in years")
                 .WithUsage("-a|--age 28")
             );

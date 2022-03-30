@@ -47,7 +47,7 @@ namespace Cliargs.Tests
 		{
 			ICliArgsContainer container = new CliArgsContainer();
 			container.Register(CliArg.New<int>("test"));
-			Assert.IsNull(container.GetCliArgByShortName("t"));
+			Assert.IsNull(container.GetCliArgByShortName("tt"));
 		}
 
 		[TestMethod]

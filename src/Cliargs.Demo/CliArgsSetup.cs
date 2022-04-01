@@ -24,7 +24,7 @@ namespace Cliargs.Demo
                 //.WithLongName("age")
                 //.WithShortName("a")
                 .WithDescription("The user age in years")
-                .WithUsage("-a|--age 28")
+                //.WithUsage("-a|--age 28")
             );
 
             container.Register(

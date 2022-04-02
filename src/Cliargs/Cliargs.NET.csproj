@@ -8,9 +8,9 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <Description>Commande Line Arguments parser and C# API</Description>
+    <Description>Commande Line Interface Arguments parser and C# API</Description>
     <!-- <ReleaseVersion>1.2.0-alpha</ReleaseVersion> -->
-    <Version>1.2.3</Version>
+    <Version>1.3.0</Version>
     <!-- <AssemblyVersion>1.2.0-alpha</AssemblyVersion> -->
     <!-- <FileVersion>1.2.0-alpha</FileVersion> -->
     <RepositoryUrl>https://github.com/YounesCheikh/Cliargs.NET</RepositoryUrl> 
@@ -51,11 +51,15 @@
     <None Remove="Conversion\" />
     <None Remove="Rules\" />
     <None Remove="Exceptions\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Core\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Conversion\" />
     <Folder Include="Rules\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Core\" />
   </ItemGroup>
 </Project>

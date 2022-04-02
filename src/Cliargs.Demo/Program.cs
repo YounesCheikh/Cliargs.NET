@@ -3,6 +3,7 @@ using Cliargs.Demo;
 
 MyArgs myArgs;
 try {
+    CliArgsOptions.Container.AutoGenerateNames = true;
     AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
     // Parse the data into a give args host
     myArgs = AppCliArgs.GetArgsParsed<MyArgs>();

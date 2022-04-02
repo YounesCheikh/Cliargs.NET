@@ -1,0 +1,7 @@
+echo "Building a new release"
+dotnet build src/Cliargs/Cliargs.NET.csproj -c release
+
+echo "Releasing a new package"
+dotnet pack src/Cliargs/Cliargs.NET.csproj -c release
+
+

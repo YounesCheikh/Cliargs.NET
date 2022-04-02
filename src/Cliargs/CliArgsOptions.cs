@@ -12,5 +12,9 @@ namespace Cliargs
             public static string LongName {get;set;} = "help";
             public static string ShortName {get;set;} = "h";
         }
+
+        public static class Container {
+            public static bool AutoGenerateNames { get; set; } = false;
+        }
     }
 }

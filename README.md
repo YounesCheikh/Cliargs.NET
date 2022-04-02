@@ -1,33 +1,42 @@
-# Cliargs.NET 
+# Cliargs.NET
+
 ## Command Line Interface Arguments parser for dotnet
 
 | [![NuGet Badge](https://buildstats.info/nuget/Cliargs.NET)](https://www.nuget.org/packages/Cliargs.NET/) | [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-yellowgreen)](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
 | :---: | :---: |
 | [![.NET](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/YounesCheikh/Cliargs.NET/actions/workflows/dotnet.yml) | ![Test Coverage](https://raw.githubusercontent.com/wiki/YounesCheikh/Cliargs.NET/combined.svg) |
 
-| ![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png) | [![Build history](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)](https://buildstats.info/github/chart/younescheikh/Cliargs.NET) | 
-| :---: | :---: | 
+| ![image](https://raw.githubusercontent.com/YounesCheikh/Cliargs.NET/main/Cliargs.png) | [![Build history](https://buildstats.info/github/chart/younescheikh/Cliargs.NET)](https://buildstats.info/github/chart/younescheikh/Cliargs.NET) |
+| :---: | :---: |
 
---- 
-Cliargs.NET is a dotnet library helps you to parse and use the Command Line Interface arguments in easy way. 
+---
 
-The main goal of Cliargs.NET is to help C# developers reduce their programming time without dealing with all validations and casting of the user input. 
+## Knowledge base
 
-Cliargs.NET makes all for you, all you have to do is write your Setup configuration in order to configure the Arguments container, then, from key and values parsing, to validation is automatically done on app startup. 
+> More examples and documentation is on [Cliargs.NET Knowledge base](https://somecode.net/Cliargs.NET/)
+---
 
-# Install 
+Cliargs.NET is a dotnet library helps you to parse and use the Command Line Interface arguments in easy way.
 
-## Package Manager
+The main goal of Cliargs.NET is to help C# developers reduce their programming time without dealing with all validations and casting of the user input.
+
+Cliargs.NET makes all for you, all you have to do is write your Setup configuration in order to configure the Arguments container, then, from key and values parsing, to validation is automatically done on app startup.
+
+## Install
+
+### Package Manager
+
 ```shell
 Install-Package Cliargs.NET
 ```
 
-## Dotnet CLI
+### Dotnet CLI
+
 ```shell
 dotnet add package Cliargs.NET
 ```
 
-# Quick comparison 
+## Quick comparison
 
 In this example, you see the difference between managing the command line arguments by yourself, or by Cliargs.NET, for an application with two arguments:
 
@@ -36,9 +45,8 @@ In this example, you see the difference between managing the command line argume
 | User Name | string | --name | -n | no |
 | User age | uint | --age | -a | yes |
 
-The objective is to display the following message in a console app: 
+The objective is to display the following message in a console app:
 > Dear {user name}, you're {user age} years old!
-
 
 ## Example of old school way: 😔
 
@@ -46,7 +54,7 @@ The objective is to display the following message in a console app:
 
 ## New way with Cliargs.NET 🤩
 
-Create your Setup class and implement the `Configure` method to create your app arguments: 
+Create your Setup class and implement the `Configure` method to create your app arguments:
 
 ```csharp
 public class CliArgsSetup : ICliArgsSetup
@@ -67,15 +75,15 @@ public class CliArgsSetup : ICliArgsSetup
 }
 ```
 
-Initialize the AppCliArgs instance by calling `Initialize` method at the begining of your app main method: 
+Initialize the AppCliArgs instance by calling `Initialize` method at the begining of your app main method:
 
-```csharp 
+```csharp
 AppCliArgs.Initialize<CliArgsSetup>(new CustomFormat());
 ```
 
 The finally start using the arguments values
 
-```csharp 
+```csharp
 var name = AppCliArgs.GetArgValue<string>("name");
 if (AppCliArgs.IsSet("age"))
 {
@@ -87,6 +95,3 @@ else
     Console.WriteLine($"Dear {name}, we don't know your age!");
 }
 ```
-
-# Documentation
-> More examples and documentation is on [Cliargs.NET Documentation](https://somecode.net/Cliargs.NET/)

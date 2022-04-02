@@ -21,6 +21,12 @@ namespace Cliargs.Tests
 			Assert.AreEqual("command", results);
 		}
 
+		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		public void FailsSlugifyNameTest() {
+			IArgNamesGenerator generator = new ArgNamesGenerator();
+			var results = generator.GenerateLongName("     ");
+		}
+
 		[TestMethod]
 		public void ShortifyNameTest() 
 		{
@@ -30,6 +36,12 @@ namespace Cliargs.Tests
 
 			results = generator.GenerateShortName("command");
 			Assert.AreEqual("c", results);
+		}
+
+		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		public void FailsShortifyNameTest() {
+			IArgNamesGenerator generator = new ArgNamesGenerator();
+			var results = generator.GenerateShortName("     ");
 		}
 	}
 }

@@ -74,17 +74,19 @@ namespace Cliargs
         /// </exception>
         public void Register(CliArg arg)
         {
-            if(string.IsNullOrWhiteSpace(arg.Info.LongName)) 
-            {
-                var longName = this.ArgNamesGenerator.GenerateLongName(arg.Name);
-                if(this.CliArgs.All(e=> e.Value.Info.LongName != longName))
-                    arg.Info.LongName = longName;
-            }
+            if(CliArgsOptions.Container.AutoGenerateNames) {
+                if(string.IsNullOrWhiteSpace(arg.Info.LongName)) 
+                {
+                    var longName = this.ArgNamesGenerator.GenerateLongName(arg.Name);
+                    if(this.CliArgs.All(e=> e.Value.Info.LongName != longName))
+                        arg.Info.LongName = longName;
+                }
 
-            if(string.IsNullOrWhiteSpace(arg.Info.ShortName) && !string.IsNullOrWhiteSpace(arg.Info.LongName)){
-                var shortName = this.ArgNamesGenerator.GenerateShortName(arg.Info.LongName);
-                if(this.CliArgs.All(e=> e.Value.Info.ShortName != shortName))
-                    arg.Info.ShortName = shortName;
+                if(string.IsNullOrWhiteSpace(arg.Info.ShortName) && !string.IsNullOrWhiteSpace(arg.Info.LongName)){
+                    var shortName = this.ArgNamesGenerator.GenerateShortName(arg.Info.LongName);
+                    if(this.CliArgs.All(e=> e.Value.Info.ShortName != shortName))
+                        arg.Info.ShortName = shortName;
+                }
             }
             
             AddCliArg(arg);

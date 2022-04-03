@@ -29,6 +29,19 @@ Cliargs.CliArgsOptions.HelpArg.LongName = "default-help";
 Cliargs.CliArgsOptions.HelpArg.ShortName = "dh";
 ```
 
+## Auto generation of long and short names
+
+This setting is available since [version 1.3.0](https://github.com/YounesCheikh/Cliargs.NET/releases/tag/1.3.0). It allows you to enable or disable the auto generation of the long and short names for a specific arguments if they are not set.
+
+To enable this feature, just set the option `CliArgsOptions.Container.AutoGenerateNames` to `true` before on app startup and before initializing AppCliArgs.
+
+```csharp
+CliArgsOptions.Container.AutoGenerateNames = true;
+```
+
+> When this option is enabled, the registration of the argument having auto generated names might fail if the container already contains another argument with the same long name or the same short name.
+{: .prompt-warning }
+
 ---
 
 > Currently not all settings are customizable, I'm working to make Cliargs more customizable than today. If you want to suggest adding more default settings to be customizable, [just let me know](https://github.com/YounesCheikh/Cliargs.NET/discussions/new?category=ideas).

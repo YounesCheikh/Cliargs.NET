@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /norobots/
+
+Sitemap: https://somecode.net/Cliargs.NET/sitemap.xml
